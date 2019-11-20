@@ -9,17 +9,24 @@
     tools:showIn="@layout/activity_main"
     tools:context=".MainActivity">
 
-    <SearchView
-        android:id="@+id/searchView"
-        android:layout_width="318dp"
-        android:layout_height="60dp"
+    <androidx.cardview.widget.CardView
+        android:layout_width="333dp"
+        android:layout_height="75dp"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.623"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.57" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <SearchView
+            android:id="@+id/searchView"
+            android:layout_width="318dp"
+            android:layout_height="60dp"
+            android:scaleType="fitXY"
+            tools:layout_editor_absoluteX="57dp"
+            tools:layout_editor_absoluteY="89dp" />
+
+    </androidx.cardview.widget.CardView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
@@ -50,6 +57,5 @@
             android:layout_height="wrap_content"
             android:text="TextView" />
     </androidx.cardview.widget.CardView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
