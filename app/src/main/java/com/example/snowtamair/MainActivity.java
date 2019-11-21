@@ -20,6 +20,10 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private Button buttonAer1;
+    private Button buttonAer2;
+    private Button buttonAer3;
+    private Button buttonAer4;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,10 +47,35 @@ public class MainActivity extends AppCompatActivity {
                Intent intent = new Intent();
                intent.setClass( MainActivity.this, Airport.class);
                startActivity(intent);
-
            }
        });
-
+        buttonAer2 = findViewById(R.id.button2);
+        buttonAer2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass( MainActivity.this, Airport.class);
+                startActivity(intent);
+            }
+        });
+        buttonAer3 = findViewById(R.id.button3);
+        buttonAer3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass( MainActivity.this, Airport.class);
+                startActivity(intent);
+            }
+        });
+        buttonAer4 = findViewById(R.id.button4);
+        buttonAer4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass( MainActivity.this, Airport.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
