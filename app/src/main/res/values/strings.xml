@@ -20,7 +20,11 @@
     <string name="card_aeroport_name">Nom Aeroport</string>
     <string name="card_aeroport_botton">GO</string>
 
-
+    <string name="aeroport_heure">12 : 34</string>
+    <string name="aeroport_date">2 mars</string>
+    <string name="aeroport_piste_nom">Piste 1</string>
+    <string name="aeroport_piste_etat">Etat de la piste</string>
+    <string name="aeroport_piste_meteo">meteo</string>
 
 
 </resources>

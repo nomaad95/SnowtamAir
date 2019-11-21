@@ -3,12 +3,13 @@ package com.example.snowtamair;
 public class DataModel {
 
     String name;
-    String code;
+    String codeOACI;
+    String snowTam;
     int id_;
 
-    public DataModel(String name, String code, int id_) {
+    public DataModel(String name, String codeOACI, int id_) {
         this.name = name;
-        this.code = code;
+        this.codeOACI = codeOACI;
         this.id_ = id_;
     }
 
@@ -16,8 +17,12 @@ public class DataModel {
         return name;
     }
 
-    public String getCode() {
-        return code;
+    public String getCodeOACI() {
+        return codeOACI;
+    }
+
+    public String getSnowTam() {
+        return snowTam;
     }
 
     public int getId() {

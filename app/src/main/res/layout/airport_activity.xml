@@ -7,13 +7,87 @@
     android:layout_height="match_parent"
     >
 
-    <com.mapbox.mapboxsdk.maps.MapView
-        android:id="@+id/mapView"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        mapbox:mapbox_cameraTargetLat="49.0097"
-        mapbox:mapbox_cameraTargetLng="2.5479"
-        mapbox:mapbox_cameraTilt="70"
-        mapbox:mapbox_cameraZoom="17" />
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="409dp"
+            android:layout_height="170dp"
+            android:orientation="horizontal"
+            android:padding="20dp"
+            mapbox:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+            mapbox:layout_constraintEnd_toEndOf="parent"
+            mapbox:layout_constraintStart_toStartOf="parent"
+            mapbox:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/aeroport_heure"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/aeroport_heure" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?android:attr/listDivider" />
+
+            <TextView
+                android:id="@+id/aeroport_date"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/aeroport_date" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="409dp"
+            android:layout_height="232dp"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            mapbox:layout_constraintBottom_toTopOf="@+id/mapView"
+            mapbox:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:id="@+id/aeroport_piste_nom"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/aeroport_piste_nom" />
+
+            <TextView
+                android:id="@+id/aeroport_piste_etat"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/aeroport_piste_etat" />
+
+            <TextView
+                android:id="@+id/aeroport_piste_meteo"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/aeroport_piste_meteo" />
+
+        </LinearLayout>
+
+        <com.mapbox.mapboxsdk.maps.MapView
+            android:id="@+id/mapView"
+            android:layout_width="401dp"
+            android:layout_height="326dp"
+            mapbox:layout_constraintBottom_toBottomOf="parent"
+            mapbox:layout_constraintEnd_toEndOf="parent"
+            mapbox:layout_constraintStart_toStartOf="parent"
+            mapbox:mapbox_cameraTargetLat="49.0097"
+            mapbox:mapbox_cameraTargetLng="2.5479"
+            mapbox:mapbox_cameraTilt="70"
+            mapbox:mapbox_cameraZoom="17" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
