@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -94,39 +95,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.nav_aer1) {
-            Log.d("menu", "item selected");
-            return true;
-        }
-
-        else if (id == R.id.nav_share) {
-            Log.d("menu", "item selected");
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
-    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        return false;
+        Log.d("menuActivity", "click");
+        int id = menuItem.getItemId();
+        Context context = this;
+
+
+        if (id == R.id.nav_aer1) {
+            Log.d("menuActivity", "itemSelected");
+            Intent intent = new Intent();
+            intent.setClass(context, Airport.class);
+            startActivity(intent);
+
+        } else if (id == R.id.nav_aer2) {
+
+        } else if (id == R.id.nav_aer3) {
+
+        } else if (id == R.id.nav_aer4) {
+
+        } else if (id == R.id.nav_share) {
+            Log.d("menu", "ok");
+        }
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 }
