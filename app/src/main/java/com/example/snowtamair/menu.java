@@ -73,11 +73,10 @@ public class menu extends AppCompatActivity implements NavigationView.OnNavigati
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         Log.d("menuActivity", "click");
         int id = menuItem.getItemId();
-        int id2 = R.id.nav_home;
         Context context = this;
 
 
-        if (id == R.id.nav_home) {
+        if (id == R.id.nav_aer1) {
             Log.d("menuActivity", "itemSelected");
             Intent intent = new Intent();
             intent.setClass(context, Airport.class);
@@ -90,7 +89,7 @@ public class menu extends AppCompatActivity implements NavigationView.OnNavigati
         } else if (id == R.id.nav_tools) {
 
         } else if (id == R.id.nav_share) {
-
+            Log.d("menu", "ok");
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
