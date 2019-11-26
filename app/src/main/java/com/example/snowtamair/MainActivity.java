@@ -8,11 +8,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,17 +33,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Button buttonAer3;
     private Button buttonAer4;
     private DrawerLayout drawer;
+    private ActionBarDrawerToggle toggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) this);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(MainActivity.this, drawer, toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        navigationView.setNavigationItemSelectedListener(this);             // configuration des évènements qui ont lieu dans le menu accessible depuis cette activité
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toggle = new ActionBarDrawerToggle(MainActivity.this, drawer, toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
@@ -93,34 +96,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            Toast.makeText(this, "ok mec", Toast.LENGTH_LONG).show();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
-    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        return false;
+        Log.d("menuActivity", "click");
+        int id = menuItem.getItemId();
+        Context context = this;
+
+
+        if (id == R.id.nav_aer1) {
+            Log.d("menuActivity", "itemSelected");
+            Intent intent = new Intent();
+            intent.setClass(context, Airport.class);
+            startActivity(intent);
+
+        } else if (id == R.id.nav_aer2) {
+
+        } else if (id == R.id.nav_aer3) {
+
+        } else if (id == R.id.nav_aer4) {
+
+        } else if (id == R.id.nav_share) {
+            Log.d("menu", "ok");
+        }
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
+
+
 }
