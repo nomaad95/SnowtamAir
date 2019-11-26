@@ -1,4 +1,4 @@
-package com.example.snowtamair;
+/*package com.example.snowtamair;
 
 import android.content.Context;
 
@@ -19,6 +19,7 @@ public class testVolley extends Context {
             new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
-                    
+
                 }
             }
+*/
