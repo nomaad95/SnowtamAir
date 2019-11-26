@@ -15,6 +15,7 @@
             android:id="@+id/linearLayout"
             android:layout_width="409dp"
             android:layout_height="170dp"
+            android:layout_margin="10dp"
             android:orientation="horizontal"
             android:padding="20dp"
             mapbox:layout_constraintBottom_toTopOf="@+id/linearLayout2"
@@ -26,7 +27,11 @@
                 android:id="@+id/aeroport_heure"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_margin="10dp"
                 android:layout_weight="1"
+                android:gravity="center"
+                android:maxLines="1"
+                android:autoSizeTextType="uniform"
                 android:text="@string/aeroport_heure" />
 
             <View
@@ -40,39 +45,67 @@
                 android:id="@+id/aeroport_date"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_margin="10dp"
                 android:layout_weight="1"
+                android:gravity="center"
+                android:maxLines="1"
+                android:autoSizeTextType="uniform"
                 android:text="@string/aeroport_date" />
+
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="409dp"
             android:layout_height="232dp"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:padding="10dp"
             mapbox:layout_constraintBottom_toTopOf="@+id/mapView"
             mapbox:layout_constraintStart_toStartOf="parent">
 
             <TextView
                 android:id="@+id/aeroport_piste_nom"
-                android:layout_width="wrap_content"
+                android:layout_width="390dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="30sp"
                 android:text="@string/aeroport_piste_nom" />
 
-            <TextView
-                android:id="@+id/aeroport_piste_etat"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="@string/aeroport_piste_etat" />
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/aeroport_piste_meteo"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="@string/aeroport_piste_meteo" />
+                <ImageButton
+                    android:id="@+id/btn_pisteLeft"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    mapbox:srcCompat="@android:drawable/arrow_down_float" />
+
+                <TextView
+                    android:id="@+id/aeroport_piste_meteo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:text="@string/aeroport_piste_meteo" />
+
+                <TextView
+                    android:id="@+id/aeroport_piste_etat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:text="@string/aeroport_piste_etat" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
