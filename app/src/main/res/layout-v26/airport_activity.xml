@@ -38,8 +38,8 @@
                 android:id="@+id/divider"
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"/>
+                android:layout_weight="0.5"
+                android:background="@android:color/transparent" />
 
             <TextView
                 android:id="@+id/aeroport_date"
@@ -58,70 +58,84 @@
             android:id="@+id/linearLayout_piste"
             android:layout_width="match_parent"
             android:layout_height="232dp"
+            android:background="#F5F5F5"
             android:orientation="horizontal"
             android:padding="10dp"
             mapbox:layout_constraintBottom_toTopOf="@+id/mapView"
+            mapbox:layout_constraintEnd_toEndOf="parent"
             mapbox:layout_constraintStart_toStartOf="parent">
 
-            <ImageButton
-                android:id="@+id/btn_pisteLeft"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:background="@android:color/transparent"
-                mapbox:srcCompat="@android:drawable/arrow_down_float"
-                android:contentDescription="BtnLeft" />
-
-            <LinearLayout
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/aeroport_piste_nom"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@string/aeroport_piste_nom"
-                    android:textSize="30sp" />
+                mapbox:cardBackgroundColor="#F5F5F5">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/aeroport_piste_meteo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="@string/aeroport_piste_meteo"
-                        android:textSize="20sp" />
+                    <ImageButton
+                        android:id="@+id/btn_pisteBack"
+                        android:layout_width="38dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:background="@android:color/transparent"
+                        android:contentDescription="btnPisteBack"
+                        mapbox:srcCompat="@drawable/arrow_back" />
 
-                    <TextView
-                        android:id="@+id/aeroport_piste_etat"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="316dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="@string/aeroport_piste_etat"
-                        android:textSize="20sp" />
+                        android:orientation="vertical">
 
+                        <TextView
+                            android:id="@+id/aeroport_piste_nom"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/aeroport_piste_nom"
+                            android:textSize="30sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/aeroport_piste_meteo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="@string/aeroport_piste_meteo"
+                                android:textSize="20sp" />
+
+                            <TextView
+                                android:id="@+id/aeroport_piste_etat"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="@string/aeroport_piste_etat"
+                                android:textSize="20sp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <ImageButton
+                        android:id="@+id/btn_pisteNext"
+                        android:layout_width="38dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:background="@android:color/transparent"
+                        android:contentDescription="btnPisteBack"
+                        mapbox:srcCompat="@drawable/arrow_next" />
                 </LinearLayout>
-
-            </LinearLayout>
-
-            <ImageButton
-                android:id="@+id/btn_pisteRight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:background="@android:color/transparent"
-                mapbox:srcCompat="@android:drawable/arrow_up_float"
-                android:contentDescription="btnRight" />
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
 

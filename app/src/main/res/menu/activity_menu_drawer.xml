@@ -27,8 +27,8 @@
         <menu>
             <item
                 android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="@string/menu_share" />
+                android:icon="@android:drawable/ic_menu_add"
+                android:title="Add" />
         </menu>
     </item>
 

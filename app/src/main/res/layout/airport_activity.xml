@@ -58,14 +58,17 @@
             android:id="@+id/linearLayout_piste"
             android:layout_width="match_parent"
             android:layout_height="232dp"
+            android:background="#F5F5F5"
             android:orientation="horizontal"
             android:padding="10dp"
             mapbox:layout_constraintBottom_toTopOf="@+id/mapView"
+            mapbox:layout_constraintEnd_toEndOf="parent"
             mapbox:layout_constraintStart_toStartOf="parent">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="match_parent"
+                mapbox:cardBackgroundColor="#F5F5F5">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -74,15 +77,15 @@
 
                     <ImageButton
                         android:id="@+id/btn_pisteBack"
-                        android:layout_width="wrap_content"
+                        android:layout_width="38dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:background="@android:color/transparent"
                         android:contentDescription="btnPisteBack"
-                        mapbox:srcCompat="@android:drawable/arrow_up_float" />
+                        mapbox:srcCompat="@drawable/arrow_back" />
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="316dp"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
 
@@ -125,12 +128,12 @@
 
                     <ImageButton
                         android:id="@+id/btn_pisteNext"
-                        android:layout_width="wrap_content"
+                        android:layout_width="38dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:background="@android:color/transparent"
-                        android:contentDescription="BtnPisteNext"
-                        mapbox:srcCompat="@android:drawable/arrow_down_float" />
+                        android:contentDescription="btnPisteBack"
+                        mapbox:srcCompat="@drawable/arrow_next" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
