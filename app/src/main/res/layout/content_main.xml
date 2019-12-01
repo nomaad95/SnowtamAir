@@ -17,8 +17,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <SearchView
-            android:id="@+id/searchView"
+        <EditText
+            android:id="@+id/input_search"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitXY"
@@ -26,13 +26,13 @@
             tools:layout_editor_absoluteY="89dp"
             android:ems="10"
             android:inputType="textCapSentences"
-            android:placehoder="codeOACI" />
+            android:hint="codeOACI" />
 
         <ImageButton
             android:id="@+id/btn_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
+            android:layout_gravity="end|center_vertical"
             android:layout_margin="10dp"
             android:background="@android:color/transparent"
             app:srcCompat="@android:drawable/ic_menu_search" />
@@ -72,7 +72,7 @@
                 android:id="@+id/textViewName1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
+                android:layout_gravity="start"
                 android:layout_margin="10dp"
                 android:text="@string/card_aeroport_name" />
 
