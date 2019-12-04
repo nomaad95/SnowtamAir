@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.mapboxsdk.camera.CameraPosition;
 import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
@@ -38,6 +39,7 @@ public class AirportActivity extends AppCompatActivity {
         mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(@NonNull MapboxMap mapboxMap) {
+                mapboxMap.setCameraPosition(new CameraPosition.Builder().zoom(15).build());
                 mapboxMap.setStyle(Style.LIGHT, new Style.OnStyleLoaded() {
                     @Override
                     public void onStyleLoaded(@NonNull Style style) {
