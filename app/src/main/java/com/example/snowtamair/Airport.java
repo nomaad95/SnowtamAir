@@ -1,97 +1,31 @@
 package com.example.snowtamair;
 
-import android.os.Bundle;
+import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
-import com.mapbox.mapboxsdk.Mapbox;
-import com.mapbox.mapboxsdk.maps.MapView;
-import com.mapbox.mapboxsdk.maps.MapboxMap;
-import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
-import com.mapbox.mapboxsdk.maps.Style;
+public class Airport {
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+    private String data;
 
-
-/**
- * The most basic example of adding a map to an activity.
- */
-public class Airport extends AppCompatActivity {
-
-    private MapView mapView;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-// Mapbox access token is configured here. This needs to be called either in your application
-// object or in the same activity which contains the mapview.
-        Mapbox.getInstance(this, getString(R.string.access_token));
-
-// This contains the MapView in XML and needs to be called after the access token is configured.
-        setContentView(R.layout.airport_activity);
-
-        mapView = findViewById(R.id.mapView);
-        mapView.onCreate(savedInstanceState);
-        mapView.getMapAsync(new OnMapReadyCallback() {
-            @Override
-            public void onMapReady(@NonNull MapboxMap mapboxMap) {
-                mapboxMap.setStyle(Style.LIGHT, new Style.OnStyleLoaded() {
+    public Airport(String OACI) {
+        String url = "https://v4p4sz5ijk.execute-api.us-east-1.amazonaws.com/anbdata/states/notams/notams-realtime-list?" +
+                "api_key=f614b0f0-1674-11ea-ab2e-bf2aa2669a71&format=json&criticality=&locations=" + OACI;
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
                     @Override
-                    public void onStyleLoaded(@NonNull Style style) {
-
-// Map is set up and the style has loaded. Now you can add data or make other map adjustments.
-
-
+                    public void onResponse(String response) {
+                        data=response;
                     }
-                });
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
             }
         });
-    }
 
-    // Add the mapView lifecycle to the activity's lifecycle methods
-    @Override
-    public void onResume() {
-        super.onResume();
-        mapView.onResume();
     }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        mapView.onStart();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        mapView.onStop();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        mapView.onPause();
-    }
-
-    @Override
-    public void onLowMemory() {
-        super.onLowMemory();
-        mapView.onLowMemory();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mapView.onDestroy();
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        mapView.onSaveInstanceState(outState);
-    }
-
 }

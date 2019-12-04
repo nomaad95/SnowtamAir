@@ -79,7 +79,7 @@ public class menu extends AppCompatActivity implements NavigationView.OnNavigati
         if (id == R.id.nav_aer1) {
             Log.d("menuActivity", "itemSelected");
             Intent intent = new Intent();
-            intent.setClass(context, Airport.class);
+            intent.setClass(context, AirportActivity.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_gallery) {

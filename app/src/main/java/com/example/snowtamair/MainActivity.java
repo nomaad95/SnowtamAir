@@ -10,28 +10,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.View;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
-import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.google.android.material.navigation.NavigationView;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private Button buttonAer1;
@@ -68,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
            @Override
            public void onClick(View view) {
                Intent intent = new Intent();
-               intent.setClass( MainActivity.this, Airport.class);
+               intent.setClass( MainActivity.this, AirportActivity.class);
                startActivity(intent);
            }
        });
@@ -77,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.setClass( MainActivity.this, Airport.class);
+                intent.setClass( MainActivity.this, AirportActivity.class);
                 startActivity(intent);
             }
         });
@@ -86,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.setClass( MainActivity.this, Airport.class);
+                intent.setClass( MainActivity.this, AirportActivity.class);
                 startActivity(intent);
             }
         });
@@ -95,32 +85,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.setClass( MainActivity.this, Airport.class);
+                intent.setClass( MainActivity.this, AirportActivity.class);
                 startActivity(intent);
             }
         });
 
-        final TextView test = findViewById(R.id.Test);
 
-        String url ="https://www.google.com";
-
-// Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // Display the first 500 characters of the response string.
-                        test.setText("Response is: "+ response.substring(0,500));
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                test.setText("That didn't work!");
-            }
-        });
-
-// Add the request to the RequestQueue.
-        RequestSingleton.getInstance(this).getRequestQueue().add(stringRequest);
 
     }
 
@@ -135,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.nav_aer1) {
             Log.d("menuActivity", "itemSelected");
             Intent intent = new Intent();
-            intent.setClass(context, Airport.class);
+            intent.setClass(context, AirportActivity.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_aer2) {
