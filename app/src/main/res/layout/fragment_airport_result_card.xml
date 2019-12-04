@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:layout_margin="10dp"
-            android:text="FRAGMENT AIRPORT" />
+            android:text="@string/card_aeroport_name" />
 
         <TextView
             android:id="@+id/textView_result_code"

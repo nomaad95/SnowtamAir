@@ -54,6 +54,7 @@ public class MainActivity extends FragmentActivity implements NavigationView.OnN
             }
         }); */
 
+       // Init Btn Search
         inputSearch = findViewById(R.id.input_search);
         buttonSearch = findViewById(R.id.btn_search);
         buttonSearch.setOnClickListener(new View.OnClickListener() {
@@ -67,43 +68,14 @@ public class MainActivity extends FragmentActivity implements NavigationView.OnN
         });
 
 
-       buttonAer1 = findViewById(R.id.button1);
-       buttonAer1.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               Intent intent = new Intent();
-               intent.setClass( MainActivity.this, AirportActivity.class);
-               startActivity(intent);
-           }
-       });
-        buttonAer2 = findViewById(R.id.button2);
-        buttonAer2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass( MainActivity.this, AirportActivity.class);
-                startActivity(intent);
-            }
-        });
-        buttonAer3 = findViewById(R.id.button3);
-        buttonAer3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass( MainActivity.this, AirportActivity.class);
-                startActivity(intent);
-            }
-        });
-
-    /*
-        //add airport result card fragment
+        //Add airport_result_card Fragment
         // Begin the transaction
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         // Replace the contents of the container with the new fragment
             ft.replace(R.id.framelayout_pistes, new AirportResultCardFragment());
         // or ft.add(R.id.your_placeholder, new FooFragment());
             ft.commit();
-    */
+
     }
 
     @Override
@@ -135,12 +107,12 @@ public class MainActivity extends FragmentActivity implements NavigationView.OnN
     }
 
 
-    @Override
+    @Override // necessary !
     public void onFragmentInteraction(Uri uri) {
         Log.d(String.valueOf(uri), "onFragmentInteraction: ");
     }
 
-    @Override
+    @Override // usless ?
     public void onPointerCaptureChanged(boolean hasCapture) {
         Log.d(String.valueOf(hasCapture), "onFragmentInteraction: ");
     }

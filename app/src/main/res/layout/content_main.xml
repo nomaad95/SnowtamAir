@@ -30,12 +30,13 @@
 
         <ImageButton
             android:id="@+id/btn_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="55dp"
+            android:layout_height="match_parent"
             android:layout_gravity="end|center_vertical"
             android:layout_margin="10dp"
-            android:background="@android:color/transparent"
-            app:srcCompat="@android:drawable/ic_menu_search" />
+            android:clickable="true"
+            android:focusable="true"
+            app:srcCompat="@drawable/ic_search_solid"/>
 
     </androidx.cardview.widget.CardView>
 
@@ -43,166 +44,46 @@
         android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="144dp"
+        android:layout_marginTop="236dp"
         android:background="@color/colorSecondary"
         android:clickable="true"
         android:focusable="true"
         android:tint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_plus_circle_solid" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <FrameLayout
+        android:id="@+id/framelayout_pistes"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="153dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/floatingActionButton"
-        app:layout_constraintVertical_bias="0.107">
+        app:layout_constraintVertical_bias="0.292">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView1"
+        <fragment
+            android:id="@+id/fragment3"
+            android:name="com.example.snowtamair.AirportResultCardFragment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:padding="10dp"
-            android:scaleType="fitXY">
-
-            <TextView
-                android:id="@+id/textViewName1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_margin="10dp"
-                android:text="@string/card_aeroport_name" />
-
-            <TextView
-                android:id="@+id/textViewCode1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="10dp"
-                android:text="@string/card_aeroport_code" />
-
-            <Button
-                android:id="@+id/button1"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="right"
-                android:background="#C4B9B6B6"
-                android:text="@string/card_aeroport_botton" />
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:padding="10dp"
-            android:scaleType="fitXY">
-
-            <TextView
-                android:id="@+id/textViewName2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_margin="10dp"
-                android:text="@string/card_aeroport_name" />
-
-            <TextView
-                android:id="@+id/textViewCode2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="10dp"
-                android:text="@string/card_aeroport_code" />
-
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="right"
-                android:background="#C4B9B6B6"
-                android:text="@string/card_aeroport_botton" />
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:padding="10dp"
-            android:scaleType="fitXY">
-
-            <TextView
-                android:id="@+id/textViewName3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:layout_margin="10dp"
-                android:text="@string/card_aeroport_name" />
-
-            <TextView
-                android:id="@+id/textViewCode3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="10dp"
-                android:text="@string/card_aeroport_code" />
-
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="right"
-                android:background="#C4B9B6B6"
-                android:text="@string/card_aeroport_botton" />
-
-        </androidx.cardview.widget.CardView>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout_frag"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/Test"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" >
-
-        <FrameLayout
-            android:id="@+id/framelayout_pistes"
-            android:layout_width="match_parent"
-            android:layout_height="153dp"
-            android:layout_marginTop="1dp"
-            android:orientation="vertical">
-
-            <fragment
-                android:id="@+id/fragment3"
-                android:name="com.example.snowtamair.AirportResultCardFragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </FrameLayout>
-
-    </LinearLayout>
+            android:layout_height="wrap_content" />
+    </FrameLayout>
 
     <TextView
         android:id="@+id/Test"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="52dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.479"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout_frag"/>
+        app:layout_constraintTop_toBottomOf="@+id/framelayout_pistes" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

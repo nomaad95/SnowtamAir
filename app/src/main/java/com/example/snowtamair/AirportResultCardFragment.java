@@ -1,6 +1,7 @@
 package com.example.snowtamair;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 
 /**
@@ -20,6 +22,7 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class AirportResultCardFragment extends Fragment {
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -30,6 +33,7 @@ public class AirportResultCardFragment extends Fragment {
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
+    private Button btnGoAer;
 
     public AirportResultCardFragment() {
         // Required empty public constructor
@@ -60,6 +64,18 @@ public class AirportResultCardFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        /*
+        btnGoAer = findViewById(R.id.btn_result_airport);
+        btnGoAer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass( MainActivity.this, AirportActivity.class);
+                startActivity(intent);
+            }
+        });
+        */
     }
 
     @Override
@@ -98,10 +114,6 @@ public class AirportResultCardFragment extends Fragment {
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that
      * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
