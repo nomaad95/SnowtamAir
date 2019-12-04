@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AirportResultCardFragment">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView_result_airport"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:scaleType="fitXY">
+
+        <TextView
+            android:id="@+id/textView_result_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_margin="10dp"
+            android:text="FRAGMENT AIRPORT" />
+
+        <TextView
+            android:id="@+id/textView_result_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
+            android:text="@string/card_aeroport_code" />
+
+        <Button
+            android:id="@+id/btn_result_airport"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:background="#C4B9B6B6"
+            android:text="@string/card_aeroport_botton" />
+
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>

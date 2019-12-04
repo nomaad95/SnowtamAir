@@ -15,19 +15,31 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-
+            <ImageButton
+                android:id="@+id/btn_pisteBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@android:color/transparent"
+                android:contentDescription="btnPisteBack"
+                android:src="@drawable/arrow_back" />
 
             <LinearLayout
-                android:layout_width="316dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="10dp"
+                android:orientation="vertical"
+                android:padding="10dp">
 
                 <TextView
                     android:id="@+id/aeroport_piste_nom"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:gravity="center"
+                    android:padding="10dp"
                     android:text="@string/aeroport_piste_nom"
                     android:textSize="30sp" />
 
@@ -41,8 +53,9 @@
                         android:id="@+id/aeroport_piste_meteo"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
+                        android:layout_margin="10dp"
                         android:gravity="center"
+                        android:padding="10dp"
                         android:text="@string/aeroport_piste_meteo"
                         android:textSize="20sp" />
 
@@ -50,8 +63,9 @@
                         android:id="@+id/aeroport_piste_etat"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
+                        android:layout_margin="10dp"
                         android:gravity="center"
+                        android:padding="10dp"
                         android:text="@string/aeroport_piste_etat"
                         android:textSize="20sp" />
 
@@ -59,7 +73,14 @@
 
             </LinearLayout>
 
-  
+            <ImageButton
+                android:id="@+id/btn_pisteNext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@android:color/transparent"
+                android:contentDescription="btnPisteBack"
+                android:src="@drawable/arrow_next" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
