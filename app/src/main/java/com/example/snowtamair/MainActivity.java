@@ -106,7 +106,6 @@ public class MainActivity extends FragmentActivity implements NavigationView.OnN
         return true;
     }
 
-
     @Override // necessary !
     public void onFragmentInteraction(Uri uri) {
         Log.d(String.valueOf(uri), "onFragmentInteraction: ");
