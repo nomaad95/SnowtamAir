@@ -1,99 +1,135 @@
 package com.example.snowtamair;
 
 public class Oaci {
-    private String icao;
-    private String iata;
-    private String name;
-    private String city;
-    private String state;
-    private String country;
-    private float elevation;
-    private float lat;
-    private float lon;
-    private String tz;
+    private float Airport_ID;
+    private String Name;
+    private String City;
+    private String Country;
+    private String IATA;
+    private String ICAO;
+    private float Latitude;
+    private float Longitude;
+    private float Altitude;
+    private float Timezone;
+    private String DST;
+    private String Tz_database_time_zone;
+    private String Type;
+    private String Source;
 
 
     // Getter Methods
 
-    public String getIcao() {
-        return icao;
-    }
-
-    public String getIata() {
-        return iata;
+    public float getAirport_ID() {
+        return Airport_ID;
     }
 
     public String getName() {
-        return name;
+        return Name;
     }
 
     public String getCity() {
-        return city;
-    }
-
-    public String getState() {
-        return state;
+        return City;
     }
 
     public String getCountry() {
-        return country;
+        return Country;
     }
 
-    public float getElevation() {
-        return elevation;
+    public String getIATA() {
+        return IATA;
     }
 
-    public float getLat() {
-        return lat;
+    public String getICAO() {
+        return ICAO;
     }
 
-    public float getLon() {
-        return lon;
+    public float getLatitude() {
+        return Latitude;
     }
 
-    public String getTz() {
-        return tz;
+    public float getLongitude() {
+        return Longitude;
+    }
+
+    public float getAltitude() {
+        return Altitude;
+    }
+
+    public float getTimezone() {
+        return Timezone;
+    }
+
+    public String getDST() {
+        return DST;
+    }
+
+    public String getTz_database_time_zone() {
+        return Tz_database_time_zone;
+    }
+
+    public String getType() {
+        return Type;
+    }
+
+    public String getSource() {
+        return Source;
     }
 
     // Setter Methods
 
-    public void setIcao(String icao) {
-        this.icao = icao;
+    public void setAirport_ID(float Airport_ID) {
+        this.Airport_ID = Airport_ID;
     }
 
-    public void setIata(String iata) {
-        this.iata = iata;
+    public void setName(String Name) {
+        this.Name = Name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCity(String City) {
+        this.City = City;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setCountry(String Country) {
+        this.Country = Country;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setIATA(String IATA) {
+        this.IATA = IATA;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setICAO(String ICAO) {
+        this.ICAO = ICAO;
     }
 
-    public void setElevation(float elevation) {
-        this.elevation = elevation;
+    public void setLatitude(float Latitude) {
+        this.Latitude = Latitude;
     }
 
-    public void setLat(float lat) {
-        this.lat = lat;
+    public void setLongitude(float Longitude) {
+        this.Longitude = Longitude;
     }
 
-    public void setLon(float lon) {
-        this.lon = lon;
+    public void setAltitude(float Altitude) {
+        this.Altitude = Altitude;
     }
 
-    public void setTz(String tz) {
-        this.tz = tz;
+    public void setTimezone(float Timezone) {
+        this.Timezone = Timezone;
+    }
+
+    public void setDST(String DST) {
+        this.DST = DST;
+    }
+
+    public void setTz_database_time_zone(String Tz_database_time_zone) {
+        this.Tz_database_time_zone = Tz_database_time_zone;
+    }
+
+    public void setType(String Type) {
+        this.Type = Type;
+    }
+
+    public void setSource(String Source) {
+        this.Source = Source;
     }
 }
