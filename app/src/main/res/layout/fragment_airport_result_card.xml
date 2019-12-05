@@ -33,7 +33,7 @@
             android:id="@+id/btn_result_airport"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_gravity="right"
+            android:layout_gravity="end"
             android:background="#C4B9B6B6"
             android:text="@string/card_aeroport_botton" />
 

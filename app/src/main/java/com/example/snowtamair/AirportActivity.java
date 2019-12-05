@@ -1,8 +1,13 @@
 package com.example.snowtamair;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 
 import com.android.volley.RequestQueue;
@@ -31,21 +36,11 @@ import androidx.viewpager.widget.ViewPager;
 public class AirportActivity extends FragmentActivity implements PisteFragment.OnFragmentInteractionListener{
 
     private MapView mapView;
-    /**
-     * The number of pages (wizard steps) to show in this demo.
-     */
     private static final int NUM_PAGES = 5;
-
-    /**
-     * The pager widget, which handles animation and allows swiping horizontally to access previous
-     * and next wizard steps.
-     */
     private ViewPager mPager;
-
-    /**
-     * The pager adapter, which provides the pages to the view pager widget.
-     */
     private PagerAdapter pagerAdapter;
+
+    private Button btnDialogCodeSnowTam;
 
 
     @Override
@@ -79,6 +74,24 @@ public class AirportActivity extends FragmentActivity implements PisteFragment.O
         pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(pagerAdapter);
 
+        // Init dialog btn
+        btnDialogCodeSnowTam = findViewById(R.id.btn_dialog_snowtam);
+        btnDialogCodeSnowTam.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AlertDialog.Builder(AirportActivity.this)
+                        .setTitle("Code SnowTam")
+                        .setMessage("the complet and original snowtam")
+                        .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Continue with delete operation
+                            }
+                        })
+                        //.setNegativeButton(android.R.string.no, null)
+                        //.setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+            }
+        });
     }
 
     // Add the mapView lifecycle to the activity's lifecycle methods
