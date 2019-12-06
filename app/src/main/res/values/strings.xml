@@ -31,6 +31,9 @@
     <string name="string_code_snowtam">Code Snowtam intégrale</string>
     <string name="ok">OK</string>
     <string name="btn_dialog_snowtam">SnowTam</string>
+    <string name="codeoaci">codeOACI</string>
+    <string name="hint_search_oaci">Code OACI...</string>
+    <string name="search">Search</string>
 
 
 </resources>

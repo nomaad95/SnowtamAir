@@ -12,6 +12,7 @@ import android.widget.Button;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.navigation.NavigationView;
 import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
 import com.mapbox.mapboxsdk.maps.MapView;
@@ -20,7 +21,10 @@ import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -33,7 +37,7 @@ import androidx.viewpager.widget.ViewPager;
 /**
  * The most basic example of adding a map to an activity.
  */
-public class AirportActivity extends FragmentActivity implements PisteFragment.OnFragmentInteractionListener{
+public class AirportActivity extends AppCompatActivity  implements PisteFragment.OnFragmentInteractionListener{
 
     private MapView mapView;
     private static final int NUM_PAGES = 5;
@@ -42,18 +46,30 @@ public class AirportActivity extends FragmentActivity implements PisteFragment.O
 
     private Button btnDialogCodeSnowTam;
 
+  //  private DrawerLayout drawer;
+    private ActionBarDrawerToggle toggle;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Set Toolbar & Menu
+      //  drawer = findViewById(R.id.drawer_layout);
+      //  NavigationView navigationView = findViewById(R.id.nav_view);
+      //  navigationView.setNavigationItemSelectedListener(this); // configuration des évènements qui ont lieu dans le menu accessible depuis cette activité
+
+       // Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+       // setSupportActionBar(toolbar);
+       // toggle = new ActionBarDrawerToggle(AirportActivity.this, drawer, toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+       // drawer.addDrawerListener(toggle);
+       // toggle.syncState();
+
 
 // Mapbox access token is configured here. This needs to be called either in your application
 // object or in the same activity which contains the mapview.
         Mapbox.getInstance(this, getString(R.string.access_token));
-
 // This contains the MapView in XML and needs to be called after the access token is configured.
         setContentView(R.layout.airport_activity);
-
         mapView = findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(new OnMapReadyCallback() {

@@ -8,10 +8,11 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewSearch"
+        android:id="@+id/cardView_search"
         android:layout_width="333dp"
         android:layout_height="75dp"
         android:scaleType="fitXY"
+        app:cardBackgroundColor="#F5F5F5"
         app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,24 +20,23 @@
 
         <EditText
             android:id="@+id/input_search"
-            android:layout_width="match_parent"
+            android:layout_width="257dp"
             android:layout_height="match_parent"
             android:ems="10"
-            android:hint="codeOACI"
+            android:hint="@string/hint_search_oaci"
             android:inputType="textCapSentences"
-            android:scaleType="fitXY"
-            tools:layout_editor_absoluteX="57dp"
-            tools:layout_editor_absoluteY="89dp" />
+            android:scaleType="fitXY" />
 
         <ImageButton
             android:id="@+id/btn_search"
-            android:layout_width="55dp"
+            android:layout_width="75dp"
             android:layout_height="match_parent"
             android:layout_gravity="end|center_vertical"
-            android:layout_margin="10dp"
+            android:background="@android:color/transparent"
             android:clickable="true"
+            android:contentDescription="@string/search"
             android:focusable="true"
-            app:srcCompat="@drawable/ic_search_solid"/>
+            app:srcCompat="@drawable/ic_search_black_24dp" />
 
     </androidx.cardview.widget.CardView>
 
@@ -48,12 +48,11 @@
         android:background="@color/colorSecondary"
         android:clickable="true"
         android:focusable="true"
-        android:tint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_plus_circle_solid" />
+        app:srcCompat="@drawable/ic_add_black_24dp" />
 
     <FrameLayout
         android:id="@+id/framelayout_pistes"

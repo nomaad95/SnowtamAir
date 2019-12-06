@@ -12,7 +12,7 @@
 
         <Button
             android:id="@+id/btn_dialog_snowtam"
-            style="@style/Widget.AppCompat.Button.Borderless"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
@@ -70,40 +70,21 @@
             android:layout_height="183dp"
             android:background="#F5F5F5"
             android:orientation="horizontal"
-            android:padding="10dp"
-            mapbox:layout_constraintTop_toBottomOf="@+id/linearLayout_aeroport"
             mapbox:layout_constraintBottom_toTopOf="@+id/mapView"
             mapbox:layout_constraintEnd_toEndOf="parent"
-            mapbox:layout_constraintStart_toStartOf="parent">
-
-            <ImageView
-                android:id="@+id/chevron_droite"
-                android:layout_width="53dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:tint="#9c9c9c"
-                mapbox:srcCompat="@drawable/ic_chevron_left_solid" />
+            mapbox:layout_constraintStart_toStartOf="parent"
+            mapbox:layout_constraintTop_toBottomOf="@+id/linearLayout_aeroport">
 
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/pager_pistes"
-                android:layout_width="288dp"
-                android:layout_height="match_parent"
-                android:layout_marginTop="1dp"
-                android:layout_marginBottom="1dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 mapbox:layout_constraintBottom_toTopOf="@+id/linearLayout_piste"
                 mapbox:layout_constraintEnd_toEndOf="parent"
                 mapbox:layout_constraintStart_toStartOf="parent"
                 mapbox:layout_constraintTop_toBottomOf="@+id/linearLayout_aeroport">
 
             </androidx.viewpager.widget.ViewPager>
-
-            <ImageView
-                android:id="@+id/chevron_gauche"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:tint="#9c9c9c"
-                mapbox:srcCompat="@drawable/ic_chevron_right_solid" />
 
         </LinearLayout>
 
