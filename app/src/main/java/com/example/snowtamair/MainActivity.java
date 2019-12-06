@@ -23,6 +23,13 @@ import android.widget.ImageButton;
 
 import com.google.android.material.navigation.NavigationView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+
 public class MainActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener, AirportResultCardFragment.OnFragmentInteractionListener {
     private Button buttonAer1;
     private Button buttonAer2;
@@ -78,6 +85,48 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             ft.commit();
 
     }
+
+    public boolean oaciCheck(String oaci, Context context) {
+
+        try {
+            InputStream is = context.getAssets().open("airport.json");
+            int size = 0;
+            try {
+                size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            String json = new String(buffer, "UTF-8");
+
+            try {
+                JSONArray oaciList = new JSONArray(json);
+                for(int i = 0; i < oaciList.length(); i++) {
+                    JSONObject oaciJson = oaciList.getJSONObject((i));
+                    Log.d("oaciCheck", oaciJson.getString("ICAO"));
+                }
+
+                for(int i = 0; i < oaciList.length(); i++){
+                    JSONObject oaciJson = oaciList.getJSONObject((i));
+                    if(oaci.equals(oaciJson.getString("ICAO"))){
+                        return true;
+                    }
+
+                }
+                return false;
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return false;
+
+    }
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
