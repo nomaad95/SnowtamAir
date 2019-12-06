@@ -34,8 +34,8 @@
             android:layout_gravity="end|center_vertical"
             android:background="@android:color/transparent"
             android:clickable="true"
-            android:contentDescription="@string/search"
             android:focusable="true"
+            android:contentDescription="@string/search"
             app:srcCompat="@drawable/ic_search_black_24dp" />
 
     </androidx.cardview.widget.CardView>
@@ -49,7 +49,6 @@
         android:clickable="true"
         android:focusable="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_add_black_24dp" />
@@ -61,10 +60,8 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/floatingActionButton"
-        app:layout_constraintVertical_bias="0.292">
+        app:layout_constraintTop_toBottomOf="@+id/floatingActionButton">
 
         <fragment
             android:id="@+id/fragment3"
@@ -81,7 +78,6 @@
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.479"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/framelayout_pistes" />
 

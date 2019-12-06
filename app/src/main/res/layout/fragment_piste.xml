@@ -27,7 +27,7 @@
                     android:layout_width="35dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical|start"
-                    android:tint="#B99C9C9C"
+                    android:tint="#999C9C9C"
                     app:srcCompat="@drawable/ic_chevron_left_solid" />
 
 
@@ -85,7 +85,7 @@
                     android:layout_width="35dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical|end"
-                    android:tint="#B99C9C9C"
+                    android:tint="#999C9C9C"
                     app:srcCompat="@drawable/ic_chevron_right_solid" />
 
             </LinearLayout>

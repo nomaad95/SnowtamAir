@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -34,6 +35,7 @@ public class AirportResultCardFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
     private Button btnGoAer;
+    private CardView cardView;
 
     public AirportResultCardFragment() {
         // Required empty public constructor
@@ -64,6 +66,23 @@ public class AirportResultCardFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState)  {
+        // Inflate the layout for this fragment
+        final View root = inflater.inflate(R.layout.fragment_airport_result_card, container, false);
+
+        cardView = root.findViewById(R.id.cardView_result_airport);
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass( root.getContext(), AirportActivity.class);
+                startActivity(intent);
+            }
+        });
 
         /*
         btnGoAer = findViewById(R.id.btn_result_airport);
@@ -76,13 +95,7 @@ public class AirportResultCardFragment extends Fragment {
             }
         });
         */
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_airport_result_card, container, false);
+        return root;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
