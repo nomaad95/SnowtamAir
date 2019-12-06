@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -68,10 +69,17 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         buttonSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass( MainActivity.this, AirportActivity.class);
-                intent.putExtra("search", inputSearch.getText().toString());
-                startActivity(intent);
+                if(oaciCheck(inputSearch.getText().toString(), MainActivity.this)){
+                    Intent intent = new Intent();
+                    intent.setClass( MainActivity.this, AirportActivity.class);
+                    intent.putExtra("search", inputSearch.getText().toString());
+                    startActivity(intent);
+                }
+
+                else{
+                    Toast.makeText(MainActivity.this, inputSearch.getText().toString()+" is not a valid ICAO", Toast.LENGTH_LONG).show();
+                }
+
             }
         });
 
