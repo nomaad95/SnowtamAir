@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 
 import com.android.volley.RequestQueue;
@@ -115,6 +116,9 @@ public class AirportActivity extends AppCompatActivity  implements PisteFragment
     public void onResume() {
         super.onResume();
         mapView.onResume();
+        /*TextView text = findViewById(R.id.aiportTrackName);
+        text.setText(airport.getData());*/
+
     }
 
     @Override
