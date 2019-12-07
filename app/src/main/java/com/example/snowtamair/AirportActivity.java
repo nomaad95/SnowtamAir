@@ -54,17 +54,6 @@ public class AirportActivity extends AppCompatActivity  implements PisteFragment
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //Set Toolbar & Menu
-      //  drawer = findViewById(R.id.drawer_layout);
-      //  NavigationView navigationView = findViewById(R.id.nav_view);
-      //  navigationView.setNavigationItemSelectedListener(this); // configuration des évènements qui ont lieu dans le menu accessible depuis cette activité
-
-       // Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-       // setSupportActionBar(toolbar);
-       // toggle = new ActionBarDrawerToggle(AirportActivity.this, drawer, toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
-       // drawer.addDrawerListener(toggle);
-       // toggle.syncState();
-
 
 // Mapbox access token is configured here. This needs to be called either in your application
 // object or in the same activity which contains the mapview.

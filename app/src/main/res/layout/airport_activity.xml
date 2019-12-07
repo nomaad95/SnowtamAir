@@ -24,7 +24,7 @@
         <LinearLayout
             android:id="@+id/linearLayout_aeroport"
             android:layout_width="match_parent"
-            android:layout_height="170dp"
+            android:layout_height="114dp"
             android:layout_margin="10dp"
             android:orientation="horizontal"
             android:padding="20dp"
@@ -67,7 +67,7 @@
         <LinearLayout
             android:id="@+id/linearLayout_piste"
             android:layout_width="match_parent"
-            android:layout_height="183dp"
+            android:layout_height="223dp"
             android:background="#F5F5F5"
             android:orientation="horizontal"
             mapbox:layout_constraintBottom_toTopOf="@+id/mapView"
