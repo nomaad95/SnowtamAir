@@ -82,27 +82,29 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
                     intent.putExtra("search", inputSearch.getText().toString());
                     startActivity(intent);
                 }
-
                 else{
                     Toast.makeText(MainActivity.this, inputSearch.getText().toString()+" is not a valid ICAO", Toast.LENGTH_LONG).show();
                 }
-
             }
         });
 
-
         //Add airport_result_card Fragment
-        // Begin the transaction
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        // Replace the contents of the container with the new fragment
-            ft.replace(R.id.framelayout_pistes, new AirportResultCardFragment());
-        // or ft.add(R.id.your_placeholder, new FooFragment());
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        String name = new String("Pertominsk Airport");
+        String code = new String("ULAT");
+        Bundle bundle = new Bundle();
+        bundle.putString("nameAirport", name);
+        bundle.putString("codeOACI", code);
+        AirportResultCardFragment cardResultFragment = new AirportResultCardFragment();
+        cardResultFragment.setArguments(bundle);
+        ft.add(R.id.framelayout_pistes, cardResultFragment);
+         //   ft.add(R.id.framelayout_pistes, new AirportResultCardFragment());
+        // or ft.replace(R.id.framelayout_pistes, new AirportResultCardFragment());
             ft.commit();
 
     }
 
     public boolean oaciCheck(String oaci, Context context) {
-
         try {
             InputStream is = context.getAssets().open("airport.json");
             int size = 0;
@@ -112,16 +114,13 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             is.read(buffer);
             is.close();
             String json = new String(buffer, "UTF-8");
-
             try {
                 oaciList = new JSONArray(json);
-
                 for(int i = 0; i < oaciList.length(); i++){
                     JSONObject oaciJson = oaciList.getJSONObject((i));
                     if(oaci.equals(oaciJson.getString("ICAO"))){
                         return true;
                     }
-
                 }
                 return false;
             } catch (JSONException e) {
@@ -133,9 +132,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return false;
-
     }
 
 
@@ -145,23 +142,17 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         int id = menuItem.getItemId();
         Context context = this;
 
-
         if (id == R.id.nav_aer1) {
             Log.d("menuActivity", "itemSelected");
             Intent intent = new Intent();
             intent.setClass(context, AirportActivity.class);
             startActivity(intent);
-
         } else if (id == R.id.nav_aer2) {
-
         } else if (id == R.id.nav_aer3) {
-
         } else if (id == R.id.nav_aer4) {
-
         } else if (id == R.id.nav_share) {
             Log.d("menu", "ok");
         }
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
