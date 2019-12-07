@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     private EditText inputSearch;
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
-
+    public static  JSONArray oaciList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,11 +107,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             String json = new String(buffer, "UTF-8");
 
             try {
-                JSONArray oaciList = new JSONArray(json);
-                for(int i = 0; i < oaciList.length(); i++) {
-                    JSONObject oaciJson = oaciList.getJSONObject((i));
-                    Log.d("oaciCheck", oaciJson.getString("ICAO"));
-                }
+                oaciList = new JSONArray(json);
 
                 for(int i = 0; i < oaciList.length(); i++){
                     JSONObject oaciJson = oaciList.getJSONObject((i));

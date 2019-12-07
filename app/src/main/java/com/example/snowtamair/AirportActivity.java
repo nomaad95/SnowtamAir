@@ -1,12 +1,14 @@
 package com.example.snowtamair;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -34,6 +36,13 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+
 
 /**
  * The most basic example of adding a map to an activity.
@@ -44,8 +53,11 @@ public class AirportActivity extends AppCompatActivity  implements PisteFragment
     private static final int NUM_PAGES = 5;
     private ViewPager mPager;
     private PagerAdapter pagerAdapter;
-
+    private String oaci;
     private Button btnDialogCodeSnowTam;
+    private Intent intent;
+    private Bundle bundle;
+    private Window window;
 
   //  private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
@@ -79,6 +91,11 @@ public class AirportActivity extends AppCompatActivity  implements PisteFragment
         mPager = (ViewPager) findViewById(R.id.pager_pistes);
         pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(pagerAdapter);
+        intent = getIntent();
+        bundle = intent.getExtras();
+        oaci = (String) bundle.get("search");
+        window = getWindow();
+        setTitle((String) getAirportName(oaci, this));
 
         // Init dialog btn
         btnDialogCodeSnowTam = findViewById(R.id.btn_dialog_snowtam);
@@ -96,6 +113,54 @@ public class AirportActivity extends AppCompatActivity  implements PisteFragment
                         //.setNegativeButton(android.R.string.no, null)
                         //.setIcon(android.R.drawable.ic_dialog_alert)
                         .show();
+            }
+        });
+    }
+
+    public String getAirportName(String oaci, Context context) {
+
+        try {
+            InputStream is = context.getAssets().open("airport.json");
+            int size = 0;
+            try {
+                size = is.available();
+                byte[] buffer = new byte[size];
+                is.read(buffer);
+                is.close();
+                String json = new String(buffer, "UTF-8");
+
+                try {
+                    JSONArray oaciList = new JSONArray(json);
+
+                    for(int i = 0; i < oaciList.length(); i++){
+                        JSONObject oaciJson = oaciList.getJSONObject((i));
+                        if(oaci.equals(oaciJson.getString("ICAO"))){
+                            return (String) oaciJson.getString("Name");
+                        }
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
+    public void onMapReady(@NonNull final MapboxMap mapboxMap) {
+        mapboxMap.setStyle(Style.MAPBOX_STREETS, new Style.OnStyleLoaded() {
+            @Override
+            public void onStyleLoaded(@NonNull Style style) {
+
+                // Use a layer manager here
+
+
             }
         });
     }
