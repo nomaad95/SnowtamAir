@@ -1,9 +1,6 @@
 package com.example.snowtamair;
 
-import com.mapbox.mapboxsdk.style.expressions.Expression;
-
 import java.util.ArrayList;
-import java.util.function.Predicate;
 
 public class SavedAirports {
     public ArrayList<Airport> listAirport = new ArrayList<Airport>();
@@ -23,6 +20,4 @@ public class SavedAirports {
     public boolean isAirportInList(final Airport airport){
         return listAirport.contains(airport);
     }
-
-
 }

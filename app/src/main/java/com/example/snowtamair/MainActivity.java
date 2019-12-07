@@ -14,6 +14,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.View;
 import android.view.MenuItem;
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         setContentView(R.layout.activity_main);
         drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this); // configuration des évènements qui ont lieu dans le menu accessible depuis cette activité
+        navigationView.setNavigationItemSelectedListener(this); // configuration des évènements qui ont lieu dans le MenuActivity accessible depuis cette activité
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -65,6 +66,12 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
        // Init Btn Search
         inputSearch = findViewById(R.id.input_search);
+
+        InputFilter[] filterArray = new InputFilter[2];
+        filterArray[0] = new InputFilter.LengthFilter(4);
+        filterArray[1] = new InputFilter.AllCaps();
+        inputSearch.setFilters(filterArray);
+
         buttonSearch = findViewById(R.id.btn_search);
         buttonSearch.setOnClickListener(new View.OnClickListener() {
             @Override

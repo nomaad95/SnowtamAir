@@ -24,7 +24,8 @@
             android:layout_height="match_parent"
             android:ems="10"
             android:hint="@string/hint_search_oaci"
-            android:inputType="textCapSentences"
+            android:inputType="textPersonName|textCapCharacters"
+            android:maxLength="4"
             android:scaleType="fitXY" />
 
         <ImageButton
@@ -69,16 +70,5 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </FrameLayout>
-
-    <TextView
-        android:id="@+id/Test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="52dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/framelayout_pistes" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
