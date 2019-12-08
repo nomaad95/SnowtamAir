@@ -1,6 +1,6 @@
 package com.example.snowtamair;
 
-public class Oaci {
+public class Airport {
     private float Airport_ID;
     private String Name;
     private String City;

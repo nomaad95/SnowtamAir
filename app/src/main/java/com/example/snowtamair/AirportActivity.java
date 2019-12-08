@@ -10,41 +10,24 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.TextView;
 
 
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
-import com.google.android.material.navigation.NavigationView;
 import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.geojson.Feature;
-import com.mapbox.geojson.FeatureCollection;
-import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.Mapbox;
-import com.mapbox.mapboxsdk.annotations.Icon;
-import com.mapbox.mapboxsdk.annotations.IconFactory;
-import com.mapbox.mapboxsdk.annotations.MarkerOptions;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
-import com.mapbox.mapboxsdk.style.layers.PropertyFactory;
-import com.mapbox.mapboxsdk.style.layers.SymbolLayer;
-import com.mapbox.mapboxsdk.style.sources.GeoJsonOptions;
-import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
@@ -54,7 +37,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -75,7 +57,7 @@ public class AirportActivity extends AppCompatActivity  implements PisteFragment
     private com.mapbox.mapboxsdk.geometry.LatLng latLng;
     private MapboxMap mapboxMap;
     private List<Feature> features;
-    private Oaci airportObject;
+    private Airport airportObject;
 
   //  private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
@@ -136,9 +118,9 @@ public class AirportActivity extends AppCompatActivity  implements PisteFragment
         });
     }
 
-    public Oaci createAirport(String oaci, Context context) {
+    public Airport createAirport(String oaci, Context context) {
 
-        Oaci airport = new Oaci();
+        Airport airport = new Airport();
 
         try {
             Log.d("airportCheck", "ok1");
@@ -156,9 +138,9 @@ public class AirportActivity extends AppCompatActivity  implements PisteFragment
 
                     for(int i = 0; i < oaciList.length(); i++){
                         JSONObject oaciJson = oaciList.getJSONObject((i));
-                        Log.d("airportCheck", String.valueOf(oaciJson.getString("AirportRequest ID")));
+                        Log.d("airportCheck", String.valueOf(oaciJson.getString("Airport ID")));
                         if(oaci.equals(oaciJson.getString("ICAO"))){
-                            airport.setAirport_ID(Float.parseFloat(oaciJson.getString("AirportRequest ID")));
+                            airport.setAirport_ID(Float.parseFloat(oaciJson.getString("Airport ID")));
                             airport.setName(String.valueOf(oaciJson.getString("Name")));
                             airport.setCity(String.valueOf(oaciJson.getString("City")));
                             airport.setCountry(String.valueOf(oaciJson.getString("Country")));
