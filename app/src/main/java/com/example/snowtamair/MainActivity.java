@@ -78,7 +78,6 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             }
         });
 
-
         //Add airport_result_card Fragment
         // /!\ CODE DE TEST
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -119,9 +118,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             fragtrans.addToBackStack(null);
             fragtrans.commit();
         }
-
          */
-
     }
 
     @Override

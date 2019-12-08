@@ -47,7 +47,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:padding="10dp"
-                        android:text="@string/aeroport_piste_nom"
+                        android:text="@string/airport_track_name"
                         android:textSize="30sp" />
 
                     <LinearLayout
@@ -63,7 +63,7 @@
                             android:layout_margin="10dp"
                             android:gravity="center"
                             android:padding="10dp"
-                            android:text="@string/aeroport_piste_meteo"
+                            android:text="@string/airport_track_weather"
                             android:textSize="20sp" />
 
                         <TextView
@@ -73,7 +73,7 @@
                             android:layout_margin="10dp"
                             android:gravity="center"
                             android:padding="10dp"
-                            android:text="@string/aeroport_piste_etat"
+                            android:text="@string/airport_track_condition"
                             android:textSize="20sp" />
 
                     </LinearLayout>

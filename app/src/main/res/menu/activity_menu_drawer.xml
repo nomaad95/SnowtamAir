@@ -7,19 +7,19 @@
         <item
             android:id="@+id/nav_aer1"
             android:icon="@drawable/ic_menu_send"
-            android:title="@string/card_aeroport_name" />
+            android:title="@string/card_airport_name" />
         <item
             android:id="@+id/nav_aer2"
             android:icon="@drawable/ic_menu_send"
-            android:title="@string/card_aeroport_name" />
+            android:title="@string/card_airport_name" />
         <item
             android:id="@+id/nav_aer3"
             android:icon="@drawable/ic_menu_send"
-            android:title="@string/card_aeroport_name" />
+            android:title="@string/card_airport_name" />
         <item
             android:id="@+id/nav_aer4"
             android:icon="@drawable/ic_menu_send"
-            android:title="@string/card_aeroport_name" />
+            android:title="@string/card_airport_name" />
 
     </group>
 

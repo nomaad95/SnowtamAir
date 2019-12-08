@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SnowtamAir</string>
+    <string name="action_settings">Paramètre</string>
+    <string name="navigation_drawer_open">Ouvre navigation drawer</string>
+    <string name="navigation_drawer_close">Ferme navigation drawer</string>
+    <string name="nav_header_title">SnowtamAir</string>
+    <string name="nav_header_subtitle">Liste Aéroport</string>
+    <string name="nav_header_desc">En-tête de navigation</string>
+    <string name="title_activity_menu">menu</string>
+
+    <string name="menu_home">Accueil</string>
+    <string name="menu_gallery">Gallerie</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Outils</string>
+    <string name="menu_share">Partager</string>
+    <string name="menu_send">Envoyer</string>
+    <string name="access_token">pk.eyJ1Ijoibm9tYWQ5NSIsImEiOiJjazM4ZThvNjMwNHVoM2JwYnd6YnMyYngwIn0.WBoIuJfPIOtAHn2uzWxciQ</string>
+
+    <string name="card_airport_code">Code OACI</string>
+    <string name="card_airport_name">Nom Aéroport</string>
+    <string name="card_airport_button">GO</string>
+
+    <string name="airport_time">12 : 34</string>
+    <string name="airport_date">2 mars</string>
+    <string name="airport_track_name">Piste 1</string>
+    <string name="airport_track_condition">Conditions piste</string>
+    <string name="airport_track_weather">Météo</string>
+
+    <string name="string_code_snowtam">Code Snowtam complet</string>
+    <string name="ok">OK</string>
+    <string name="btn_dialog_snowtam">SnowTam</string>
+    <string name="codeoaci">code OACI</string>
+    <string name="hint_search_oaci">Code OACI...</string>
+    <string name="search">Recherche</string>
+</resources>
