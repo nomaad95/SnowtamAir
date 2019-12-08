@@ -102,6 +102,25 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         // or ft.replace(R.id.framelayout_pistes, new AirportResultCardFragment());
             ft.commit();
 
+        // get ListAirport
+        SavedAirports savedAirports = new SavedAirports();
+        if(savedAirports.getListAirport()!= null){
+            FragmentTransaction fragtrans = getSupportFragmentManager().beginTransaction();
+            fragtrans.addToBackStack(null); // enough to have multiple fragments ??
+            for(Airport airport : savedAirports.getListAirport()){
+                Bundle bundleFrag = new Bundle();
+                bundleFrag.putString("nameAirport", airport.getNameAirport());
+                bundleFrag.putString("codeOACI", airport.getCodeOACI());
+                AirportResultCardFragment airportResultCardFragment = new AirportResultCardFragment();
+                airportResultCardFragment.setArguments(bundleFrag);
+                fragtrans.add(R.id.framelayout_pistes, airportResultCardFragment);
+            }
+            fragtrans.commit();
+        }
+
+
+
+
     }
 
     public boolean oaciCheck(String oaci, Context context) {
