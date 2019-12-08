@@ -96,6 +96,7 @@ public class AirportActivity extends AppCompatActivity  implements PisteFragment
         oaci = (String) bundle.get("search");
         window = getWindow();
         airportObject = createAirport(oaci, this);
+        setTitle(airportObject.getName());
         //Log.d("airportCheck", String.valueOf(airportObject.getAirport_ID()));
 
         // Init dialog btn
@@ -209,54 +210,7 @@ public class AirportActivity extends AppCompatActivity  implements PisteFragment
         return null;
     }
 
-    /*private void addMarkers(@NonNull Style loadedMapStyle) { //ajout d'icônes sur la carte aux positions des boîtes de nuit
-        if(dataSet == null){                                    //et du domicile s'il y en a un
 
-            Log.d("error", "dataSet null");
-        }
-
-        else {
-
-            if( PositionActivity.list != null){         //si une adresse de domicile a été entrée, on place un icône avec aux coordonnées de cette dernière
-                Log.d("house", String.valueOf(PositionActivity.list.get(0).getLatitude()));
-                //Bitmap icon= BitmapFactory.decodeResource(BoxActivity.this.getResources(),R.drawable.place);
-                MarkerOptions markerOptions = new MarkerOptions().setPosition( new LatLng(PositionActivity.list.get(0).
-                        getLatitude(), PositionActivity.list.get(0).getLongitude()));
-                IconFactory iconFactory = IconFactory.getInstance(BoxActivity.this);
-                Icon icon = iconFactory.fromResource(R.drawable.homered3);
-                markerOptions.icon(icon);
-                mapboxMap.addMarker(markerOptions.title("your home"));
-
-            }
-
-            Log.d("bCheck", "appel de addMarker");
-            this.features = new ArrayList<>();
-
-                this.features.add(Feature.fromGeometry(Point.fromLngLat(Double.valueOf(oaci.getString("Longitude")), dataSet.get(i).getGeometry().getLocation().getLat())));
-
-
-            // Source: A data source specifies the geographic coordinate where the image marker gets placed.
-
-            loadedMapStyle.addSource(new GeoJsonSource(MARKER_SOURCE, FeatureCollection.fromFeatures(features), //création du fichier GeoJson permettant le placemment des markers
-                    new GeoJsonOptions().withCluster(true).withClusterMaxZoom(14).withClusterRadius(50))); //si les points sont trop nombreux au même endroit, ils sont regroupés en un icône
-
-
-            //Style layer: A style layer ties together the source and image and specifies how they are displayed on the map.
-            loadedMapStyle.addLayer(new SymbolLayer(MARKER_STYLE_LAYER, MARKER_SOURCE)
-                    .withProperties(
-                            PropertyFactory.iconAllowOverlap(true),
-                            PropertyFactory.iconIgnorePlacement(true),
-                            PropertyFactory.iconImage(MARKER_IMAGE),
-                            // Adjust the second number of the Float array based on the height of your marker image.
-                            // This is because the bottom of the marker should be anchored to the coordinate point, rather
-                            // than the middle of the marker being the anchor point on the map.
-                            PropertyFactory.iconOffset(new Float[]{0f, -52f})
-                    ));
-
-
-
-        }
-    }*/
 
     @Override
     public void onMapReady(@NonNull final MapboxMap mapboxMap) {
