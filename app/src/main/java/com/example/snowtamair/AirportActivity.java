@@ -96,7 +96,7 @@ public class AirportActivity extends AppCompatActivity  implements PisteFragment
         oaci = (String) bundle.get("search");
         window = getWindow();
         airportObject = createAirport(oaci, this);
-        Log.d("airportCheck", String.valueOf(airportObject.getAirport_ID()));
+        //Log.d("airportCheck", String.valueOf(airportObject.getAirport_ID()));
 
         // Init dialog btn
         btnDialogCodeSnowTam = findViewById(R.id.btn_dialog_snowtam);

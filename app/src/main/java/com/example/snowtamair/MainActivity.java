@@ -107,15 +107,15 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         /*
         // get ListAirport
         SavedAirports savedAirports = new SavedAirports();
-        if(savedAirports.getListAirportRequest()!= null){
+        if(savedAirports.getListAirport()!= null){
             FragmentTransaction fragtrans = getSupportFragmentManager().beginTransaction();
             for(Airport airport : savedAirports.getListAirport()){
                 Bundle bundleFrag = new Bundle();
-                bundleFrag.putString("nameAirport", airportRequest.getNameAirport());
-                bundleFrag.putString("codeOACI", airportRequest.getCodeOACI());
+                bundleFrag.putString("nameAirport", airport.getName());
+                bundleFrag.putString("codeOACI", airport.getICAO());
                 AirportResultCardFragment airportResultCardFragment = new AirportResultCardFragment();
                 airportResultCardFragment.setArguments(bundleFrag);
-                String tag = "tag_fragcardresult_" + airport.getCodeOACI();
+                String tag = "tag_fragcardresult_" + airport.getAirport_ID();
                 fragtrans.add(R.id.framelayout_pistes, airportResultCardFragment, tag);
             }
             fragtrans.addToBackStack(null);
