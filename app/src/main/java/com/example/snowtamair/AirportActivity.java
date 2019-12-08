@@ -156,9 +156,9 @@ public class AirportActivity extends AppCompatActivity  implements PisteFragment
 
                     for(int i = 0; i < oaciList.length(); i++){
                         JSONObject oaciJson = oaciList.getJSONObject((i));
-                        Log.d("airportCheck", String.valueOf(oaciJson.getString("Airport ID")));
+                        Log.d("airportCheck", String.valueOf(oaciJson.getString("AirportRequest ID")));
                         if(oaci.equals(oaciJson.getString("ICAO"))){
-                            airport.setAirport_ID(Float.parseFloat(oaciJson.getString("Airport ID")));
+                            airport.setAirport_ID(Float.parseFloat(oaciJson.getString("AirportRequest ID")));
                             airport.setName(String.valueOf(oaciJson.getString("Name")));
                             airport.setCity(String.valueOf(oaciJson.getString("City")));
                             airport.setCountry(String.valueOf(oaciJson.getString("Country")));

@@ -15,7 +15,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class Airport {
+public class AirportRequest {
     private String data;
     private ArrayList <Track> tracks;
     private String codeOACI;
@@ -37,7 +37,7 @@ public class Airport {
     public String getNameAirport() { return nameAirport; }
     public void setNameAirport(String nameAirport) { this.nameAirport = nameAirport; }
 
-    public Airport(String OACI, Context context) {
+    public AirportRequest(String OACI, Context context) {
         this.codeOACI = OACI;
         String url = "https://v4p4sz5ijk.execute-api.us-east-1.amazonaws.com/anbdata/states/notams/notams-realtime-list?" +
                 "api_key=f614b0f0-1674-11ea-ab2e-bf2aa2669a71&format=json&criticality=&locations=" + OACI;
@@ -60,7 +60,7 @@ public class Airport {
 
     }
 
-    public Airport (ArrayList <Track> tracks){
+    public AirportRequest(ArrayList <Track> tracks){
         this.tracks=tracks;
     }
 }

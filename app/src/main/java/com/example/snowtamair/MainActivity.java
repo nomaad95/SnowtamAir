@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.text.InputFilter;
@@ -91,7 +90,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         //Add airport_result_card Fragment
         // /!\ CODE DE TEST
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        String name = new String("Pertominsk Airport");
+        String name = new String("Pertominsk AirportRequest");
         String code = new String("ULAT");
         Bundle bundle = new Bundle();
         bundle.putString("nameAirport", name);
@@ -108,12 +107,12 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         /*
         // get ListAirport
         SavedAirports savedAirports = new SavedAirports();
-        if(savedAirports.getListAirport()!= null){
+        if(savedAirports.getListAirportRequest()!= null){
             FragmentTransaction fragtrans = getSupportFragmentManager().beginTransaction();
             for(Airport airport : savedAirports.getListAirport()){
                 Bundle bundleFrag = new Bundle();
-                bundleFrag.putString("nameAirport", airport.getNameAirport());
-                bundleFrag.putString("codeOACI", airport.getCodeOACI());
+                bundleFrag.putString("nameAirport", airportRequest.getNameAirport());
+                bundleFrag.putString("codeOACI", airportRequest.getCodeOACI());
                 AirportResultCardFragment airportResultCardFragment = new AirportResultCardFragment();
                 airportResultCardFragment.setArguments(bundleFrag);
                 String tag = "tag_fragcardresult_" + airport.getCodeOACI();
