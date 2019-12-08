@@ -3,21 +3,21 @@ package com.example.snowtamair;
 import java.util.ArrayList;
 
 public class SavedAirports {
-    private static ArrayList<AirportRequest> listAirportRequest = new ArrayList<AirportRequest>();
+    private static ArrayList<Airport> listAirport = new ArrayList<Airport>();
 
-    public ArrayList<AirportRequest> getListAirportRequest() { return listAirportRequest; }
+    public ArrayList<Airport> getListAirport() { return listAirport; }
 
-    public void setListAirportRequest(ArrayList<AirportRequest> listAirportRequest) { this.listAirportRequest = listAirportRequest; }
+    public void setListAirport(ArrayList<Airport> listAirport) { this.listAirport = listAirport; }
 
-    public void addAiportToList(AirportRequest airportRequest){
-        listAirportRequest.add(airportRequest);
+    public void addAiportToList(Airport Airport){
+        listAirport.add(Airport);
     }
 
-    public void removeAirportFromList(AirportRequest airportRequest){
+    public void removeAirportFromList(Airport Airport){
         // remove with out knowing the index ?
     }
 
-    public boolean isAirportInList(final AirportRequest airportRequest){
-        return listAirportRequest.contains(airportRequest);
+    public boolean isAirportInList(final Airport Airport){
+        return listAirport.contains(Airport);
     }
 }
