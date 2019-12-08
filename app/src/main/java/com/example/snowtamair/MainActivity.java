@@ -99,8 +99,8 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         cardResultFragment1.setArguments(bundle);
         AirportResultCardFragment cardResultFragment2 = new AirportResultCardFragment();
         cardResultFragment2.setArguments(bundle);
-        ft.add(R.id.framelayout_pistes, cardResultFragment1, "frag1");
-        ft.add(R.id.framelayout_pistes, cardResultFragment2, "frag2");
+        ft.add(R.id.linearlayout_airportCardsResults, cardResultFragment1, "frag1");
+        ft.add(R.id.linearlayout_airportCardsResults, cardResultFragment2, "frag2");
         ft.addToBackStack(null);
         ft.commit();
 

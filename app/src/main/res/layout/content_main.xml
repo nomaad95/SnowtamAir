@@ -54,8 +54,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_add_black_24dp" />
 
-    <FrameLayout
-        android:id="@+id/framelayout_pistes"
+    <LinearLayout
+        android:id="@+id/linearlayout_airportCardsResults"
         android:layout_width="match_parent"
         android:layout_height="153dp"
         android:orientation="vertical"
@@ -63,12 +63,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/floatingActionButton">
-
-        <fragment
-            android:id="@+id/fragment3"
-            android:name="com.example.snowtamair.AirportResultCardFragment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </FrameLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
