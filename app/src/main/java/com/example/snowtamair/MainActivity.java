@@ -22,6 +22,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 import org.json.JSONArray;
@@ -31,7 +32,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class MainActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener, AirportResultCardFragment.OnFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener, AirportResultCardFragment.OnFragmentInteractionListener, SearchInputFragment.OnFragmentInteractionListener {
     private Button buttonAer1;
     private Button buttonAer2;
     private Button buttonAer3;
@@ -39,7 +40,9 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     private EditText inputSearch;
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
-    public static  JSONArray oaciList;
+    public static JSONArray oaciList;
+    private int searchInputNb = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,18 +57,30 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-       /*FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        // Adding search input fragment
+       FloatingActionButton btnFab = findViewById(R.id.floatingbtn_add_searchinput);
+        btnFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        }); */
+                if(searchInputNb<4){
+                    // Add fragment
+                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                    SearchInputFragment searchInputFragment = new SearchInputFragment();
+                    searchInputNb ++;
+                    String tag = "searchInputNum" + searchInputNb;
+                    ft.add(R.id.linearLayout_searchinputs, searchInputFragment, tag);
+                    ft.addToBackStack(null);
+                    ft.commit();
 
+                } else {
+                    // Do nothing
+                }
+            }
+        });
+
+        /*
        // Init Btn Search
         inputSearch = findViewById(R.id.input_search);
-
         InputFilter[] filterArray = new InputFilter[2];
         filterArray[0] = new InputFilter.LengthFilter(4);
         filterArray[1] = new InputFilter.AllCaps();
@@ -80,12 +95,15 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
                     intent.setClass( MainActivity.this, AirportActivity.class);
                     intent.putExtra("search", inputSearch.getText().toString());
                     startActivity(intent);
+                    searchInputNb --;
                 }
                 else{
                     Toast.makeText(MainActivity.this, inputSearch.getText().toString()+" is not a valid ICAO", Toast.LENGTH_LONG).show();
                 }
             }
         });
+        */
+
 
         //Add airport_result_card Fragment
         // /!\ CODE DE TEST
@@ -126,6 +144,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
     }
 
+    /*
     public boolean oaciCheck(String oaci, Context context) {
         try {
             InputStream is = context.getAssets().open("airport.json");
@@ -156,7 +175,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         }
         return false;
     }
-
+    */
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {

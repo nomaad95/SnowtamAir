@@ -7,42 +7,34 @@
     android:background="#00999797"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView_search"
-        android:layout_width="333dp"
-        android:layout_height="75dp"
-        android:scaleType="fitXY"
-        app:cardBackgroundColor="#F5F5F5"
-        app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
+    <LinearLayout
+        android:id="@+id/linearLayout_searchinputs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/floatingbtn_add_searchinput"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/input_search"
-            android:layout_width="257dp"
-            android:layout_height="match_parent"
-            android:ems="10"
-            android:hint="@string/hint_search_oaci"
-            android:inputType="textPersonName|textCapCharacters"
-            android:maxLength="4"
-            android:scaleType="fitXY" />
+        <FrameLayout
+            android:id="@+id/frameLayout_searchinput1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
 
-        <ImageButton
-            android:id="@+id/btn_search"
-            android:layout_width="75dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="end|center_vertical"
-            android:background="@android:color/transparent"
-            android:clickable="true"
-            android:focusable="true"
-            android:contentDescription="@string/search"
-            app:srcCompat="@drawable/ic_search_black_24dp" />
 
-    </androidx.cardview.widget.CardView>
+            <fragment
+                android:id="@+id/fragment"
+                android:name="com.example.snowtamair.SearchInputFragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </FrameLayout>
+
+    </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/floatingbtn_add_searchinput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="236dp"
@@ -62,7 +54,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/floatingActionButton">
+        app:layout_constraintTop_toBottomOf="@+id/floatingbtn_add_searchinput">
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
