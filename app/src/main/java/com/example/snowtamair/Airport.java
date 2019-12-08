@@ -1,5 +1,15 @@
 package com.example.snowtamair;
 
+import android.content.Context;
+import android.util.Log;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+
 public class Airport {
     private float Airport_ID;
     private String Name;
@@ -131,5 +141,56 @@ public class Airport {
 
     public void setSource(String Source) {
         this.Source = Source;
+    }
+
+    public Airport(String oaci, Context context) {
+
+
+        try {
+            Log.d("airportCheck", "ok1");
+            InputStream is = context.getAssets().open("airport.json");
+            int size = 0;
+            try {
+                size = is.available();
+                byte[] buffer = new byte[size];
+                is.read(buffer);
+                is.close();
+                String json = new String(buffer, "UTF-8");
+
+                try {
+                    JSONArray oaciList = new JSONArray(json);
+
+                    for(int i = 0; i < oaciList.length(); i++){
+                        JSONObject oaciJson = oaciList.getJSONObject((i));
+                        Log.d("airportCheck", String.valueOf(oaciJson.getString("Airport ID")));
+                        if(oaci.equals(oaciJson.getString("ICAO"))){
+                            this.setAirport_ID(Float.parseFloat(oaciJson.getString("Airport ID")));
+                            this.setName(String.valueOf(oaciJson.getString("Name")));
+                            this.setCity(String.valueOf(oaciJson.getString("City")));
+                            this.setCountry(String.valueOf(oaciJson.getString("Country")));
+                            this.setIATA(String.valueOf(oaciJson.getString("IATA")));
+                            this.setICAO(String.valueOf(oaciJson.getString("ICAO")));
+                            this.setLatitude(Float.valueOf(oaciJson.getString("Latitude")));
+                            this.setLongitude(Float.valueOf(oaciJson.getString("Longitude")));
+                            this.setAltitude(Float.valueOf(oaciJson.getString("Altitude")));
+                            this.setTimezone(Float.valueOf(oaciJson.getString("Timezone")));
+                            this.setDST(String.valueOf(oaciJson.getString("DST")));
+                            this.setTz_database_time_zone(String.valueOf(oaciJson.getString("Tz database time zone")));
+                            this.setType(String.valueOf(oaciJson.getString("Type")));
+                            this.setSource(String.valueOf(oaciJson.getString("Source")));
+
+                        }
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }

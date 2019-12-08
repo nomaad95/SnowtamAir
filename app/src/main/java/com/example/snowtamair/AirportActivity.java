@@ -58,6 +58,7 @@ public class AirportActivity extends AppCompatActivity  implements PisteFragment
     private MapboxMap mapboxMap;
     private List<Feature> features;
     private Airport airportObject;
+    private SavedAirports savedAirports;
 
   //  private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
@@ -95,7 +96,13 @@ public class AirportActivity extends AppCompatActivity  implements PisteFragment
         bundle = intent.getExtras();
         oaci = (String) bundle.get("search");
         window = getWindow();
-        airportObject = createAirport(oaci, this);
+        airportObject = new Airport(oaci, this);
+        savedAirports = new SavedAirports();
+        savedAirports.addAiportToList(airportObject);
+        for(Airport i: savedAirports.getListAirport()){
+            Log.d("airportContent", i.getName());
+        }
+        Log.d("airportList", String.valueOf(savedAirports.getListAirport().size()));
         setTitle(airportObject.getName());
         //Log.d("airportCheck", String.valueOf(airportObject.getAirport_ID()));
 
@@ -119,60 +126,7 @@ public class AirportActivity extends AppCompatActivity  implements PisteFragment
         });
     }
 
-    public Airport createAirport(String oaci, Context context) {
 
-        Airport airport = new Airport();
-
-        try {
-            Log.d("airportCheck", "ok1");
-            InputStream is = context.getAssets().open("airport.json");
-            int size = 0;
-            try {
-                size = is.available();
-                byte[] buffer = new byte[size];
-                is.read(buffer);
-                is.close();
-                String json = new String(buffer, "UTF-8");
-
-                try {
-                    JSONArray oaciList = new JSONArray(json);
-
-                    for(int i = 0; i < oaciList.length(); i++){
-                        JSONObject oaciJson = oaciList.getJSONObject((i));
-                        Log.d("airportCheck", String.valueOf(oaciJson.getString("Airport ID")));
-                        if(oaci.equals(oaciJson.getString("ICAO"))){
-                            airport.setAirport_ID(Float.parseFloat(oaciJson.getString("Airport ID")));
-                            airport.setName(String.valueOf(oaciJson.getString("Name")));
-                            airport.setCity(String.valueOf(oaciJson.getString("City")));
-                            airport.setCountry(String.valueOf(oaciJson.getString("Country")));
-                            airport.setIATA(String.valueOf(oaciJson.getString("IATA")));
-                            airport.setICAO(String.valueOf(oaciJson.getString("ICAO")));
-                            airport.setLatitude(Float.valueOf(oaciJson.getString("Latitude")));
-                            airport.setLongitude(Float.valueOf(oaciJson.getString("Longitude")));
-                            airport.setAltitude(Float.valueOf(oaciJson.getString("Altitude")));
-                            airport.setTimezone(Float.valueOf(oaciJson.getString("Timezone")));
-                            airport.setDST(String.valueOf(oaciJson.getString("DST")));
-                            airport.setTz_database_time_zone(String.valueOf(oaciJson.getString("Tz database time zone")));
-                            airport.setType(String.valueOf(oaciJson.getString("Type")));
-                            airport.setSource(String.valueOf(oaciJson.getString("Source")));
-                            return airport;
-
-                        }
-
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Log.d("airportCheck", "error when creating airport");
-
-        return null;
-    }
 
     public String getAirportName(String oaci, Context context) {
 

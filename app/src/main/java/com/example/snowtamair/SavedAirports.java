@@ -3,7 +3,7 @@ package com.example.snowtamair;
 import java.util.ArrayList;
 
 public class SavedAirports {
-    private static ArrayList<Airport> listAirport = new ArrayList<Airport>(4);
+    public static ArrayList<Airport> listAirport = new ArrayList<Airport>(4);
 
     public ArrayList<Airport> getListAirport() { return listAirport; }
 
