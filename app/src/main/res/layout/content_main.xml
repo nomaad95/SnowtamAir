@@ -15,7 +15,8 @@
         app:layout_constraintBottom_toTopOf="@+id/floatingbtn_add_searchinput"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.827">
 
         <FrameLayout
             android:id="@+id/frameLayout_searchinput1"
@@ -37,24 +38,28 @@
         android:id="@+id/floatingbtn_add_searchinput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="236dp"
         android:background="@color/colorSecondary"
         android:clickable="true"
         android:focusable="true"
+        app:layout_constraintBottom_toTopOf="@+id/linearlayout_airportCardsResults"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout_searchinputs"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_add_black_24dp" />
 
     <LinearLayout
         android:id="@+id/linearlayout_airportCardsResults"
-        android:layout_width="match_parent"
-        android:layout_height="153dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/floatingbtn_add_searchinput">
+        app:layout_constraintTop_toBottomOf="@+id/floatingbtn_add_searchinput"
+        app:layout_constraintVertical_bias="0.61">
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

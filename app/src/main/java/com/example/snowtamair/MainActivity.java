@@ -78,32 +78,6 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             }
         });
 
-        /*
-       // Init Btn Search
-        inputSearch = findViewById(R.id.input_search);
-        InputFilter[] filterArray = new InputFilter[2];
-        filterArray[0] = new InputFilter.LengthFilter(4);
-        filterArray[1] = new InputFilter.AllCaps();
-        inputSearch.setFilters(filterArray);
-
-        buttonSearch = findViewById(R.id.btn_search);
-        buttonSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(oaciCheck(inputSearch.getText().toString(), MainActivity.this)){
-                    Intent intent = new Intent();
-                    intent.setClass( MainActivity.this, AirportActivity.class);
-                    intent.putExtra("search", inputSearch.getText().toString());
-                    startActivity(intent);
-                    searchInputNb --;
-                }
-                else{
-                    Toast.makeText(MainActivity.this, inputSearch.getText().toString()+" is not a valid ICAO", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-        */
-
 
         //Add airport_result_card Fragment
         // /!\ CODE DE TEST
@@ -117,8 +91,14 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         cardResultFragment1.setArguments(bundle);
         AirportResultCardFragment cardResultFragment2 = new AirportResultCardFragment();
         cardResultFragment2.setArguments(bundle);
+        AirportResultCardFragment cardResultFragment3 = new AirportResultCardFragment();
+        cardResultFragment1.setArguments(bundle);
+        AirportResultCardFragment cardResultFragment4 = new AirportResultCardFragment();
+        cardResultFragment2.setArguments(bundle);
         ft.add(R.id.linearlayout_airportCardsResults, cardResultFragment1, "frag1");
         ft.add(R.id.linearlayout_airportCardsResults, cardResultFragment2, "frag2");
+        ft.add(R.id.linearlayout_airportCardsResults, cardResultFragment3, "frag3");
+        ft.add(R.id.linearlayout_airportCardsResults, cardResultFragment4, "frag4");
         ft.addToBackStack(null);
         ft.commit();
 
@@ -143,39 +123,6 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
          */
 
     }
-
-    /*
-    public boolean oaciCheck(String oaci, Context context) {
-        try {
-            InputStream is = context.getAssets().open("airport.json");
-            int size = 0;
-            try {
-                size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            String json = new String(buffer, "UTF-8");
-            try {
-                oaciList = new JSONArray(json);
-                for(int i = 0; i < oaciList.length(); i++){
-                    JSONObject oaciJson = oaciList.getJSONObject((i));
-                    if(oaci.equals(oaciJson.getString("ICAO"))){
-                        return true;
-                    }
-                }
-                return false;
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-    */
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {

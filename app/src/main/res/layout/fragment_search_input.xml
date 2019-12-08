@@ -10,7 +10,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView_search"
         android:layout_width="333dp"
-        android:layout_height="75dp"
+        android:layout_height="wrap_content"
         android:scaleType="fitXY"
         app:cardBackgroundColor="#F5F5F5">
 
