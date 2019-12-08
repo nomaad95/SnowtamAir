@@ -89,37 +89,41 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         });
 
         //Add airport_result_card Fragment
+        // /!\ CODE DE TEST
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         String name = new String("Pertominsk Airport");
         String code = new String("ULAT");
         Bundle bundle = new Bundle();
         bundle.putString("nameAirport", name);
         bundle.putString("codeOACI", code);
-        AirportResultCardFragment cardResultFragment = new AirportResultCardFragment();
-        cardResultFragment.setArguments(bundle);
-        ft.add(R.id.framelayout_pistes, cardResultFragment);
-         //   ft.add(R.id.framelayout_pistes, new AirportResultCardFragment());
-        // or ft.replace(R.id.framelayout_pistes, new AirportResultCardFragment());
-            ft.commit();
+        AirportResultCardFragment cardResultFragment1 = new AirportResultCardFragment();
+        cardResultFragment1.setArguments(bundle);
+        AirportResultCardFragment cardResultFragment2 = new AirportResultCardFragment();
+        cardResultFragment2.setArguments(bundle);
+        ft.add(R.id.framelayout_pistes, cardResultFragment1, "frag1");
+        ft.add(R.id.framelayout_pistes, cardResultFragment2, "frag2");
+        ft.addToBackStack(null);
+        ft.commit();
 
+        /*
         // get ListAirport
         SavedAirports savedAirports = new SavedAirports();
         if(savedAirports.getListAirport()!= null){
             FragmentTransaction fragtrans = getSupportFragmentManager().beginTransaction();
-            fragtrans.addToBackStack(null); // enough to have multiple fragments ??
             for(Airport airport : savedAirports.getListAirport()){
                 Bundle bundleFrag = new Bundle();
                 bundleFrag.putString("nameAirport", airport.getNameAirport());
                 bundleFrag.putString("codeOACI", airport.getCodeOACI());
                 AirportResultCardFragment airportResultCardFragment = new AirportResultCardFragment();
                 airportResultCardFragment.setArguments(bundleFrag);
-                fragtrans.add(R.id.framelayout_pistes, airportResultCardFragment);
+                String tag = "tag_fragcardresult_" + airport.getCodeOACI();
+                fragtrans.add(R.id.framelayout_pistes, airportResultCardFragment, tag);
             }
+            fragtrans.addToBackStack(null);
             fragtrans.commit();
         }
 
-
-
+         */
 
     }
 
