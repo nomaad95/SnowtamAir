@@ -129,38 +129,6 @@ public class AirportActivity extends AppCompatActivity  implements RunwayFragmen
         });
     }
 
-    public String getAirportName(String oaci, Context context) {
-        try {
-            InputStream is = context.getAssets().open("airport.json");
-            int size = 0;
-            try {
-                size = is.available();
-                byte[] buffer = new byte[size];
-                is.read(buffer);
-                is.close();
-                String json = new String(buffer, "UTF-8");
-                try {
-                    JSONArray oaciList = new JSONArray(json);
-
-                    for(int i = 0; i < oaciList.length(); i++){
-                        JSONObject oaciJson = oaciList.getJSONObject((i));
-                        if(oaci.equals(oaciJson.getString("ICAO"))){
-                            latLng = new LatLng(Double.valueOf(oaciJson.getString("Latitude")), Double.valueOf(oaciJson.getString("Longitude")));
-                            return (String) oaciJson.getString("Name");
-                        }
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
 
 
     @Override
