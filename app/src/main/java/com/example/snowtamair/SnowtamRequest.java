@@ -6,6 +6,7 @@ import android.util.Log;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import org.jsoup.Jsoup;
@@ -116,6 +117,22 @@ public class SnowtamRequest {
                 return "application/x-www-form-urlencoded";
             }
         };
+        stringRequest.setRetryPolicy(new RetryPolicy() {
+            @Override
+            public int getCurrentTimeout() {
+                return 50000;
+            }
+
+            @Override
+            public int getCurrentRetryCount() {
+                return 50000;
+            }
+
+            @Override
+            public void retry(VolleyError error) throws VolleyError {
+
+            }
+        });
 
         // Add the request to the RequestQueue.
         RequestSingleton.getInstance(context).getRequestQueue().add(stringRequest);
