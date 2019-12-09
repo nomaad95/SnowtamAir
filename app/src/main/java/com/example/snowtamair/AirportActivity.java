@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.TextView;
 
 
 import com.mapbox.android.core.permissions.PermissionsListener;
@@ -43,24 +44,29 @@ import java.util.List;
 /**
  * The most basic example of adding a map to an activity.
  */
-public class AirportActivity extends AppCompatActivity  implements PisteFragment.OnFragmentInteractionListener, PermissionsListener, OnMapReadyCallback {
+public class AirportActivity extends AppCompatActivity  implements RunwayFragment.OnFragmentInteractionListener, PermissionsListener, OnMapReadyCallback {
 
     private MapView mapView;
     private static final int NUM_PAGES = 5;
     private ViewPager mPager;
     private PagerAdapter pagerAdapter;
     private String oaci;
-    private Button btnDialogCodeSnowTam;
     private Intent intent;
     private Bundle bundle;
     private Window window;
     private com.mapbox.mapboxsdk.geometry.LatLng latLng;
     private MapboxMap mapboxMap;
     private List<Feature> features;
-    private Airport airportObject;
-    private SavedAirports savedAirports;
 
-  //  private DrawerLayout drawer;
+    private Airport airportObject;
+    private Snowtam snowtamObject;
+    private String snowtamCode = new String();
+    private TextView textViewTime;
+
+    private SavedAirports savedAirports = SavedAirports.getInstance();
+    private SnowtamRequest snowtamRequest;
+
+    //  private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
 
 
@@ -96,33 +102,34 @@ public class AirportActivity extends AppCompatActivity  implements PisteFragment
         bundle = intent.getExtras();
         oaci = (String) bundle.get("search");
         window = getWindow();
+        // create Airport
         airportObject = Airport.getAirport(oaci,this);
+        // save Airport
+        savedAirports.addAirportToList(airportObject);
+
         setTitle(airportObject.getName());
         //Log.d("airportCheck", String.valueOf(airportObject.getAirport_ID()));
 
-        // Init dialog btn
-        btnDialogCodeSnowTam = findViewById(R.id.btn_dialog_snowtam);
-        btnDialogCodeSnowTam.setOnClickListener(new View.OnClickListener() {
+
+        snowtamRequest = new SnowtamRequest(airportObject.getICAO(), AirportActivity.this, new VolleyCallback() {
             @Override
-            public void onClick(View view) {
-                new AlertDialog.Builder(AirportActivity.this)
-                        .setTitle("Code SnowTam")
-                        .setMessage("the complete and original snowtam")
-                        .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                // Continue with delete operation
-                            }
-                        })
-                        //.setNegativeButton(android.R.string.no, null)
-                        //.setIcon(android.R.drawable.ic_dialog_alert)
-                        .show();
+            public void onSuccess(String result) {
+                if (!result.equals("")){
+                    snowtamObject = new Snowtam(result, AirportActivity.this);
+                    snowtamCode = result;
+                    Log.d(snowtamCode, "onSuccess: snowtamCode ");
+                } else {
+                    // go to MainActivity
+                    Log.d(snowtamCode, "onSuccess: snowtamCode ");
+                    Intent intent = new Intent();
+                    intent.setClass( AirportActivity.this, MainActivity.class);
+                    startActivity(intent);
+                }
             }
         });
     }
 
-
     public String getAirportName(String oaci, Context context) {
-
         try {
             InputStream is = context.getAssets().open("airport.json");
             int size = 0;
@@ -132,7 +139,6 @@ public class AirportActivity extends AppCompatActivity  implements PisteFragment
                 is.read(buffer);
                 is.close();
                 String json = new String(buffer, "UTF-8");
-
                 try {
                     JSONArray oaciList = new JSONArray(json);
 
@@ -142,7 +148,6 @@ public class AirportActivity extends AppCompatActivity  implements PisteFragment
                             latLng = new LatLng(Double.valueOf(oaciJson.getString("Latitude")), Double.valueOf(oaciJson.getString("Longitude")));
                             return (String) oaciJson.getString("Name");
                         }
-
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -153,7 +158,6 @@ public class AirportActivity extends AppCompatActivity  implements PisteFragment
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return null;
     }
 
@@ -262,7 +266,7 @@ public class AirportActivity extends AppCompatActivity  implements PisteFragment
 
         @Override
         public Fragment getItem(int position) {
-            return new PisteFragment();
+            return new RunwayFragment();
         }
 
         @Override

@@ -6,13 +6,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Snowtam {
-    private Airport placeAirport;
+    private Airport airport;
 
     private ArrayList<Runway> runways;
 
 
     public Snowtam(Airport placeAirport, ArrayList<Runway> runway) {
-        this.placeAirport = placeAirport;
+        this.airport = placeAirport;
         this.runways = runways;
     }
 
@@ -98,7 +98,7 @@ public class Snowtam {
             }
         }
         infosRunways.add(bloc);
-        this.placeAirport = Airport.getAirport(ICAO,context);
+        this.airport = airport.getAirport(ICAO,context);
         for (HashMap<String,String> blocks : infosRunways){
             Runway r = new Runway(blocks);
             this.runways.add(r);
