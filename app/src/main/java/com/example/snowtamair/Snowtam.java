@@ -1,13 +1,14 @@
 package com.example.snowtamair;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Snowtam {
     private Airport airport;
-    private ArrayList<Runway> runways;
+    private ArrayList<Runway> runways = new ArrayList<>();
 
     public void setRunways(ArrayList<Runway> runways) { this.runways = runways; }
     public int getRunwaysSize(){
@@ -88,11 +89,16 @@ public class Snowtam {
                 String words[] = line.split(" ");
                 for (int j = 0; j < words.length; j = j+2) {
                     if (!words[j].equals("N)") && !words[j].equals("R)") && !words[j].equals("T)")) {
-                        if (words[j].equals("A)")) ICAO = words[j+1];
+                        if (words[j].equals("A)")){
+                            ICAO = words[j+1];
+                        }
                         else {
                             if (words[j].equals("B)")) {
-                                if (nbRunways > 0) infosRunways.add(bloc);
-                                bloc.clear();
+                                if (nbRunways > 0){
+                                    Log.d("bloc_content1",bloc.toString());
+                                    infosRunways.add(bloc);
+                                }
+                                bloc = new HashMap<>();
                                 nbRunways++;
                             }
                             bloc.put(words[j],words[j+1]);
@@ -104,11 +110,13 @@ public class Snowtam {
 
             }
         }
+        Log.d("bloc_content2",bloc.toString());
         infosRunways.add(bloc);
         this.airport = Airport.getAirport(ICAO,context);
-        for (HashMap<String,String> blocks : infosRunways){
-            Runway r = new Runway(blocks);
-            this.runways.add(r);
+        for (HashMap<String,String> infoRunway : infosRunways){
+            Log.d("infoRunway_content",infoRunway.toString());
+            Runway runway = new Runway(infoRunway);
+            this.runways.add(runway);
         }
     }
 
