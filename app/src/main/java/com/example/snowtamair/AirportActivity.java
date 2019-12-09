@@ -1,6 +1,7 @@
 package com.example.snowtamair;
 
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,12 +11,22 @@ import android.widget.TextView;
 
 import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.geojson.Feature;
+import com.mapbox.geojson.FeatureCollection;
+import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.mapboxsdk.annotations.Icon;
+import com.mapbox.mapboxsdk.annotations.IconFactory;
+import com.mapbox.mapboxsdk.annotations.MarkerOptions;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
+import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
 import com.mapbox.mapboxsdk.maps.Style;
+import com.mapbox.mapboxsdk.style.layers.PropertyFactory;
+import com.mapbox.mapboxsdk.style.layers.SymbolLayer;
+import com.mapbox.mapboxsdk.style.sources.GeoJsonOptions;
+import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -26,6 +37,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
@@ -47,7 +59,9 @@ public class AirportActivity extends AppCompatActivity  implements RunwayFragmen
     private com.mapbox.mapboxsdk.geometry.LatLng latLng;
     private MapboxMap mapboxMap;
     private List<Feature> features;
-
+    private static final String MARKER_SOURCE = "markers-source";
+    private static final String MARKER_STYLE_LAYER = "markers-style-layer";
+    private static final String MARKER_IMAGE = "custom-marker";
     private Airport airportObject;
     private Snowtam snowtamObject;
     private String snowtamCode = new String();
@@ -130,11 +144,51 @@ public class AirportActivity extends AppCompatActivity  implements RunwayFragmen
             @Override
             public void onStyleLoaded(@NonNull Style style) {
 
-                // Use a layer manager here
+
+                style.addImage(MARKER_IMAGE, BitmapFactory.decodeResource(
+                        AirportActivity.this.getResources(), R.drawable.placeholder3));
+                addMarkers(style);
 
 
             }
         });
+    }
+
+    private void addMarkers(@NonNull Style loadedMapStyle) { //ajout d'icônes sur la carte aux positions des boîtes de nuit
+
+            if(airportObject!= null){
+                this.latLng = new LatLng(airportObject.getLatitude(), airportObject.getLongitude());
+                Log.d("latLng", "latlng: "+airportObject.getLatitude()+","+airportObject.getLongitude());
+                //Bitmap icon= BitmapFactory.decodeResource(BoxActivity.this.getResources(),R.drawable.place);
+                MarkerOptions markerOptions = new MarkerOptions().setPosition( new LatLng(airportObject.getLatitude(), airportObject.getLongitude()));
+                IconFactory iconFactory = IconFactory.getInstance(AirportActivity.this);
+                Icon icon = iconFactory.fromResource(R.drawable.placeholder3);
+                markerOptions.icon(icon);
+            }
+
+            Log.d("bCheck", "appel de addMarker");
+            this.features = new ArrayList<>();
+            this.features.add(Feature.fromGeometry(Point.fromLngLat(airportObject.getLongitude(),airportObject.getLatitude())));
+
+            /* Source: A data source specifies the geographic coordinate where the image marker gets placed. */
+
+            loadedMapStyle.addSource(new GeoJsonSource(MARKER_SOURCE, FeatureCollection.fromFeatures(features), //création du fichier GeoJson permettant le placemment des markers
+                    new GeoJsonOptions().withCluster(true).withClusterMaxZoom(14).withClusterRadius(50))); //si les points sont trop nombreux au même endroit, ils sont regroupés en un icône
+
+
+            /* Style layer: A style layer ties together the source and image and specifies how they are displayed on the map. */
+            loadedMapStyle.addLayer(new SymbolLayer(MARKER_STYLE_LAYER, MARKER_SOURCE)
+                    .withProperties(
+                            PropertyFactory.iconAllowOverlap(true),
+                            PropertyFactory.iconIgnorePlacement(true),
+                            PropertyFactory.iconImage(MARKER_IMAGE),
+                            // Adjust the second number of the Float array based on the height of your marker image.
+                            // This is because the bottom of the marker should be anchored to the coordinate point, rather
+                            // than the middle of the marker being the anchor point on the map.
+                            PropertyFactory.iconOffset(new Float[]{0f, -52f})
+                    )
+            );
+
     }
 
     // Add the mapView lifecycle to the activity's lifecycle methods
@@ -193,7 +247,7 @@ public class AirportActivity extends AppCompatActivity  implements RunwayFragmen
         Log.d(String.valueOf(hasCapture), "onFragmentInteraction: ");
     }
 
-    @Override
+    /*@Override
     public void onBackPressed() {
         if (mPager.getCurrentItem() == 0) {
             // If the user is currently looking at the first step, allow the system to handle the
@@ -203,7 +257,7 @@ public class AirportActivity extends AppCompatActivity  implements RunwayFragmen
             // Otherwise, select the previous step.
             mPager.setCurrentItem(mPager.getCurrentItem() - 1);
         }
-    }
+    }*/
 
     @Override
     public void onExplanationNeeded(List<String> permissionsToExplain) {

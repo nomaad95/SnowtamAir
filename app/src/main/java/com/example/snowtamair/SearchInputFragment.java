@@ -142,15 +142,15 @@ public class SearchInputFragment extends Fragment {
         }
     }
 
-    private void updateMenuTitle(){
-        MenuItem airport1 = MainActivity.menu.getItem(0);
+    /*private void updateMenuTitle(){
+        MenuItem airport1 = this.menu.getItem(0);
         if(airport1 != null){
             Log.d("menuTitle", "ok");
         }
 
         Log.d("menuTitle","updateMenu");
         Log.d("menuTitle", airport1.getTitle().toString());
-    }
+    }*/
 
     @Override
     public void onAttach(Context context) {
