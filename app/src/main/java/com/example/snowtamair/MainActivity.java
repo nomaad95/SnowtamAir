@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             }
         });
 
-        //Add airport_result_card Fragment
+        /*Add airport_result_card Fragment
         // /!\ CODE DE TEST
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         String name = new String("Pertominsk Airport");
@@ -82,18 +82,10 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         bundle.putString("codeOACI", code);
         AirportResultCardFragment cardResultFragment1 = new AirportResultCardFragment();
         cardResultFragment1.setArguments(bundle);
-        AirportResultCardFragment cardResultFragment2 = new AirportResultCardFragment();
-        cardResultFragment2.setArguments(bundle);
-        AirportResultCardFragment cardResultFragment3 = new AirportResultCardFragment();
-        cardResultFragment1.setArguments(bundle);
-        AirportResultCardFragment cardResultFragment4 = new AirportResultCardFragment();
-        cardResultFragment2.setArguments(bundle);
         ft.add(R.id.linearlayout_airportCardsResults, cardResultFragment1, "frag1");
-        ft.add(R.id.linearlayout_airportCardsResults, cardResultFragment2, "frag2");
-        ft.add(R.id.linearlayout_airportCardsResults, cardResultFragment3, "frag3");
-        ft.add(R.id.linearlayout_airportCardsResults, cardResultFragment4, "frag4");
         ft.addToBackStack(null);
         ft.commit();
+         */
 
 
         // get ListSnowtams

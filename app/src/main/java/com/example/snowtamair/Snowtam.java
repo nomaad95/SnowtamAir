@@ -7,8 +7,12 @@ import java.util.HashMap;
 
 public class Snowtam {
     private Airport airport;
-
     private ArrayList<Runway> runways;
+
+    public void setRunways(ArrayList<Runway> runways) { this.runways = runways; }
+    public int getRunwaysSize(){
+        return runways.size();
+    }
 
 
     public Snowtam(Airport airport, ArrayList<Runway> runway) {
@@ -67,6 +71,9 @@ public class Snowtam {
 
     public ArrayList<Runway> getRunway() {
         return runways;
+    }
+    public Runway getRunwayFromPosition(int position) {
+        return runways.get(position);
     }
 
     public Snowtam(String codedSnowtam, Context context) {

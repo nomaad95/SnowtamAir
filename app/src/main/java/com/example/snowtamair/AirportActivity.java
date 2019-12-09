@@ -1,15 +1,10 @@
 package com.example.snowtamair;
 
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.TextView;
 
 
@@ -17,7 +12,6 @@ import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.geojson.Feature;
 import com.mapbox.mapboxsdk.Mapbox;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
-import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
@@ -32,12 +26,6 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 
 
@@ -47,7 +35,7 @@ import java.util.List;
 public class AirportActivity extends AppCompatActivity  implements RunwayFragment.OnFragmentInteractionListener, PermissionsListener, OnMapReadyCallback {
 
     private MapView mapView;
-    private static final int NUM_PAGES = 5;
+    private int nbRunways = 5;
     private ViewPager mPager;
     private PagerAdapter pagerAdapter;
     private String oaci;
@@ -117,6 +105,8 @@ public class AirportActivity extends AppCompatActivity  implements RunwayFragmen
                 if (!result.equals("")){
                     snowtamObject = new Snowtam(result, AirportActivity.this);
                     snowtamCode = result;
+                    nbRunways = snowtamObject.getRunwaysSize();
+                    Log.d(String.valueOf(nbRunways), "onSuccess nbRunways: ");
                     Log.d(snowtamCode, "onSuccess: snowtamCode ");
                 } else {
                     // go to MainActivity
@@ -234,12 +224,13 @@ public class AirportActivity extends AppCompatActivity  implements RunwayFragmen
 
         @Override
         public Fragment getItem(int position) {
+            Runway runway = snowtamObject.getRunwayFromPosition(position);
             return new RunwayFragment();
         }
 
         @Override
         public int getCount() {
-            return NUM_PAGES;
+            return nbRunways;
         }
     }
 
