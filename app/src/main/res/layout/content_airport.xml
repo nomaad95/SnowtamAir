@@ -8,9 +8,9 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
-    <LinearLayout
-        android:id="@+id/linearLayout_piste"
-        android:layout_width="0dp"
+    <FrameLayout
+        android:id="@+id/frameLayout_runway_fragment"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:background="#F5F5F5"
         android:orientation="horizontal"
@@ -23,14 +23,14 @@
             android:id="@+id/pager_pistes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout_piste"
+            app:layout_constraintBottom_toTopOf="@+id/frameLayout_runway_fragment"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout_aeroport">
+            app:layout_constraintTop_toTopOf="parent">
 
         </androidx.viewpager.widget.ViewPager>
 
-    </LinearLayout>
+    </FrameLayout>
 
     <com.mapbox.mapboxsdk.maps.MapView
         android:id="@+id/mapView"

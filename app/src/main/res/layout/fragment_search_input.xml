@@ -33,6 +33,7 @@
             android:clickable="true"
             android:contentDescription="@string/search"
             android:focusable="true"
+            android:tint="#D2A8A8A8"
             app:srcCompat="@drawable/ic_search_black_24dp" />
 
     </androidx.cardview.widget.CardView>

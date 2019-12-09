@@ -23,7 +23,7 @@
 
     <string name="airport_time">12 : 34</string>
     <string name="airport_date">2 mars</string>
-    <string name="airport_track_name">Piste 1</string>
+    <string name="airport_track_name">Piste</string>
     <string name="airport_track_condition">Conditions piste</string>
     <string name="airport_track_weather">Météo</string>
 
