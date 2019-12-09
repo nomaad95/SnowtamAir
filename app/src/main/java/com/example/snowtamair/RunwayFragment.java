@@ -104,11 +104,19 @@ public class RunwayFragment extends Fragment {
             }
         });
 
-        // Set Time
+        // Set Runway ID
         textViewId = rootView.findViewById(R.id.textView_runway_id);
         String id = getString(R.string.airport_track_name) + " " + mNum;
         textViewId.setText(id);
         Log.d(id, "onCreateView RUNWAY ID : ");
+
+
+        // Set Runway Date
+        textViewId = rootView.findViewById(R.id.textView_runway_date);
+        String date = " " + mDate;
+        textViewId.setText(date);
+        Log.d(date, "onCreateView RUNWAY DATE : ");
+
 
         return rootView;
     }
