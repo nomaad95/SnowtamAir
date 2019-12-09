@@ -117,6 +117,7 @@ public class AirportActivity extends AppCompatActivity  implements RunwayFragmen
             @Override
             public void onSuccess(String result) {
                 if (!result.equals("")){
+                    Log.d(result, "onSuccess RESULT !!: ");
                     snowtamObject = new Snowtam(result, AirportActivity.this);
                     snowtamCode = result;
                     nbRunways = snowtamObject.getRunwaysSize();
@@ -131,7 +132,7 @@ public class AirportActivity extends AppCompatActivity  implements RunwayFragmen
                 } else {
                     // go to MainActivity
                     Log.d(snowtamCode, "onSuccess: snowtamCode ");
-                    finish();
+                    //finish();
                 }
             }
         });
