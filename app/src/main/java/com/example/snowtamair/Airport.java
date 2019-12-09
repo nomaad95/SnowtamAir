@@ -9,6 +9,8 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Airport {
     private float Airport_ID;
@@ -25,6 +27,8 @@ public class Airport {
     private String Tz_database_time_zone;
     private String Type;
     private String Source;
+
+    public static HashMap<String,Airport> registeredAirports = new HashMap<>();
 
 
     // Getter Methods
@@ -85,6 +89,7 @@ public class Airport {
         return Source;
     }
 
+
     // Setter Methods
 
     public void setAirport_ID(float Airport_ID) {
@@ -143,9 +148,22 @@ public class Airport {
         this.Source = Source;
     }
 
-    public Airport(String oaci, Context context) {
+    //Other Methods and Constructors
 
+    public static Airport getAirport(String ICAO, Context context){
+        if (registeredAirports.containsKey(ICAO)){
+            return registeredAirports.get(ICAO);
+        }else{
+            Airport airport = new Airport(ICAO,context);
+            registeredAirports.put(ICAO,airport);
+            return airport;
+        }
 
+    }
+
+    private Airport(String ICAO,Context context) {
+        this.ICAO=ICAO;
+        JSONObject airport = getAirportFromOACI(ICAO,context);
         try {
             Log.d("airportCheck", "ok1");
             InputStream is = context.getAssets().open("airport.json");
@@ -158,26 +176,26 @@ public class Airport {
                 String json = new String(buffer, "UTF-8");
 
                 try {
-                    JSONArray oaciList = new JSONArray(json);
+                    JSONArray ICAOList = new JSONArray(json);
 
-                    for(int i = 0; i < oaciList.length(); i++){
-                        JSONObject oaciJson = oaciList.getJSONObject((i));
-                        Log.d("airportCheck", String.valueOf(oaciJson.getString("Airport ID")));
-                        if(oaci.equals(oaciJson.getString("ICAO"))){
-                            this.setAirport_ID(Float.parseFloat(oaciJson.getString("Airport ID")));
-                            this.setName(String.valueOf(oaciJson.getString("Name")));
-                            this.setCity(String.valueOf(oaciJson.getString("City")));
-                            this.setCountry(String.valueOf(oaciJson.getString("Country")));
-                            this.setIATA(String.valueOf(oaciJson.getString("IATA")));
-                            this.setICAO(String.valueOf(oaciJson.getString("ICAO")));
-                            this.setLatitude(Float.valueOf(oaciJson.getString("Latitude")));
-                            this.setLongitude(Float.valueOf(oaciJson.getString("Longitude")));
-                            this.setAltitude(Float.valueOf(oaciJson.getString("Altitude")));
-                            this.setTimezone(Float.valueOf(oaciJson.getString("Timezone")));
-                            this.setDST(String.valueOf(oaciJson.getString("DST")));
-                            this.setTz_database_time_zone(String.valueOf(oaciJson.getString("Tz database time zone")));
-                            this.setType(String.valueOf(oaciJson.getString("Type")));
-                            this.setSource(String.valueOf(oaciJson.getString("Source")));
+                    for(int i = 0; i < ICAOList.length(); i++){
+                        JSONObject ICAOJson = ICAOList.getJSONObject((i));
+                        Log.d("airportCheck", String.valueOf(ICAOJson.getString("Airport ID")));
+                        if(ICAO.equals(ICAOJson.getString("ICAO"))){
+                            this.setAirport_ID(Float.parseFloat(ICAOJson.getString("Airport ID")));
+                            this.setName(String.valueOf(ICAOJson.getString("Name")));
+                            this.setCity(String.valueOf(ICAOJson.getString("City")));
+                            this.setCountry(String.valueOf(ICAOJson.getString("Country")));
+                            this.setIATA(String.valueOf(ICAOJson.getString("IATA")));
+                            this.setICAO(String.valueOf(ICAOJson.getString("ICAO")));
+                            this.setLatitude(Float.valueOf(ICAOJson.getString("Latitude")));
+                            this.setLongitude(Float.valueOf(ICAOJson.getString("Longitude")));
+                            this.setAltitude(Float.valueOf(ICAOJson.getString("Altitude")));
+                            this.setTimezone(Float.valueOf(ICAOJson.getString("Timezone")));
+                            this.setDST(String.valueOf(ICAOJson.getString("DST")));
+                            this.setTz_database_time_zone(String.valueOf(ICAOJson.getString("Tz database time zone")));
+                            this.setType(String.valueOf(ICAOJson.getString("Type")));
+                            this.setSource(String.valueOf(ICAOJson.getString("Source")));
 
                         }
 
@@ -191,6 +209,30 @@ public class Airport {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        Log.d("airportCheck", "error when creating airport");
+    }
 
+    private JSONObject getAirportFromOACI(String oaci,Context context) {
+        try {
+            InputStream is = context.getAssets().open("airport.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            String json = new String(buffer, "UTF-8");
+            JSONArray aiportList = new JSONArray(json);
+            for (int i = 0; i < aiportList.length(); i++) {
+                JSONObject airport = aiportList.getJSONObject(i);
+                if(airport.getString("ICAO").equals(oaci)){
+                    return airport;
+                }
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

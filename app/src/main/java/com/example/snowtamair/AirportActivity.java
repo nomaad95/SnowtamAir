@@ -96,13 +96,7 @@ public class AirportActivity extends AppCompatActivity  implements PisteFragment
         bundle = intent.getExtras();
         oaci = (String) bundle.get("search");
         window = getWindow();
-        airportObject = new Airport(oaci, this);
-        savedAirports = new SavedAirports();
-        savedAirports.addAiportToList(airportObject);
-        for(Airport i: savedAirports.getListAirport()){
-            Log.d("airportContent", i.getName());
-        }
-        Log.d("airportList", String.valueOf(savedAirports.getListAirport().size()));
+        airportObject = Airport.getAirport(oaci,this);
         setTitle(airportObject.getName());
         //Log.d("airportCheck", String.valueOf(airportObject.getAirport_ID()));
 
@@ -113,7 +107,7 @@ public class AirportActivity extends AppCompatActivity  implements PisteFragment
             public void onClick(View view) {
                 new AlertDialog.Builder(AirportActivity.this)
                         .setTitle("Code SnowTam")
-                        .setMessage("the complet and original snowtam")
+                        .setMessage("the complete and original snowtam")
                         .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 // Continue with delete operation
@@ -125,7 +119,6 @@ public class AirportActivity extends AppCompatActivity  implements PisteFragment
             }
         });
     }
-
 
 
     public String getAirportName(String oaci, Context context) {

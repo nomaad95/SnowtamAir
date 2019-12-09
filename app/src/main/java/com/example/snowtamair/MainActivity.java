@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         //Add airport_result_card Fragment
         // /!\ CODE DE TEST
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        String name = new String("Pertominsk AirportRequest");
+        String name = new String("Pertominsk SnowtamRequest");
         String code = new String("ULAT");
         Bundle bundle = new Bundle();
         bundle.putString("nameAirport", name);
