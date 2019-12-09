@@ -291,6 +291,7 @@ public class AirportActivity extends AppCompatActivity  implements RunwayFragmen
             Log.d(String.valueOf(position), "getItem position: ");
             Runway runway = snowtamObject.getRunwayFromPosition(position);
             //Runway runway = new Runway();
+            Log.d(runway.getId(), "getItem RUNWAY : ");
             return new RunwayFragment(runway);
         }
 

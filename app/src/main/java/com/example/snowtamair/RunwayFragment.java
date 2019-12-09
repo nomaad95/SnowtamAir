@@ -39,10 +39,14 @@ public class RunwayFragment extends Fragment {
     private String mDate;
     private String mFriction;
 
+    private static Runway runwayObject;
+
     private OnFragmentInteractionListener mListener;
 
     public RunwayFragment(Runway runway) {
         // Required empty public constructor
+        runwayObject = runway;
+        Log.d(runwayObject.getId(), "newInstance RUNWAY OBJECT: ");
     }
 
     /**
@@ -55,6 +59,8 @@ public class RunwayFragment extends Fragment {
     public static RunwayFragment newInstance(Runway runway) {
         RunwayFragment fragment = new RunwayFragment(runway);
         Bundle args = new Bundle();
+        Log.d(runway.getId(), "newInstance RUNWAY : ");
+
         args.putString(NUM_TRACK, runway.getId());
         args.putString(CONDITION_TRACK, runway.getCondition());
         args.putString(DATE_TRACK, runway.getObservationDate());
@@ -71,7 +77,9 @@ public class RunwayFragment extends Fragment {
             mCondition = getArguments().getString(CONDITION_TRACK);
             mDate = getArguments().getString(DATE_TRACK);
             mFriction = getArguments().getString(FRICTION_TRACK);
+            Log.d(mNum, "onCreate ARGS: ");
         }
+        //Log.d(runwayObject.getId(), "onCreate RUNWAY : ");
     }
 
     @Override
@@ -81,6 +89,7 @@ public class RunwayFragment extends Fragment {
         //return inflater.inflate(R.layout.fragment_runway, container, false);
         final ViewGroup rootView = (ViewGroup) inflater.inflate(
                 R.layout.fragment_runway, container, false);
+    //  Log.d(runwayObject.getId(), "onCreateView RUNWAY : ");
 
         // Init dialog btn
         Button btnDialogCodeSnowTam = rootView.findViewById(R.id.btn_dialog_snowtam);
@@ -103,26 +112,26 @@ public class RunwayFragment extends Fragment {
 
         // Set Runway ID
         TextView textViewId = rootView.findViewById(R.id.textView_runway_id);
-        String id = getString(R.string.airport_track_name) + " " + mNum;
+        String id = getString(R.string.airport_track_name) + " " + runwayObject.getId();
         textViewId.setText(id);
         Log.d(id, "onCreateView RUNWAY ID : ");
 
 
         // Set Runway Date
         TextView textViewDate = rootView.findViewById(R.id.textView_runway_date);
-        String date = mDate;
+        String date = runwayObject.getObservationDate();
         textViewDate.setText(date);
         Log.d(date, "onCreateView RUNWAY DATE : ");
 
         // Set Runway Condition
         TextView textViewCondition = rootView.findViewById(R.id.textView_runway_condition);
-        String condition = mCondition;
+        String condition = runwayObject.getCondition();
         textViewCondition.setText(condition);
         Log.d(date, "onCreateView RUNWAY CONDITION : ");
 
         // Set Runway Friction
         TextView textViewFriction = rootView.findViewById(R.id.textView_runway_friction);
-        String friction = mFriction;
+        String friction = "" + runwayObject.getFrictionCoefficient();
         textViewFriction.setText(friction);
         Log.d(date, "onCreateView RUNWAY CONDITION : ");
 
