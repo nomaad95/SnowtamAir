@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
         /*
         // get ListAirport
-        SavedAirports savedAirports = new SavedAirports();
+        SavedSnowtams savedAirports = new SavedSnowtams();
         if(savedAirports.getListAirport()!= null){
             FragmentTransaction fragtrans = getSupportFragmentManager().beginTransaction();
             for(Airport airport : savedAirports.getListAirport()){
