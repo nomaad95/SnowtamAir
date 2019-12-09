@@ -5,6 +5,8 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.Window;
 import android.widget.TextView;
 
@@ -163,6 +165,7 @@ public class AirportActivity extends AppCompatActivity  implements RunwayFragmen
             }
         });
     }
+
 
     private void addMarkers(@NonNull Style loadedMapStyle) { //ajout d'icônes sur la carte aux positions des boîtes de nuit
 
