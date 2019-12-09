@@ -14,6 +14,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -103,6 +104,14 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             fragtrans.addToBackStack(null);
             fragtrans.commit();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the MenuActivity; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu, menu);
+        SearchInputFragment.menu = menu;
+        return true;
     }
 
     @Override

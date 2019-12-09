@@ -8,7 +8,10 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import android.text.InputFilter;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -40,6 +43,7 @@ public class SearchInputFragment extends Fragment {
     private ImageButton buttonSearch;
     private EditText inputSearch;
     public static JSONArray oaciList;
+    public static Menu menu;
 
     public SearchInputFragment() {
         // Required empty public constructor
@@ -136,6 +140,16 @@ public class SearchInputFragment extends Fragment {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
+    }
+
+    private void updateMenuTitle(){
+        MenuItem airport1 = MainActivity.menu.getItem(0);
+        if(airport1 != null){
+            Log.d("menuTitle", "ok");
+        }
+
+        Log.d("menuTitle","updateMenu");
+        Log.d("menuTitle", airport1.getTitle().toString());
     }
 
     @Override
