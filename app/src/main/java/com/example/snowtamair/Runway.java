@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.HashMap;
 
 public class Runway implements Serializable {
+
+    private String observationDate;
     private String id;
     private String clearedRunwayLength;
     private String clearedRunwayWidth;
@@ -13,9 +15,11 @@ public class Runway implements Serializable {
     private String criticalDrift;
     private String obscuredLimelight;
     private String nextClearing;
+
     private String other;
 
-    public Runway(String id, String clearedRunwayLength, String clearedRunwayWidth, String condition, String thickness, String frictionCoefficient, String criticalDrift, String obscuredLimelight, String nextClearing,String other) {
+    public Runway(String observationDate, String id, String clearedRunwayLength, String clearedRunwayWidth, String condition, String thickness, String frictionCoefficient, String criticalDrift, String obscuredLimelight, String nextClearing,String other) {
+        this.observationDate = observationDate;
         this.id = id;
         this.clearedRunwayLength = clearedRunwayLength;
         this.clearedRunwayWidth = clearedRunwayWidth;
@@ -29,6 +33,7 @@ public class Runway implements Serializable {
     }
 
     public Runway(HashMap<String,String> SnowtamInfo) {
+        this.observationDate = SnowtamInfo.get("B)");
         this.id = SnowtamInfo.get("C)");
         this.clearedRunwayLength = SnowtamInfo.get("D)");
         this.clearedRunwayWidth = SnowtamInfo.get("E)");
@@ -42,7 +47,7 @@ public class Runway implements Serializable {
 
     }
     public String decodeCondition(String coded){
-        if(coded.isEmpty()){
+        if(coded == null || coded.isEmpty()){
             return "NIL";
         }
         String condition ="";
@@ -63,6 +68,9 @@ public class Runway implements Serializable {
         return condition.substring(1);
     }
     public String decodeFriction(String coded){
+        if(coded == null || coded.isEmpty()){
+            return "NIL";
+        }
         String friction ="";
         String[] parsedCondition=coded.split("/");
         for(String part:parsedCondition){
@@ -92,6 +100,12 @@ public class Runway implements Serializable {
 
     public String getFrictionCoefficient() {
         return frictionCoefficient;
+    }
+
+    public String getObservationDate() { return observationDate; }
+
+    public void setObservationDate(String observationDate) {
+        this.observationDate = observationDate;
     }
 
 }

@@ -2,27 +2,18 @@ package com.example.snowtamair;
 
 import android.content.Context;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * Our representation of a SNOWTAM
- * @author Victor Morgant
- * @version 1.O
- */
 public class Snowtam {
     private Airport placeAirport;
-    private String ObservationDate;
-    private Runway runway;
 
-    /**
-     * @param placeAirport    the localisation of the airport
-     * @param observationDate the SNOWTAM date
-     * @param runway          the runway informations
-     */
-    public Snowtam(Airport placeAirport, String observationDate, Runway runway) {
+    private ArrayList<Runway> runways;
+
+
+    public Snowtam(Airport placeAirport, ArrayList<Runway> runway) {
         this.placeAirport = placeAirport;
-        ObservationDate = observationDate;
-        this.runway = runway;
+        this.runways = runways;
     }
 
     public Airport getPlaceAirport() {
@@ -74,30 +65,44 @@ public class Snowtam {
         return humanReadableDate;
     }*/
 
-    public Runway getRunway() {
-        return runway;
+    public ArrayList<Runway> getRunway() {
+        return runways;
     }
 
     public Snowtam(String codedSnowtam, Context context) {
         String[] parsedSnowtam = codedSnowtam.split("\n");
-        HashMap<String,String> blocs = new HashMap<String, String>();
+        String ICAO = "";
+        HashMap<String,String> bloc = new HashMap<String,String>();
+        ArrayList<HashMap<String,String>> infosRunways = new ArrayList<HashMap<String, String>>();
+        int nbRunways=0;
         for (int i = 4; i < parsedSnowtam.length; i++){
             String line = parsedSnowtam[i];
             if (line.charAt(1) == ')'){
                 String words[] = line.split(" ");
                 for (int j = 0; j < words.length; j = j+2) {
                     if (!words[j].equals("N)") && !words[j].equals("R)") && !words[j].equals("T)")) {
-                        blocs.put(words[j],words[j+1]);
+                        if (words[j].equals("A)")) ICAO = words[j+1];
+                        else {
+                            if (words[j].equals("B)")) {
+                                if (nbRunways > 0) infosRunways.add(bloc);
+                                bloc.clear();
+                                nbRunways++;
+                            }
+                            bloc.put(words[j],words[j+1]);
+                        }
                     } else {
                         break;
                     }
                 }
+
             }
         }
-
-        this.placeAirport = Airport.getAirport(blocs.get("A)"),context);
-        this.ObservationDate = blocs.get("B)");
-        this.runway=new Runway(blocs);
+        infosRunways.add(bloc);
+        this.placeAirport = Airport.getAirport(ICAO,context);
+        for (HashMap<String,String> blocks : infosRunways){
+            Runway r = new Runway(blocks);
+            this.runways.add(r);
+        }
     }
 
 }
