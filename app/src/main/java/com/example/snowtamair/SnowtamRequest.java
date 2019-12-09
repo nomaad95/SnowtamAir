@@ -80,7 +80,7 @@ public class SnowtamRequest {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("SnowTamTam - API", error.toString());
+                Log.e("SnowTamAir", error.toString());
             }
         }) {
             @Override
