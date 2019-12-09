@@ -10,23 +10,23 @@ import java.util.HashMap;
  * @version 1.O
  */
 public class Snowtam {
-    private Airport placeAirport;
+    private Airport airport;
     private String ObservationDate;
     private Runway runway;
 
     /**
-     * @param placeAirport    the localisation of the airport
+     * @param airport    the localisation of the airport
      * @param observationDate the SNOWTAM date
      * @param runway          the runway informations
      */
-    public Snowtam(Airport placeAirport, String observationDate, Runway runway) {
-        this.placeAirport = placeAirport;
+    public Snowtam(Airport airport, String observationDate, Runway runway) {
+        this.airport = airport;
         ObservationDate = observationDate;
         this.runway = runway;
     }
 
-    public Airport getPlaceAirport() {
-        return placeAirport;
+    public Airport getAirport() {
+        return airport;
     }
 
     /*public String getObservationDate(Context c) {
@@ -95,7 +95,7 @@ public class Snowtam {
             }
         }
 
-        this.placeAirport = Airport.getAirport(blocs.get("A)"),context);
+        this.airport = Airport.getAirport(blocs.get("A)"),context);
         this.ObservationDate = blocs.get("B)");
         this.runway=new Runway(blocs);
     }

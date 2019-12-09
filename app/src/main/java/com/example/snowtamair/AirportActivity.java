@@ -58,7 +58,7 @@ public class AirportActivity extends AppCompatActivity  implements PisteFragment
     private MapboxMap mapboxMap;
     private List<Feature> features;
     private Airport airportObject;
-    private SavedSnowtams savedSnowtams;
+    private SavedAirports savedAirports;
 
   //  private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;

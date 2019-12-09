@@ -13,24 +13,17 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.text.InputFilter;
 import android.util.Log;
 import android.view.View;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener, AirportResultCardFragment.OnFragmentInteractionListener, SearchInputFragment.OnFragmentInteractionListener {
     private Button buttonAer1;
@@ -42,6 +35,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     private ActionBarDrawerToggle toggle;
     public static JSONArray oaciList;
     private int searchInputNb = 1;
+    private SavedAirports savedAirports = SavedAirports.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +75,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         //Add airport_result_card Fragment
         // /!\ CODE DE TEST
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        String name = new String("Pertominsk SnowtamRequest");
+        String name = new String("Pertominsk Airport");
         String code = new String("ULAT");
         Bundle bundle = new Bundle();
         bundle.putString("nameAirport", name);
@@ -101,9 +95,8 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         ft.addToBackStack(null);
         ft.commit();
 
-        /*
-        // get ListAirport
-        SavedSnowtams savedAirports = new SavedSnowtams();
+
+        // get ListSnowtams
         if(savedAirports.getListAirport()!= null){
             FragmentTransaction fragtrans = getSupportFragmentManager().beginTransaction();
             for(Airport airport : savedAirports.getListAirport()){
@@ -113,12 +106,11 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
                 AirportResultCardFragment airportResultCardFragment = new AirportResultCardFragment();
                 airportResultCardFragment.setArguments(bundleFrag);
                 String tag = "tag_fragcardresult_" + airport.getAirport_ID();
-                fragtrans.add(R.id.framelayout_pistes, airportResultCardFragment, tag);
+                fragtrans.add(R.id.linearlayout_airportCardsResults, airportResultCardFragment, tag);
             }
             fragtrans.addToBackStack(null);
             fragtrans.commit();
         }
-         */
     }
 
     @Override
