@@ -22,8 +22,8 @@
 
     <string name="airport_time">12 : 34 am</string>
     <string name="airport_date">2 march</string>
-    <string name="airport_track_name">Track 1</string>
-    <string name="airport_track_condition">Track conditions</string>
+    <string name="airport_track_name">Runway</string>
+    <string name="airport_track_condition">Runway conditions</string>
     <string name="airport_track_weather">Weather</string>
 
     <string name="string_code_snowtam">Complete Snowtam Code</string>
@@ -32,4 +32,7 @@
     <string name="codeoaci">code ICAO</string>
     <string name="hint_search_oaci">Code ICAO...</string>
     <string name="search">Search</string>
+
+    <string name='toast_wrong_ICAO'>Unknown ICAO Code</string>
+
 </resources>

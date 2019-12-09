@@ -93,7 +93,7 @@ public class SearchInputFragment extends Fragment {
                     // TODO : MainActivity.searchInputNb --;
                 }
                 else{
-                    Toast.makeText(root.getContext(), inputSearch.getText().toString()+" is not a valid ICAO", Toast.LENGTH_LONG).show();
+                    Toast.makeText(root.getContext(), getString(R.string.toast_wrong_ICAO), Toast.LENGTH_LONG).show();
                 }
             }
         });
