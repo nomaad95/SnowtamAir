@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 
@@ -30,15 +31,20 @@ public class RunwayFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String NUM_TRACK = "numTrack";
     private static final String CONDITION_TRACK = "conditionTrack";
+    private static final String DATE_TRACK = "observationDate";
+    private static final String FRICTION_TRACK = "frictionCoefficient";
 
     private String mNum;
     private String mCondition;
+    private String mDate;
+    private String mFriction;
 
     private Button btnDialogCodeSnowTam;
+    private TextView textViewId;
 
     private OnFragmentInteractionListener mListener;
 
-    public RunwayFragment() {
+    public RunwayFragment(Runway runway) {
         // Required empty public constructor
     }
 
@@ -46,15 +52,16 @@ public class RunwayFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param num Parameter 1.
-     * @param condition Parameter 2.
+     * @param runway Parameter 1.
      * @return A new instance of fragment RunwayFragment.
      */
-    public static RunwayFragment newInstance(String num, String condition) {
-        RunwayFragment fragment = new RunwayFragment();
+    public static RunwayFragment newInstance(Runway runway) {
+        RunwayFragment fragment = new RunwayFragment(runway);
         Bundle args = new Bundle();
-        args.putString(NUM_TRACK, num);
-        args.putString(CONDITION_TRACK, condition);
+        args.putString(NUM_TRACK, runway.getId());
+        args.putString(CONDITION_TRACK, runway.getCondition());
+        args.putString(DATE_TRACK, runway.getObservationDate());
+        args.putString(FRICTION_TRACK, runway.getFrictionCoefficient());
         fragment.setArguments(args);
         return fragment;
     }
@@ -65,6 +72,8 @@ public class RunwayFragment extends Fragment {
         if (getArguments() != null) {
             mNum = getArguments().getString(NUM_TRACK);
             mCondition = getArguments().getString(CONDITION_TRACK);
+            mDate = getArguments().getString(DATE_TRACK);
+            mFriction = getArguments().getString(FRICTION_TRACK);
         }
     }
 
@@ -76,14 +85,14 @@ public class RunwayFragment extends Fragment {
         final ViewGroup rootView = (ViewGroup) inflater.inflate(
                 R.layout.fragment_runway, container, false);
 
-        /* Init dialog btn
+        // Init dialog btn
         btnDialogCodeSnowTam = rootView.findViewById(R.id.btn_dialog_snowtam);
         btnDialogCodeSnowTam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 new AlertDialog.Builder(rootView.getContext())
                         .setTitle("Code SnowTam")
-                        .setMessage(snowtamCode)
+                        .setMessage("code et tout et tout")
                         .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 // Continue with delete operation
@@ -92,19 +101,14 @@ public class RunwayFragment extends Fragment {
                         //.setNegativeButton(android.R.string.no, null)
                         //.setIcon(android.R.drawable.ic_dialog_alert)
                         .show();
-                Log.d(snowtamCode, "onClick CODE SNOW TAM: ");
             }
         });
 
-         */
-
-        /*
         // Set Time
-        textViewTime = findViewById(R.id.airport_time);
-        String time = "" + airportObject.getTimezone();
-        textViewTime.setText(time);
-        Log.d(airportObject.getTz_database_time_zone(), "onCreateView TIME : ");
-         */
+        textViewId = rootView.findViewById(R.id.textView_runway_id);
+        String id = getString(R.string.airport_track_name) + " " + mNum;
+        textViewId.setText(id);
+        Log.d(id, "onCreateView RUNWAY ID : ");
 
         return rootView;
     }

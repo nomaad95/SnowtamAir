@@ -27,6 +27,8 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -82,10 +84,6 @@ public class AirportActivity extends AppCompatActivity  implements RunwayFragmen
             }
         });
 
-        // Instantiate a ViewPager and a PagerAdapter.
-        mPager = (ViewPager) findViewById(R.id.pager_pistes);
-        pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
-        mPager.setAdapter(pagerAdapter);
         intent = getIntent();
         bundle = intent.getExtras();
         oaci = (String) bundle.get("search");
@@ -94,6 +92,8 @@ public class AirportActivity extends AppCompatActivity  implements RunwayFragmen
         airportObject = Airport.getAirport(oaci,this);
         // save Airport
         savedAirports.addAirportToList(airportObject);
+
+        Log.d(String.valueOf(airportObject), "onCreate AIRPORT OBJECT: ");
 
         setTitle(airportObject.getName());
         //Log.d("airportCheck", String.valueOf(airportObject.getAirport_ID()));
@@ -108,6 +108,12 @@ public class AirportActivity extends AppCompatActivity  implements RunwayFragmen
                     nbRunways = snowtamObject.getRunwaysSize();
                     Log.d(String.valueOf(nbRunways), "onSuccess nbRunways: ");
                     Log.d(snowtamCode, "onSuccess: snowtamCode ");
+
+                    // Instantiate a ViewPager and a PagerAdapter.
+                    mPager = (ViewPager) findViewById(R.id.pager_pistes);
+                    pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager(), snowtamObject);
+                    mPager.setAdapter(pagerAdapter);
+
                 } else {
                     // go to MainActivity
                     Log.d(snowtamCode, "onSuccess: snowtamCode ");
@@ -118,8 +124,6 @@ public class AirportActivity extends AppCompatActivity  implements RunwayFragmen
             }
         });
     }
-
-
 
     @Override
     public void onMapReady(@NonNull final MapboxMap mapboxMap) {
@@ -205,7 +209,6 @@ public class AirportActivity extends AppCompatActivity  implements RunwayFragmen
 
     @Override
     public void onExplanationNeeded(List<String> permissionsToExplain) {
-
     }
 
     @Override
@@ -213,19 +216,20 @@ public class AirportActivity extends AppCompatActivity  implements RunwayFragmen
 
     }
 
-    /**
-     * A simple pager adapter that represents 5 ScreenSlidePageFragment objects, in
-     * sequence.
-     */
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
-        public ScreenSlidePagerAdapter(FragmentManager fm) {
+        private Snowtam snowtamObject;
+        public ScreenSlidePagerAdapter(FragmentManager fm, Snowtam snowtam) {
             super(fm);
+            snowtamObject = snowtam;
         }
 
         @Override
         public Fragment getItem(int position) {
+            Log.d(String.valueOf(snowtamObject), "getItem OBJECT: ");
+            Log.d(String.valueOf(position), "getItem position: ");
             Runway runway = snowtamObject.getRunwayFromPosition(position);
-            return new RunwayFragment();
+            //Runway runway = new Runway();
+            return new RunwayFragment(runway);
         }
 
         @Override
@@ -233,5 +237,4 @@ public class AirportActivity extends AppCompatActivity  implements RunwayFragmen
             return nbRunways;
         }
     }
-
 }

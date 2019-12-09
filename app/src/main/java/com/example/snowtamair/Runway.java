@@ -5,8 +5,8 @@ import java.util.HashMap;
 
 public class Runway implements Serializable {
 
-    private String observationDate;
     private String id;
+    private String observationDate;
     private String clearedRunwayLength;
     private String clearedRunwayWidth;
     private String condition;
@@ -46,6 +46,7 @@ public class Runway implements Serializable {
         this.other=SnowtamInfo.get("T)");
 
     }
+
     public String decodeCondition(String coded){
         if(coded == null || coded.isEmpty()){
             return "NIL";
