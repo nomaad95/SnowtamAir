@@ -39,9 +39,6 @@ public class RunwayFragment extends Fragment {
     private String mDate;
     private String mFriction;
 
-    private Button btnDialogCodeSnowTam;
-    private TextView textViewId;
-
     private OnFragmentInteractionListener mListener;
 
     public RunwayFragment(Runway runway) {
@@ -86,7 +83,7 @@ public class RunwayFragment extends Fragment {
                 R.layout.fragment_runway, container, false);
 
         // Init dialog btn
-        btnDialogCodeSnowTam = rootView.findViewById(R.id.btn_dialog_snowtam);
+        Button btnDialogCodeSnowTam = rootView.findViewById(R.id.btn_dialog_snowtam);
         btnDialogCodeSnowTam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -105,18 +102,29 @@ public class RunwayFragment extends Fragment {
         });
 
         // Set Runway ID
-        textViewId = rootView.findViewById(R.id.textView_runway_id);
+        TextView textViewId = rootView.findViewById(R.id.textView_runway_id);
         String id = getString(R.string.airport_track_name) + " " + mNum;
         textViewId.setText(id);
         Log.d(id, "onCreateView RUNWAY ID : ");
 
 
         // Set Runway Date
-        textViewId = rootView.findViewById(R.id.textView_runway_date);
-        String date = " " + mDate;
-        textViewId.setText(date);
+        TextView textViewDate = rootView.findViewById(R.id.textView_runway_date);
+        String date = mDate;
+        textViewDate.setText(date);
         Log.d(date, "onCreateView RUNWAY DATE : ");
 
+        // Set Runway Condition
+        TextView textViewCondition = rootView.findViewById(R.id.textView_runway_condition);
+        String condition = mCondition;
+        textViewCondition.setText(condition);
+        Log.d(date, "onCreateView RUNWAY CONDITION : ");
+
+        // Set Runway Friction
+        TextView textViewFriction = rootView.findViewById(R.id.textView_runway_friction);
+        String friction = mFriction;
+        textViewFriction.setText(friction);
+        Log.d(date, "onCreateView RUNWAY CONDITION : ");
 
         return rootView;
     }
