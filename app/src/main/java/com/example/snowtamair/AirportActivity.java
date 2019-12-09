@@ -86,7 +86,7 @@ public class AirportActivity extends AppCompatActivity  implements RunwayFragmen
 
         intent = getIntent();
         bundle = intent.getExtras();
-        oaci = (String) bundle.get("search");
+        oaci = bundle.getString("search");
         window = getWindow();
         // create Airport
         airportObject = Airport.getAirport(oaci,this);
@@ -117,9 +117,7 @@ public class AirportActivity extends AppCompatActivity  implements RunwayFragmen
                 } else {
                     // go to MainActivity
                     Log.d(snowtamCode, "onSuccess: snowtamCode ");
-                    Intent intent = new Intent();
-                    intent.setClass( AirportActivity.this, MainActivity.class);
-                    startActivity(intent);
+                    finish();
                 }
             }
         });
