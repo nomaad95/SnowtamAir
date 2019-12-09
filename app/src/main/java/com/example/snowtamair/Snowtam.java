@@ -11,8 +11,8 @@ public class Snowtam {
     private ArrayList<Runway> runways;
 
 
-    public Snowtam(Airport placeAirport, ArrayList<Runway> runway) {
-        this.airport = placeAirport;
+    public Snowtam(Airport airport, ArrayList<Runway> runway) {
+        this.airport = airport;
         this.runways = runways;
     }
 
@@ -98,7 +98,7 @@ public class Snowtam {
             }
         }
         infosRunways.add(bloc);
-        this.airport = airport.getAirport(ICAO,context);
+        this.airport = Airport.getAirport(ICAO,context);
         for (HashMap<String,String> blocks : infosRunways){
             Runway r = new Runway(blocks);
             this.runways.add(r);
