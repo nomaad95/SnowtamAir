@@ -23,8 +23,8 @@
 
     <string name="airport_time">12 : 34 am</string>
     <string name="airport_date">2 march</string>
-    <string name="airport_track_name">Track 1</string>
-    <string name="airport_track_condition">Track conditions</string>
+    <string name="airport_track_name">Runway</string>
+    <string name="airport_track_condition">Runway conditions</string>
     <string name="airport_track_weather">Weather</string>
 
     <string name="string_code_snowtam">Complete Snowtam Code</string>
