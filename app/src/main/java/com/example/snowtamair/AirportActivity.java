@@ -88,11 +88,21 @@ public class AirportActivity extends AppCompatActivity  implements RunwayFragmen
         mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(@NonNull MapboxMap mapboxMap) {
-                mapboxMap.setCameraPosition(new CameraPosition.Builder().zoom(15).build());
+                mapboxMap.setCameraPosition(new CameraPosition.Builder()
+                        .target(new LatLng(airportObject.getLatitude(), airportObject.getLongitude())) // Sets the new camera position
+                        .zoom(14) // Sets the zoom
+                        .tilt(70) // Set the camera tilt
+                        .build()); // Creates a CameraPosition from the builder);
                 mapboxMap.setStyle(Style.SATELLITE, new Style.OnStyleLoaded() {
                     @Override
                     public void onStyleLoaded(@NonNull Style style) {
-// Map is set up and the style has loaded. Now you can add data or make other map adjustments.
+
+
+                        style.addImage(MARKER_IMAGE, BitmapFactory.decodeResource(
+                                AirportActivity.this.getResources(), R.drawable.placeholder3));
+                        addMarkers(style);
+
+
                     }
                 });
             }
@@ -117,7 +127,6 @@ public class AirportActivity extends AppCompatActivity  implements RunwayFragmen
             @Override
             public void onSuccess(String result) {
                 if (!result.equals("")){
-                    Log.d(result, "onSuccess RESULT !!: ");
                     snowtamObject = new Snowtam(result, AirportActivity.this);
                     snowtamCode = result;
                     nbRunways = snowtamObject.getRunwaysSize();
@@ -157,38 +166,38 @@ public class AirportActivity extends AppCompatActivity  implements RunwayFragmen
 
     private void addMarkers(@NonNull Style loadedMapStyle) { //ajout d'icônes sur la carte aux positions des boîtes de nuit
 
-            if(airportObject!= null){
-                this.latLng = new LatLng(airportObject.getLatitude(), airportObject.getLongitude());
-                Log.d("latLng", "latlng: "+airportObject.getLatitude()+","+airportObject.getLongitude());
-                //Bitmap icon= BitmapFactory.decodeResource(BoxActivity.this.getResources(),R.drawable.place);
-                MarkerOptions markerOptions = new MarkerOptions().setPosition( new LatLng(airportObject.getLatitude(), airportObject.getLongitude()));
-                IconFactory iconFactory = IconFactory.getInstance(AirportActivity.this);
-                Icon icon = iconFactory.fromResource(R.drawable.placeholder3);
-                markerOptions.icon(icon);
-            }
+        if(airportObject!= null){
+            this.latLng = new LatLng(airportObject.getLatitude(), airportObject.getLongitude());
+            Log.d("latLng", "latlng: "+airportObject.getLatitude()+","+airportObject.getLongitude());
+            //Bitmap icon= BitmapFactory.decodeResource(BoxActivity.this.getResources(),R.drawable.place);
+            MarkerOptions markerOptions = new MarkerOptions().setPosition( new LatLng(airportObject.getLatitude(), airportObject.getLongitude()));
+            IconFactory iconFactory = IconFactory.getInstance(AirportActivity.this);
+            Icon icon = iconFactory.fromResource(R.drawable.placeholder3);
+            markerOptions.icon(icon);
+        }
 
-            Log.d("bCheck", "appel de addMarker");
-            this.features = new ArrayList<>();
-            this.features.add(Feature.fromGeometry(Point.fromLngLat(airportObject.getLongitude(),airportObject.getLatitude())));
+        Log.d("bCheck", "appel de addMarker");
+        this.features = new ArrayList<>();
+        this.features.add(Feature.fromGeometry(Point.fromLngLat(airportObject.getLongitude(),airportObject.getLatitude())));
 
-            /* Source: A data source specifies the geographic coordinate where the image marker gets placed. */
+        /* Source: A data source specifies the geographic coordinate where the image marker gets placed. */
 
-            loadedMapStyle.addSource(new GeoJsonSource(MARKER_SOURCE, FeatureCollection.fromFeatures(features), //création du fichier GeoJson permettant le placemment des markers
-                    new GeoJsonOptions().withCluster(true).withClusterMaxZoom(14).withClusterRadius(50))); //si les points sont trop nombreux au même endroit, ils sont regroupés en un icône
+        loadedMapStyle.addSource(new GeoJsonSource(MARKER_SOURCE, FeatureCollection.fromFeatures(features), //création du fichier GeoJson permettant le placemment des markers
+                new GeoJsonOptions().withCluster(true).withClusterMaxZoom(14).withClusterRadius(50))); //si les points sont trop nombreux au même endroit, ils sont regroupés en un icône
 
 
-            /* Style layer: A style layer ties together the source and image and specifies how they are displayed on the map. */
-            loadedMapStyle.addLayer(new SymbolLayer(MARKER_STYLE_LAYER, MARKER_SOURCE)
-                    .withProperties(
-                            PropertyFactory.iconAllowOverlap(true),
-                            PropertyFactory.iconIgnorePlacement(true),
-                            PropertyFactory.iconImage(MARKER_IMAGE),
-                            // Adjust the second number of the Float array based on the height of your marker image.
-                            // This is because the bottom of the marker should be anchored to the coordinate point, rather
-                            // than the middle of the marker being the anchor point on the map.
-                            PropertyFactory.iconOffset(new Float[]{0f, -52f})
-                    )
-            );
+        /* Style layer: A style layer ties together the source and image and specifies how they are displayed on the map. */
+        loadedMapStyle.addLayer(new SymbolLayer(MARKER_STYLE_LAYER, MARKER_SOURCE)
+                .withProperties(
+                        PropertyFactory.iconAllowOverlap(true),
+                        PropertyFactory.iconIgnorePlacement(true),
+                        PropertyFactory.iconImage(MARKER_IMAGE),
+                        // Adjust the second number of the Float array based on the height of your marker image.
+                        // This is because the bottom of the marker should be anchored to the coordinate point, rather
+                        // than the middle of the marker being the anchor point on the map.
+                        PropertyFactory.iconOffset(new Float[]{0f, -52f})
+                )
+        );
 
     }
 
