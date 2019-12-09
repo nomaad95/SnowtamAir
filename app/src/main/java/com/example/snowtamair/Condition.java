@@ -5,6 +5,7 @@ public enum Condition {
         DAMP ,
         WET ,
         RIME,
+        DRYSNOW,
         WETSNOW,
         SLUSH,
         ICE,
