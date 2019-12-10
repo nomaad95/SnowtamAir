@@ -25,6 +25,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener, AirportResultCardFragment.OnFragmentInteractionListener, SearchInputFragment.OnFragmentInteractionListener {
     private Button buttonAer1;
@@ -108,17 +113,18 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
 
 
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         Log.d("menuActivity", "click");
         int id = menuItem.getItemId();
         Context context = this;
 
-        if (id == R.id.nav_aer1) {
+        if (id == R.id.nav_aer1 && (menuItem.getTitle()!="Nom aéroport")) {
             Log.d("menuActivity", "itemSelected");
             Intent intent = new Intent();
-            intent.setClass(context, AirportActivity.class);
-            startActivity(intent);
+            intent.setClass( MainActivity.this, AirportActivity.class);
+            intent.putExtra("search", savedAirports.getListAirport().get(0).getICAO());
         } else if (id == R.id.nav_aer2) {
         } else if (id == R.id.nav_aer3) {
         } else if (id == R.id.nav_aer4) {

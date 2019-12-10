@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class SavedAirports {
     private static SavedAirports instance;
     private static ArrayList<Airport> listAirports = new ArrayList<Airport>(4);
-
     private SavedAirports() {}
 
     public static SavedAirports getInstance() {
@@ -19,17 +18,31 @@ public class SavedAirports {
 
     public void setListAirport(ArrayList<Airport> listAirport) { this.listAirports = listAirport; }
 
-    public void addAirportToList(Airport airport){
-        if(listAirports.size() < 4){
-            listAirports.add(airport);
-        }
-        else{
-            Airport temp = listAirports.get(listAirports.size()-1);
-            for (int i=0; i > 0; i--){
-                listAirports.set(i, listAirports.get(i-1));
+    public boolean checkAirport(Airport airport){
+        for(int i = 0; i < listAirports.size(); i++){
+            if(listAirports.get(i).getICAO() == airport.getICAO()){
+                return true;
             }
-            listAirports.set(0, airport);
         }
+
+        return false;
+    }
+
+    public void addAirportToList(Airport airport){
+        if(!checkAirport(airport)){
+            if(listAirports.size() < 4){
+                listAirports.add(airport);
+            }
+            else{
+                Airport temp = listAirports.get(listAirports.size()-1);
+                for (int i=0; i > 0; i--){
+                    listAirports.set(i, listAirports.get(i-1));
+                }
+                listAirports.set(0, airport);
+            }
+        }
+
+
     }
 
     public void removeAirportFromList(Airport airport){
