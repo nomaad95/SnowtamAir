@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">SnowtamAir</string>
-    <string name="action_settings">Paramètre</string>
+    <string name="action_settings">Paramètres</string>
     <string name="navigation_drawer_open">Ouvre navigation drawer</string>
     <string name="navigation_drawer_close">Ferme navigation drawer</string>
     <string name="nav_header_title">SnowtamAir</string>
@@ -36,6 +36,6 @@
     <string name="btn_dialog_snowtam">SnowTam</string>
     <string name="codeoaci">code OACI</string>
     <string name="hint_search_oaci">Code OACI...</string>
-    <string name="search">Recherche</string>
     <string name="airport_history">Historique de recherche :</string>
+    <string name="search">Rechercher</string>
 </resources>
