@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mapbox.mapboxsdk.maps.MapboxMap;
@@ -41,25 +42,20 @@ public class RunwayFragment extends Fragment {
 
     private Runway runwayObject;
     private static String snowtamCode;
+    private int rankRunway;
 
     private OnFragmentInteractionListener mListener;
 
-    public RunwayFragment(Runway runway, String snowtam) {
+    public RunwayFragment(Runway runway, String snowtam, int rank) {
         // Required empty public constructor
         runwayObject = runway;
         Log.d(runwayObject.getId(), "newInstance RUNWAY OBJECT: ");
         snowtamCode = snowtam;
+        rankRunway = rank;
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param runway Parameter 1.
-     * @return A new instance of fragment RunwayFragment.
-     */
     public RunwayFragment newInstance(Runway runway) {
-        RunwayFragment fragment = new RunwayFragment(runway, snowtamCode);
+        RunwayFragment fragment = new RunwayFragment(runway, snowtamCode, rankRunway);
         Bundle args = new Bundle();
         Log.d(runway.getId(), "newInstance RUNWAY : ");
 
@@ -118,24 +114,32 @@ public class RunwayFragment extends Fragment {
         textViewId.setText(id);
         Log.d(id, "onCreateView RUNWAY ID : ");
 
-
+        // Display Runway Data in fragment
         // Set Runway Date
         TextView textViewDate = rootView.findViewById(R.id.textView_runway_date);
         String date = runwayObject.getObservationDate(this);
         textViewDate.setText(date);
         Log.d(date, "onCreateView RUNWAY DATE : ");
-
         // Set Runway Condition
         TextView textViewCondition = rootView.findViewById(R.id.textView_runway_condition);
         String condition = getString(R.string.runway_condition)  + runwayObject.getCondition();
         textViewCondition.setText(condition);
         Log.d(date, "onCreateView RUNWAY CONDITION : ");
-
         // Set Runway Friction
         TextView textViewFriction = rootView.findViewById(R.id.textView_runway_friction);
         String friction = getString(R.string.runway_friction) + runwayObject.getFrictionCoefficient();
         textViewFriction.setText(friction);
         Log.d(date, "onCreateView RUNWAY CONDITION : ");
+
+        // Deal with chevron display
+        if(rankRunway==-1){
+            ImageView chevronLeft = rootView.findViewById(R.id.chevron_left);
+            chevronLeft.setVisibility(View.INVISIBLE);
+        }
+        if(rankRunway==1){
+            ImageView chevronLeft = rootView.findViewById(R.id.chevron_right);
+            chevronLeft.setVisibility(View.INVISIBLE);
+        }
 
         return rootView;
     }

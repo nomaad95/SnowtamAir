@@ -94,20 +94,6 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
                 }
             }
         });
-
-        /* /!\ CODE DE STATIC Create Card Airport
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        String name = new String("Pertominsk Airport");
-        String code = new String("ULAT");
-        Bundle bundle = new Bundle();
-        bundle.putString("nameAirport", name);
-        bundle.putString("codeOACI", code);
-        AirportResultCardFragment cardResultFragment1 = new AirportResultCardFragment(code);
-        cardResultFragment1.setArguments(bundle);
-        ft.add(R.id.linearlayout_airportCardsResults, cardResultFragment1, "frag1");
-        ft.addToBackStack(null);
-        ft.commit();
-         */
     }
 
     @Override

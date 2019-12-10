@@ -151,8 +151,6 @@ public class AirportActivity extends AppCompatActivity  implements NavigationVie
                     mPager.setAdapter(pagerAdapter);
                 } else {
                     Log.d(snowtamCode, "onSuccess: snowtamCode ");
-                    // go to MainActivity ?
-                    //finish();
                     // set textview saying No Snowtam
                     TextView tv = findViewById(R.id.textView_noSnowtam);
                     tv.setVisibility(View.VISIBLE);
@@ -175,7 +173,6 @@ public class AirportActivity extends AppCompatActivity  implements NavigationVie
             }
         });
     }
-
 
     private void addMarkers(@NonNull Style loadedMapStyle) { //ajout d'icônes sur la carte aux positions des boîtes de nuit
 
@@ -213,8 +210,6 @@ public class AirportActivity extends AppCompatActivity  implements NavigationVie
             MainActivity.navigationView.getMenu().getItem(i).setTitle(savedAirports.getListAirport().get(i).getName()).setVisible(true);
             this.navigationView.getMenu().getItem(i).setTitle(savedAirports.getListAirport().get(i).getName()).setVisible(true);
         }
-
-
     }
 
     private void hideItem() {
@@ -228,9 +223,6 @@ public class AirportActivity extends AppCompatActivity  implements NavigationVie
     public void onResume() {
         super.onResume();
         mapView.onResume();
-        /*TextView text = findViewById(R.id.aiportTrackName);
-        text.setText(airport.getData());*/
-
     }
 
     @Override
@@ -335,7 +327,7 @@ public class AirportActivity extends AppCompatActivity  implements NavigationVie
 
     }
 
-
+    // For Fragment Swip
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
         private Snowtam snowtamObject;
         public ScreenSlidePagerAdapter(FragmentManager fm, Snowtam snowtam) {
@@ -350,7 +342,16 @@ public class AirportActivity extends AppCompatActivity  implements NavigationVie
             Runway runway = snowtamObject.getRunwayFromPosition(position);
             //Runway runway = new Runway();
             Log.d(runway.getId(), "getItem RUNWAY : ");
-            return new RunwayFragment(runway, snowtamCode);
+
+            //check if runway is fist(-1) or last(1)
+            int rank = 0;
+            if (position==0){
+                rank = -1;
+            }
+            if (position == snowtamObject.getRunwaysSize()){
+                rank = 1;
+            }
+            return new RunwayFragment(runway, snowtamCode, rank);
         }
 
         @Override

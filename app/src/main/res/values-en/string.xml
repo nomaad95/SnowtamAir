@@ -37,4 +37,5 @@
     <string name="codeoaci">code ICAO</string>
     <string name="hint_search_oaci">Code ICAO...</string>
     <string name="search">Search</string>
+    <string name="airport_history">Search history:</string>
 </resources>

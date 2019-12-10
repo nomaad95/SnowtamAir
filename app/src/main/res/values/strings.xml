@@ -51,5 +51,6 @@
     <string name="month_November">November</string>
     <string name="month_December">December</string>
     <string name="Registration_Time">Registered at</string>
+    <string name="airport_history">Search history:</string>
 
 </resources>
