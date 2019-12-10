@@ -20,7 +20,7 @@ public class SavedAirports {
 
     public boolean checkAirport(Airport airport){
         for(int i = 0; i < listAirports.size(); i++){
-            if(listAirports.get(i).getICAO() == airport.getICAO()){
+            if(listAirports.get(i).getICAO().equals(airport.getICAO())){
                 return true;
             }
         }

@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Vibrator;
 import android.text.InputFilter;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this); // configuration des évènements qui ont lieu dans le MenuActivity accessible depuis cette activité
-
+        hideItem();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toggle = new ActionBarDrawerToggle(MainActivity.this, drawer, toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
@@ -132,6 +133,12 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             }
             fragtrans.addToBackStack(null);
             fragtrans.commit();
+        }
+    }
+
+    private void hideItem() {
+        for(int i = 0; i < 4; i++){
+            navigationView.getMenu().getItem(i).setVisible(false);
         }
     }
 
