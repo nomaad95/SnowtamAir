@@ -348,7 +348,7 @@ public class AirportActivity extends AppCompatActivity  implements NavigationVie
             if (position==0){
                 rank = -1;
             }
-            if (position == snowtamObject.getRunwaysSize()){
+            if (position == snowtamObject.getRunwaysSize()-1){
                 rank = 1;
             }
             return new RunwayFragment(runway, snowtamCode, rank);
