@@ -14,6 +14,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.os.Vibrator;
 import android.text.InputFilter;
 import android.util.Log;
 import android.view.View;
@@ -66,6 +67,8 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         btnFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Vibrator v = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+                v.vibrate(20);
                 if(oaciCheck(inputSearch.getText().toString(), MainActivity.this)){
                     Intent intent = new Intent();
                     intent.setClass( MainActivity.this, AirportActivity.class);
@@ -179,11 +182,8 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             intent.setClass( MainActivity.this, AirportActivity.class);
             intent.putExtra("search", savedAirports.getListAirport().get(3).getICAO());
             startActivity(intent);
-        } else if (id == R.id.nav_share) {
-            Intent intent = new Intent();
-            intent.setClass( MainActivity.this, MainActivity.class);
-            intent.putExtra("search", savedAirports.getListAirport().get(3).getICAO());
-            startActivity(intent);
+        } else if (id == R.id.back) {
+
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
