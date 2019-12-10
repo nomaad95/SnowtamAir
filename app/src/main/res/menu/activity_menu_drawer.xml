@@ -23,13 +23,11 @@
 
     </group>
 
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/back"
-                android:icon="@drawable/ic_search_black_24dp"
-                android:title="Search" />
-        </menu>
-    </item>
+
+    <item
+        android:id="@+id/back"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="Search" />
+
 
 </menu>
