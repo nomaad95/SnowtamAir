@@ -2,23 +2,23 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".RunwayFragment">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="#F5F5F5">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <LinearLayout
-                android:layout_width="294dp"
-                android:layout_height="373dp"
+                android:layout_width="0dp"
+                android:layout_height="285dp"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -28,13 +28,13 @@
                 <ImageView
                     android:id="@+id/chevron_droite"
                     android:layout_width="35dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center_vertical|start"
                     android:tint="#999C9C9C"
                     app:srcCompat="@drawable/ic_chevron_left_solid" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="282dp"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
@@ -52,7 +52,6 @@
                         android:id="@+id/textView_runway_id"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
                         android:gravity="center"
                         android:padding="10dp"
                         android:text="@string/airport_track_name"
@@ -72,7 +71,6 @@
                         android:id="@+id/textView_runway_condition"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
                         android:gravity="center"
                         android:padding="10dp"
                         android:text="@string/airport_track_condition"
@@ -82,7 +80,6 @@
                         android:id="@+id/textView_runway_friction"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
                         android:gravity="center"
                         android:padding="10dp"
                         android:text="@string/airport_track_weather"
@@ -94,7 +91,7 @@
                 <ImageView
                     android:id="@+id/chevron_gauche"
                     android:layout_width="35dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center_vertical|end"
                     android:tint="#999C9C9C"
                     app:srcCompat="@drawable/ic_chevron_right_solid" />
