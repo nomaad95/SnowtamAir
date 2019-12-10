@@ -8,7 +8,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
@@ -143,9 +145,14 @@ public class AirportActivity extends AppCompatActivity  implements NavigationVie
                     pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager(), snowtamObject);
                     mPager.setAdapter(pagerAdapter);
                 } else {
-                    // go to MainActivity ?
                     Log.d(snowtamCode, "onSuccess: snowtamCode ");
+                    // go to MainActivity ?
                     //finish();
+                    // set textview saying No Snowtam
+                    TextView tv = findViewById(R.id.textView_noSnowtam);
+                    tv.setVisibility(View.VISIBLE);
+                    ProgressBar loadingimage= (ProgressBar) findViewById(R.id.progessbar_snowtam_waiting);
+                    loadingimage.setVisibility(View.INVISIBLE);
                 }
             }
         });

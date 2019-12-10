@@ -18,17 +18,31 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+
         <RelativeLayout
             android:id="@+id/loadingPanel"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center" >
+            android:layout_height="201dp"
+            android:gravity="center|center_vertical">
 
             <ProgressBar
+                android:id="@+id/progessbar_snowtam_waiting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:indeterminate="true" />
+
         </RelativeLayout>
+
+        <TextView
+            android:id="@+id/textView_noSnowtam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/string_no_snowtam"
+            android:textSize="18sp"
+            android:visibility="invisible" />
+
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/pager_pistes"
             android:layout_width="match_parent"
