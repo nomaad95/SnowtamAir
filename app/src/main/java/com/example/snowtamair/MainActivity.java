@@ -106,13 +106,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the MenuActivity; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu, menu);
-        SearchInputFragment.menu = menu;
-        return true;
-    }
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
