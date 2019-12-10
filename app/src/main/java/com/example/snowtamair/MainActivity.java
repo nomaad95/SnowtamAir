@@ -73,20 +73,19 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             }
         });
 
-        /*Add airport_result_card Fragment
-        // /!\ CODE DE TEST
+        // /!\ CODE DE STATIC
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         String name = new String("Pertominsk Airport");
         String code = new String("ULAT");
         Bundle bundle = new Bundle();
         bundle.putString("nameAirport", name);
         bundle.putString("codeOACI", code);
-        AirportResultCardFragment cardResultFragment1 = new AirportResultCardFragment();
+        AirportResultCardFragment cardResultFragment1 = new AirportResultCardFragment(code);
         cardResultFragment1.setArguments(bundle);
         ft.add(R.id.linearlayout_airportCardsResults, cardResultFragment1, "frag1");
         ft.addToBackStack(null);
         ft.commit();
-         */
+
 
 
         // get ListSnowtams
@@ -96,7 +95,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
                 Bundle bundleFrag = new Bundle();
                 bundleFrag.putString("nameAirport", airport.getName());
                 bundleFrag.putString("codeOACI", airport.getICAO());
-                AirportResultCardFragment airportResultCardFragment = new AirportResultCardFragment();
+                AirportResultCardFragment airportResultCardFragment = new AirportResultCardFragment(airport.getICAO());
                 airportResultCardFragment.setArguments(bundleFrag);
                 String tag = "tag_fragcardresult_" + airport.getAirport_ID();
                 fragtrans.add(R.id.linearlayout_airportCardsResults, airportResultCardFragment, tag);

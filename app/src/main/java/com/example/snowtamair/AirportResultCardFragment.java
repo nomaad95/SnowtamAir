@@ -39,8 +39,11 @@ public class AirportResultCardFragment extends Fragment {
     private TextView textViewName;
     private TextView textViewCode;
 
-    public AirportResultCardFragment() {
+    private String codeOACI;
+
+    public AirportResultCardFragment(String code) {
         // Required empty public constructor
+        codeOACI = code;
     }
 
     /**
@@ -52,7 +55,7 @@ public class AirportResultCardFragment extends Fragment {
      * @return A new instance of fragment AirportResultCardFragment.
      */
     public static AirportResultCardFragment newInstance(String name, String code) {
-        AirportResultCardFragment fragment = new AirportResultCardFragment();
+        AirportResultCardFragment fragment = new AirportResultCardFragment(code);
         Bundle args = new Bundle();
         args.putString(NAME_AIRPORT, name);
         args.putString(CODE_OACI, code);
@@ -82,7 +85,7 @@ public class AirportResultCardFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent();
                 intent.setClass( root.getContext(), AirportActivity.class);
-                intent.putExtra("search", CODE_OACI);
+                intent.putExtra("search", codeOACI);
                 startActivity(intent);
             }
         });
