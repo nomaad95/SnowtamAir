@@ -102,28 +102,20 @@ public class AirportActivity extends AppCompatActivity  implements NavigationVie
                         .bearing(180) // Rotate the camera
                         .tilt(70) // Set the camera tilt
                         .build(); // Creates a CameraPosition from the builder
-
                 mapboxMap.animateCamera(CameraUpdateFactory
                         .newCameraPosition(position), 7000);
-
-
                 mapboxMap.setStyle(Style.SATELLITE, new Style.OnStyleLoaded() {
                     @Override
                     public void onStyleLoaded(@NonNull Style style) {
-
-
                         style.addImage(MARKER_IMAGE, BitmapFactory.decodeResource(
                                 AirportActivity.this.getResources(), R.drawable.placeholder3));
                         addMarkers(style);
-
-
                     }
                 });
             }
         });
 
-
-
+        // GET ARGS
         intent = getIntent();
         bundle = intent.getExtras();
         oaci = bundle.getString("search");
@@ -133,12 +125,10 @@ public class AirportActivity extends AppCompatActivity  implements NavigationVie
         // save Airport
         savedAirports.addAirportToList(airportObject);
 
-        Log.d(String.valueOf(airportObject), "onCreate AIRPORT OBJECT: ");
-
+        //Set Toolbar title
         setTitle(airportObject.getName());
-        //Log.d("airportCheck", String.valueOf(airportObject.getAirport_ID()));
 
-
+        // GET SNOWTAM
         snowtamRequest = new SnowtamRequest(airportObject.getICAO(), AirportActivity.this, new VolleyCallback() {
             @Override
             public void onSuccess(String result) {
@@ -148,14 +138,12 @@ public class AirportActivity extends AppCompatActivity  implements NavigationVie
                     nbRunways = snowtamObject.getRunwaysSize();
                     Log.d(String.valueOf(nbRunways), "onSuccess nbRunways: ");
                     Log.d(snowtamCode, "onSuccess: snowtamCode ");
-
                     // Instantiate a ViewPager and a PagerAdapter.
                     mPager = (ViewPager) findViewById(R.id.pager_pistes);
                     pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager(), snowtamObject);
                     mPager.setAdapter(pagerAdapter);
-
                 } else {
-                    // go to MainActivity
+                    // go to MainActivity ?
                     Log.d(snowtamCode, "onSuccess: snowtamCode ");
                     //finish();
                 }
@@ -169,13 +157,9 @@ public class AirportActivity extends AppCompatActivity  implements NavigationVie
         mapboxMap.setStyle(Style.MAPBOX_STREETS, new Style.OnStyleLoaded() {
             @Override
             public void onStyleLoaded(@NonNull Style style) {
-
-
                 style.addImage(MARKER_IMAGE, BitmapFactory.decodeResource(
                         AirportActivity.this.getResources(), R.drawable.placeholder3));
                 addMarkers(style);
-
-
             }
         });
     }
@@ -192,17 +176,12 @@ public class AirportActivity extends AppCompatActivity  implements NavigationVie
             Icon icon = iconFactory.fromResource(R.drawable.placeholder3);
             markerOptions.icon(icon);
         }
-
         Log.d("bCheck", "appel de addMarker");
         this.features = new ArrayList<>();
         this.features.add(Feature.fromGeometry(Point.fromLngLat(airportObject.getLongitude(),airportObject.getLatitude())));
-
         /* Source: A data source specifies the geographic coordinate where the image marker gets placed. */
-
         loadedMapStyle.addSource(new GeoJsonSource(MARKER_SOURCE, FeatureCollection.fromFeatures(features), //création du fichier GeoJson permettant le placemment des markers
                 new GeoJsonOptions().withCluster(true).withClusterMaxZoom(14).withClusterRadius(50))); //si les points sont trop nombreux au même endroit, ils sont regroupés en un icône
-
-
         /* Style layer: A style layer ties together the source and image and specifies how they are displayed on the map. */
         loadedMapStyle.addLayer(new SymbolLayer(MARKER_STYLE_LAYER, MARKER_SOURCE)
                 .withProperties(
@@ -215,7 +194,6 @@ public class AirportActivity extends AppCompatActivity  implements NavigationVie
                         PropertyFactory.iconOffset(new Float[]{0f, -52f})
                 )
         );
-
     }
 
     // Add the mapView lifecycle to the activity's lifecycle methods
@@ -314,7 +292,7 @@ public class AirportActivity extends AppCompatActivity  implements NavigationVie
             Runway runway = snowtamObject.getRunwayFromPosition(position);
             //Runway runway = new Runway();
             Log.d(runway.getId(), "getItem RUNWAY : ");
-            return new RunwayFragment(runway);
+            return new RunwayFragment(runway, snowtamCode);
         }
 
         @Override

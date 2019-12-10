@@ -40,13 +40,15 @@ public class RunwayFragment extends Fragment {
     private String mFriction;
 
     private Runway runwayObject;
+    private static String snowtamCode;
 
     private OnFragmentInteractionListener mListener;
 
-    public RunwayFragment(Runway runway) {
+    public RunwayFragment(Runway runway, String snowtam) {
         // Required empty public constructor
         runwayObject = runway;
         Log.d(runwayObject.getId(), "newInstance RUNWAY OBJECT: ");
+        snowtamCode = snowtam;
     }
 
     /**
@@ -57,7 +59,7 @@ public class RunwayFragment extends Fragment {
      * @return A new instance of fragment RunwayFragment.
      */
     public static RunwayFragment newInstance(Runway runway) {
-        RunwayFragment fragment = new RunwayFragment(runway);
+        RunwayFragment fragment = new RunwayFragment(runway, snowtamCode);
         Bundle args = new Bundle();
         Log.d(runway.getId(), "newInstance RUNWAY : ");
 
@@ -98,7 +100,7 @@ public class RunwayFragment extends Fragment {
             public void onClick(View view) {
                 new AlertDialog.Builder(rootView.getContext())
                         .setTitle("Code SnowTam")
-                        .setMessage("code et tout et tout")
+                        .setMessage(snowtamCode)
                         .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 // Continue with delete operation
