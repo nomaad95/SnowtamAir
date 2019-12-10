@@ -76,6 +76,7 @@ public class AirportActivity extends AppCompatActivity  implements NavigationVie
     private String snowtamCode = new String();
     private TextView textViewTime;
     private DrawerLayout drawer;
+    private NavigationView navigationView;
 
     private SavedAirports savedAirports = SavedAirports.getInstance();
     private SnowtamRequest snowtamRequest;
@@ -116,7 +117,8 @@ public class AirportActivity extends AppCompatActivity  implements NavigationVie
                 });
             }
         });
-
+        navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
         // GET ARGS
         intent = getIntent();
         bundle = intent.getExtras();
@@ -206,6 +208,7 @@ public class AirportActivity extends AppCompatActivity  implements NavigationVie
         SavedAirports savedAirports = SavedAirports.getInstance();
         for(int i =0 ; i < savedAirports.getListAirport().size() ; i++){
             MainActivity.navigationView.getMenu().getItem(i).setTitle(savedAirports.getListAirport().get(i).getName());
+            this.navigationView.getMenu().getItem(i).setTitle(savedAirports.getListAirport().get(i).getName());
         }
 
 
