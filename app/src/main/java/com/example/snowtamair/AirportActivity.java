@@ -126,7 +126,7 @@ public class AirportActivity extends AppCompatActivity  implements NavigationVie
         airportObject = Airport.getAirport(oaci,this);
         // save Airport
         savedAirports.addAirportToList(airportObject);
-
+        updateMenuTitle();
         //Set Toolbar title
         setTitle(airportObject.getName());
 
@@ -201,6 +201,14 @@ public class AirportActivity extends AppCompatActivity  implements NavigationVie
                         PropertyFactory.iconOffset(new Float[]{0f, -52f})
                 )
         );
+    }
+    private void updateMenuTitle(){
+        SavedAirports savedAirports = SavedAirports.getInstance();
+        for(int i =0 ; i < savedAirports.getListAirport().size() ; i++){
+            MainActivity.navigationView.getMenu().getItem(i).setTitle(savedAirports.getListAirport().get(i).getName());
+        }
+
+
     }
 
     // Add the mapView lifecycle to the activity's lifecycle methods

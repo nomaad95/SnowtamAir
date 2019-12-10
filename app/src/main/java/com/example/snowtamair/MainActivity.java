@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     private ActionBarDrawerToggle toggle;
     public static JSONArray oaciList;
     private int searchInputNb = 1;
+    public static  NavigationView navigationView;
     private SavedAirports savedAirports = SavedAirports.getInstance();
 
     @Override
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this); // configuration des évènements qui ont lieu dans le MenuActivity accessible depuis cette activité
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
