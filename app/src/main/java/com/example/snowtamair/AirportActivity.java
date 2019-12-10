@@ -343,13 +343,16 @@ public class AirportActivity extends AppCompatActivity  implements NavigationVie
             //Runway runway = new Runway();
             Log.d(runway.getId(), "getItem RUNWAY : ");
 
-            //check if runway is fist(-1) or last(1)
+            //check if runway is fist(-1) or last(1), or alone(2)
             int rank = 0;
             if (position==0){
                 rank = -1;
             }
             if (position == snowtamObject.getRunwaysSize()-1){
                 rank = 1;
+            }
+            if (snowtamObject.getRunwaysSize()==1){
+                rank = 2;
             }
             return new RunwayFragment(runway, snowtamCode, rank);
         }

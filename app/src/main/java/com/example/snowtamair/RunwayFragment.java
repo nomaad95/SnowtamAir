@@ -132,13 +132,19 @@ public class RunwayFragment extends Fragment {
         Log.d(date, "onCreateView RUNWAY CONDITION : ");
 
         // Deal with chevron display
-        if(rankRunway==-1){
+        if(rankRunway==-1){ // if runway is first
             ImageView chevronLeft = rootView.findViewById(R.id.chevron_left);
             chevronLeft.setVisibility(View.INVISIBLE);
         }
-        if(rankRunway==1){
-            ImageView chevronLeft = rootView.findViewById(R.id.chevron_right);
+        if(rankRunway==1){ // if runway is last
+            ImageView chevronRight = rootView.findViewById(R.id.chevron_right);
+            chevronRight.setVisibility(View.INVISIBLE);
+        }
+        if(rankRunway==2){ // if runway is alone
+            ImageView chevronLeft = rootView.findViewById(R.id.chevron_left);
             chevronLeft.setVisibility(View.INVISIBLE);
+            ImageView chevronRight = rootView.findViewById(R.id.chevron_right);
+            chevronRight.setVisibility(View.INVISIBLE);
         }
 
         return rootView;
