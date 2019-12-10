@@ -127,7 +127,7 @@ public class RunwayFragment extends Fragment {
 
         // Set Runway Condition
         TextView textViewCondition = rootView.findViewById(R.id.textView_runway_condition);
-        String condition = getString(R.string.runway_condition) + runwayObject.getCondition();
+        String condition = getString(R.string.runway_condition)  + runwayObject.getCondition();
         textViewCondition.setText(condition);
         Log.d(date, "onCreateView RUNWAY CONDITION : ");
 

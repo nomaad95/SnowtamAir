@@ -17,24 +17,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <FrameLayout
-            android:id="@+id/frameLayout_searchinput1"
-            android:layout_width="wrap_content"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView_search"
+            android:layout_width="333dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp">
+            android:scaleType="fitXY"
+            app:cardBackgroundColor="#C3F5F5F5">
 
+            <EditText
+                android:id="@+id/input_search"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ems="10"
+                android:hint="@string/hint_search_oaci"
+                android:inputType="textPersonName|textCapCharacters"
+                android:maxLength="4"
+                android:scaleType="fitXY" />
 
-            <fragment
-                android:id="@+id/fragment"
-                android:name="com.example.snowtamair.SearchInputFragment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </FrameLayout>
+        </androidx.cardview.widget.CardView>
 
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingbtn_add_searchinput"
+        android:id="@+id/floatingbtn_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -45,7 +50,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout_searchinputs"
-        app:srcCompat="@drawable/ic_add_black_24dp" />
+        app:srcCompat="@drawable/ic_search_black_24dp" />
 
     <LinearLayout
         android:id="@+id/linearlayout_airportCardsResults"
@@ -56,7 +61,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/floatingbtn_add_searchinput"
+        app:layout_constraintTop_toBottomOf="@+id/floatingbtn_search"
         app:layout_constraintVertical_bias="0.61">
 
     </LinearLayout>

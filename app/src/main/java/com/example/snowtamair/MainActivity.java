@@ -13,13 +13,13 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.text.InputFilter;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
@@ -31,16 +31,11 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class MainActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener, AirportResultCardFragment.OnFragmentInteractionListener, SearchInputFragment.OnFragmentInteractionListener {
-    private Button buttonAer1;
-    private Button buttonAer2;
-    private Button buttonAer3;
-    private ImageButton buttonSearch;
+public class MainActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener, AirportResultCardFragment.OnFragmentInteractionListener {
     private EditText inputSearch;
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
     public static JSONArray oaciList;
-    private int searchInputNb = 1;
     public static  NavigationView navigationView;
     private SavedAirports savedAirports = SavedAirports.getInstance();
 
@@ -58,28 +53,31 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        // Adding search input fragment
-       FloatingActionButton btnFab = findViewById(R.id.floatingbtn_add_searchinput);
+        // Init Input Search
+        inputSearch = findViewById(R.id.input_search);
+        InputFilter[] filterArray = new InputFilter[2];
+        filterArray[0] = new InputFilter.LengthFilter(4);
+        filterArray[1] = new InputFilter.AllCaps();
+        inputSearch.setFilters(filterArray);
+
+        // Init Search button
+        FloatingActionButton btnFab = findViewById(R.id.floatingbtn_search);
         btnFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(searchInputNb<4){
-                    // Add fragment
-                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                    SearchInputFragment searchInputFragment = new SearchInputFragment();
-                    searchInputNb ++;
-                    String tag = "searchInputNum" + searchInputNb;
-                    ft.add(R.id.linearLayout_searchinputs, searchInputFragment, tag);
-                    ft.addToBackStack(null);
-                    ft.commit();
-
-                } else {
-                    // Do nothing
+                if(oaciCheck(inputSearch.getText().toString(), MainActivity.this)){
+                    Intent intent = new Intent();
+                    intent.setClass( MainActivity.this, AirportActivity.class);
+                    intent.putExtra("search", inputSearch.getText().toString());
+                    startActivity(intent);
+                }
+                else{
+                    Toast.makeText(MainActivity.this, getString(R.string.toast_wrong_ICAO), Toast.LENGTH_LONG).show();
                 }
             }
         });
 
-        // /!\ CODE DE STATIC
+        // /!\ CODE DE STATIC Create Card Airport
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         String name = new String("Pertominsk Airport");
         String code = new String("ULAT");
@@ -92,9 +90,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         ft.addToBackStack(null);
         ft.commit();
 
-
-
-        // get ListSnowtams
+        // get Cards Ariport from Saved Airport
         if(savedAirports.getListAirport()!= null){
             FragmentTransaction fragtrans = getSupportFragmentManager().beginTransaction();
             for(Airport airport : savedAirports.getListAirport()){
@@ -111,8 +107,36 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         }
     }
 
-
-
+    public boolean oaciCheck(String oaci, Context context) {
+        try {
+            InputStream is = context.getAssets().open("airport.json");
+            int size = 0;
+            try {
+                size = is.available();
+                byte[] buffer = new byte[size];
+                is.read(buffer);
+                is.close();
+                String json = new String(buffer, "UTF-8");
+                try {
+                    oaciList = new JSONArray(json);
+                    for(int i = 0; i < oaciList.length(); i++){
+                        JSONObject oaciJson = oaciList.getJSONObject((i));
+                        if(oaci.equals(oaciJson.getString("ICAO"))){
+                            return true;
+                        }
+                    }
+                    return false;
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
