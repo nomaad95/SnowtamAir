@@ -27,6 +27,9 @@
     <string name="airport_track_condition">Runway conditions</string>
     <string name="airport_track_weather">Weather</string>
 
+    <string name="runway_condition">Conditions:\n</string>
+    <string name="runway_friction">Frictions:\n</string>
+
     <string name="string_no_snowtam">No snowtam for this airport</string>
     <string name="string_code_snowtam">Complete Snowtam Code</string>
     <string name="ok">OK</string>

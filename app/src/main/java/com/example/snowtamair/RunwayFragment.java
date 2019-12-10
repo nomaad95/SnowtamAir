@@ -127,13 +127,13 @@ public class RunwayFragment extends Fragment {
 
         // Set Runway Condition
         TextView textViewCondition = rootView.findViewById(R.id.textView_runway_condition);
-        String condition = runwayObject.getCondition();
+        String condition = getString(R.string.runway_condition) + runwayObject.getCondition();
         textViewCondition.setText(condition);
         Log.d(date, "onCreateView RUNWAY CONDITION : ");
 
         // Set Runway Friction
         TextView textViewFriction = rootView.findViewById(R.id.textView_runway_friction);
-        String friction = "" + runwayObject.getFrictionCoefficient();
+        String friction = getString(R.string.runway_friction) + runwayObject.getFrictionCoefficient();
         textViewFriction.setText(friction);
         Log.d(date, "onCreateView RUNWAY CONDITION : ");
 

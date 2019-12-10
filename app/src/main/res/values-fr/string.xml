@@ -27,6 +27,9 @@
     <string name="airport_track_condition">Conditions piste</string>
     <string name="airport_track_weather">Météo</string>
 
+    <string name="runway_condition">Conditions :\n</string>
+    <string name="runway_friction">Frictions :\n</string>
+
     <string name="string_no_snowtam">Pas de snowtam pour cet aéroport</string>
     <string name="string_code_snowtam">Code Snowtam complet</string>
     <string name="ok">OK</string>
