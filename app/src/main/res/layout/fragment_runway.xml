@@ -70,7 +70,7 @@
                     <TextView
                         android:id="@+id/textView_runway_condition"
                         android:layout_width="match_parent"
-                        android:layout_height="86dp"
+                        android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="10dp"
                         android:text="@string/airport_track_condition"
@@ -79,7 +79,7 @@
                     <TextView
                         android:id="@+id/textView_runway_friction"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:gravity="center"
                         android:padding="10dp"
                         android:text="@string/airport_track_weather"
@@ -90,7 +90,7 @@
 
                 <ImageView
                     android:id="@+id/chevron_gauche"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_gravity="center_vertical|end"
                     android:tint="#999C9C9C"
