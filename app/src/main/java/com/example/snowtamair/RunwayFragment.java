@@ -39,7 +39,7 @@ public class RunwayFragment extends Fragment {
     private String mDate;
     private String mFriction;
 
-    private static Runway runwayObject;
+    private Runway runwayObject;
 
     private OnFragmentInteractionListener mListener;
 
