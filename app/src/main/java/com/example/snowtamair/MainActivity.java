@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        Log.d("menuActivity", "click");
+        Log.d("menuActivity", navigationView.getMenu().getItem(0).getTitle().toString());
         int id = menuItem.getItemId();
         Context context = this;
 
@@ -149,11 +149,28 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             Intent intent = new Intent();
             intent.setClass( MainActivity.this, AirportActivity.class);
             intent.putExtra("search", savedAirports.getListAirport().get(0).getICAO());
-        } else if (id == R.id.nav_aer2) {
-        } else if (id == R.id.nav_aer3) {
-        } else if (id == R.id.nav_aer4) {
+            startActivity(intent);
+        } else if (id == R.id.nav_aer2 && savedAirports.getListAirport().size() >=2) {
+            Intent intent = new Intent();
+            intent.setClass( MainActivity.this, AirportActivity.class);
+            intent.putExtra("search", savedAirports.getListAirport().get(1).getICAO());
+            startActivity(intent);
+
+        } else if (id == R.id.nav_aer3 && savedAirports.getListAirport().size() >=3) {
+            Intent intent = new Intent();
+            intent.setClass( MainActivity.this, AirportActivity.class);
+            intent.putExtra("search", savedAirports.getListAirport().get(2).getICAO());
+            startActivity(intent);
+        } else if (id == R.id.nav_aer4 && savedAirports.getListAirport().size() ==4) {
+            Intent intent = new Intent();
+            intent.setClass( MainActivity.this, AirportActivity.class);
+            intent.putExtra("search", savedAirports.getListAirport().get(3).getICAO());
+            startActivity(intent);
         } else if (id == R.id.nav_share) {
-            Log.d("menu", "ok");
+            Intent intent = new Intent();
+            intent.setClass( MainActivity.this, MainActivity.class);
+            intent.putExtra("search", savedAirports.getListAirport().get(3).getICAO());
+            startActivity(intent);
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

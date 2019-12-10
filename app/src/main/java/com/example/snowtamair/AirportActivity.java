@@ -1,5 +1,6 @@
 package com.example.snowtamair;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -39,6 +40,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -225,6 +227,42 @@ public class AirportActivity extends AppCompatActivity  implements NavigationVie
     }
 
     @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        Log.d("menuActivity", navigationView.getMenu().getItem(0).getTitle().toString());
+        int id = menuItem.getItemId();
+        Context context = this;
+
+        if (id == R.id.nav_aer1 && (menuItem.getTitle()!="Nom aéroport")) {
+            Log.d("menuActivity", "itemSelected");
+            Intent intent = new Intent();
+            intent.setClass( AirportActivity.this, AirportActivity.class);
+            intent.putExtra("search", savedAirports.getListAirport().get(0).getICAO());
+            startActivity(intent);
+        } else if (id == R.id.nav_aer2 && savedAirports.getListAirport().size() >=2) {
+            Intent intent = new Intent();
+            intent.setClass( AirportActivity.this, AirportActivity.class);
+            intent.putExtra("search", savedAirports.getListAirport().get(1).getICAO());
+            startActivity(intent);
+
+        } else if (id == R.id.nav_aer3 && savedAirports.getListAirport().size() >=3) {
+            Intent intent = new Intent();
+            intent.setClass( AirportActivity.this, AirportActivity.class);
+            intent.putExtra("search", savedAirports.getListAirport().get(2).getICAO());
+            startActivity(intent);
+        } else if (id == R.id.nav_aer4 && savedAirports.getListAirport().size() ==4) {
+            Intent intent = new Intent();
+            intent.setClass( AirportActivity.this, AirportActivity.class);
+            intent.putExtra("search", savedAirports.getListAirport().get(3).getICAO());
+            startActivity(intent);
+        } else if (id == R.id.nav_share) {
+            Intent intent = new Intent();
+            startActivity(intent);
+        }
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        return true;
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
         mapView.onStart();
@@ -291,10 +329,6 @@ public class AirportActivity extends AppCompatActivity  implements NavigationVie
 
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        return false;
-    }
 
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
         private Snowtam snowtamObject;
