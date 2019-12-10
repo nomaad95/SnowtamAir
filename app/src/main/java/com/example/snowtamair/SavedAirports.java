@@ -24,7 +24,6 @@ public class SavedAirports {
                 return true;
             }
         }
-
         return false;
     }
 

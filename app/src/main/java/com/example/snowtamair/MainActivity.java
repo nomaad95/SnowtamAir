@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.text.InputFilter;
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             }
         });
 
-        // /!\ CODE DE STATIC Create Card Airport
+        /* /!\ CODE DE STATIC Create Card Airport
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         String name = new String("Pertominsk Airport");
         String code = new String("ULAT");
@@ -89,11 +90,17 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         ft.add(R.id.linearlayout_airportCardsResults, cardResultFragment1, "frag1");
         ft.addToBackStack(null);
         ft.commit();
+         */
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        // First remove all existing fragment
+        for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+        }
+
         // get Cards Ariport from Saved Airport
         Log.d(String.valueOf(savedAirports.getListAirport()), "onCreate SAVED AIRPORTS : ");
         if(savedAirports.getListAirport()!= null){
