@@ -209,8 +209,8 @@ public class AirportActivity extends AppCompatActivity  implements NavigationVie
     private void updateMenuTitle(){
         SavedAirports savedAirports = SavedAirports.getInstance();
         for(int i =0 ; i < savedAirports.getListAirport().size() ; i++){
-            MainActivity.navigationView.getMenu().getItem(i).setTitle(savedAirports.getListAirport().get(i).getName());
-            this.navigationView.getMenu().getItem(i).setTitle(savedAirports.getListAirport().get(i).getName());
+            MainActivity.navigationView.getMenu().getItem(i).setTitle(savedAirports.getListAirport().get(i).getName()).setVisible(true);
+            this.navigationView.getMenu().getItem(i).setTitle(savedAirports.getListAirport().get(i).getName()).setVisible;
         }
 
 
