@@ -121,6 +121,7 @@ public class AirportActivity extends AppCompatActivity  implements NavigationVie
         });
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        hideItem();
         // GET ARGS
         intent = getIntent();
         bundle = intent.getExtras();
@@ -214,6 +215,12 @@ public class AirportActivity extends AppCompatActivity  implements NavigationVie
         }
 
 
+    }
+
+    private void hideItem() {
+        for(int i = 0; i < 4; i++){
+            navigationView.getMenu().getItem(i).setVisible(false);
+        }
     }
 
     // Add the mapView lifecycle to the activity's lifecycle methods
