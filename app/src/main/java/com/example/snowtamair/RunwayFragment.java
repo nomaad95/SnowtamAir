@@ -58,14 +58,14 @@ public class RunwayFragment extends Fragment {
      * @param runway Parameter 1.
      * @return A new instance of fragment RunwayFragment.
      */
-    public static RunwayFragment newInstance(Runway runway) {
+    public RunwayFragment newInstance(Runway runway) {
         RunwayFragment fragment = new RunwayFragment(runway, snowtamCode);
         Bundle args = new Bundle();
         Log.d(runway.getId(), "newInstance RUNWAY : ");
 
         args.putString(NUM_TRACK, runway.getId());
         args.putString(CONDITION_TRACK, runway.getCondition());
-        args.putString(DATE_TRACK, runway.getObservationDate());
+        args.putString(DATE_TRACK, runway.getObservationDate(this));
         args.putString(FRICTION_TRACK, runway.getFrictionCoefficient());
         fragment.setArguments(args);
         return fragment;
@@ -121,7 +121,7 @@ public class RunwayFragment extends Fragment {
 
         // Set Runway Date
         TextView textViewDate = rootView.findViewById(R.id.textView_runway_date);
-        String date = runwayObject.getObservationDate();
+        String date = runwayObject.getObservationDate(this);
         textViewDate.setText(date);
         Log.d(date, "onCreateView RUNWAY DATE : ");
 

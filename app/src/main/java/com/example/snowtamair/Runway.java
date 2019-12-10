@@ -83,6 +83,52 @@ public class Runway implements Serializable {
         }
         return friction.substring(1);
     }
+
+    public String getObservationDate(RunwayFragment c) {
+        String humanReadableDate = observationDate.substring(2,4)+" ";
+        String month = observationDate.substring(0,2);
+        switch (month) {
+            case "01":
+                humanReadableDate += c.getResources().getString(R.string.month_January);
+                break;
+            case "02":
+                humanReadableDate += c.getResources().getString(R.string.month_February);
+                break;
+            case "03":
+                humanReadableDate += c.getResources().getString(R.string.month_March);
+                break;
+            case "04":
+                humanReadableDate += c.getResources().getString(R.string.month_April);
+                break;
+            case "05":
+                humanReadableDate += c.getResources().getString(R.string.month_May);
+                break;
+            case "06":
+                humanReadableDate += c.getResources().getString(R.string.month_June);
+                break;
+            case "07":
+                humanReadableDate += c.getResources().getString(R.string.month_July);
+                break;
+            case "08":
+                humanReadableDate += c.getResources().getString(R.string.month_August);
+                break;
+            case "09":
+                humanReadableDate += c.getResources().getString(R.string.month_September);
+                break;
+            case "10":
+                humanReadableDate += c.getResources().getString(R.string.month_October);
+                break;
+            case "11":
+                humanReadableDate += c.getResources().getString(R.string.month_November);
+                break;
+            case "12":
+                humanReadableDate += c.getResources().getString(R.string.month_December);
+                break;
+        }
+        humanReadableDate+=" "+c.getResources().getString(R.string.Registration_Time)+" "+observationDate.substring(4,6)+"h"+observationDate.substring(6);
+        return humanReadableDate;
+    }
+
     public String getId() {
         return id;
     }
@@ -102,8 +148,6 @@ public class Runway implements Serializable {
     public String getFrictionCoefficient() {
         return frictionCoefficient;
     }
-
-    public String getObservationDate() { return observationDate; }
 
     public void setObservationDate(String observationDate) {
         this.observationDate = observationDate;
