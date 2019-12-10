@@ -1,7 +1,10 @@
-package com.example.snowtamair;
+package com.example.snowtamair.model;
 
 import android.content.Context;
 import android.util.Log;
+
+import com.example.snowtamair.model.Airport;
+import com.example.snowtamair.model.Runway;
 
 import java.util.ArrayList;
 import java.util.HashMap;

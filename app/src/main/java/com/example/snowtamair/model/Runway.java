@@ -1,4 +1,7 @@
-package com.example.snowtamair;
+package com.example.snowtamair.model;
+
+import com.example.snowtamair.R;
+import com.example.snowtamair.view.RunwayFragment;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -55,7 +58,7 @@ public class Runway implements Serializable {
         String[] parsedCondition=coded.split("/");
         for(String part:parsedCondition){
             if (part.equals("NIL")){
-                String state=Condition.values()[0].name();
+                String state= Condition.values()[0].name();
                 condition += " "+state;
             }
             else{
@@ -77,7 +80,7 @@ public class Runway implements Serializable {
         for(String part:parsedCondition){
             for(int value : part.toCharArray()){
                 String c = Character.toString ((char) value);
-                String state=Friction.values()[Integer.parseInt(c)-1].name();
+                String state= Friction.values()[Integer.parseInt(c)-1].name();
                 friction += " "+state;
             }
         }

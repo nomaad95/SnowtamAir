@@ -1,4 +1,4 @@
-package com.example.snowtamair;
+package com.example.snowtamair.view;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,15 +17,15 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Vibrator;
 import android.text.InputFilter;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.snowtamair.R;
+import com.example.snowtamair.model.Airport;
+import com.example.snowtamair.model.SavedAirports;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 

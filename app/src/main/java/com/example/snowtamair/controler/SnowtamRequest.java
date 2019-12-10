@@ -1,4 +1,4 @@
-package com.example.snowtamair;
+package com.example.snowtamair.controler;
 
 import android.content.Context;
 import android.util.Log;
@@ -9,13 +9,15 @@ import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.snowtamair.controler.RequestSingleton;
+import com.example.snowtamair.controler.VolleyCallback;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;

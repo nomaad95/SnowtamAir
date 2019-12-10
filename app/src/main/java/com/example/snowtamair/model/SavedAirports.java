@@ -1,4 +1,4 @@
-package com.example.snowtamair;
+package com.example.snowtamair.model;
 
 import java.util.ArrayList;
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".AirportResultCardFragment">
+    tools:context=".view.AirportResultCardFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView_result_airport"
@@ -43,7 +43,7 @@
                 app:layout_constraintStart_toEndOf="@+id/textView_result_name"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/btn_remove_card_result"
                 android:layout_width="76dp"
                 android:layout_height="0dp"
@@ -55,7 +55,7 @@
                 app:layout_constraintStart_toEndOf="@+id/textView_result_code"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0"
-                app:srcCompat="@drawable/ic_remove_black_24dp" />
+                app:srcCompat="@drawable/ic_search_black_24dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>

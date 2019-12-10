@@ -1,4 +1,4 @@
-package com.example.snowtamair;
+package com.example.snowtamair.view;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -17,6 +17,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.snowtamair.R;
+import com.example.snowtamair.model.Runway;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
 
 

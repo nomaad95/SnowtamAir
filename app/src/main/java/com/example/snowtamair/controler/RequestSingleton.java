@@ -1,4 +1,4 @@
-package com.example.snowtamair;
+package com.example.snowtamair.controler;
 
 import android.content.Context;
 

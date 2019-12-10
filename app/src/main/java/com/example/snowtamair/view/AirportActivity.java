@@ -1,4 +1,4 @@
-package com.example.snowtamair;
+package com.example.snowtamair.view;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,8 +6,6 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -15,6 +13,13 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
+import com.example.snowtamair.R;
+import com.example.snowtamair.controler.SnowtamRequest;
+import com.example.snowtamair.controler.VolleyCallback;
+import com.example.snowtamair.model.Airport;
+import com.example.snowtamair.model.Runway;
+import com.example.snowtamair.model.SavedAirports;
+import com.example.snowtamair.model.Snowtam;
 import com.google.android.material.navigation.NavigationView;
 import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.geojson.Feature;
@@ -39,8 +44,6 @@ import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -50,14 +53,12 @@ import androidx.viewpager.widget.ViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.TimeUnit;
 
 
 /**
  * The most basic example of adding a map to an activity.
  */
-public class AirportActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener ,RunwayFragment.OnFragmentInteractionListener, PermissionsListener, OnMapReadyCallback {
+public class AirportActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener , RunwayFragment.OnFragmentInteractionListener, PermissionsListener, OnMapReadyCallback {
 
     private MapView mapView;
     private int nbRunways = 5;
