@@ -89,8 +89,13 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         ft.add(R.id.linearlayout_airportCardsResults, cardResultFragment1, "frag1");
         ft.addToBackStack(null);
         ft.commit();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
         // get Cards Ariport from Saved Airport
+        Log.d(String.valueOf(savedAirports.getListAirport()), "onCreate SAVED AIRPORTS : ");
         if(savedAirports.getListAirport()!= null){
             FragmentTransaction fragtrans = getSupportFragmentManager().beginTransaction();
             for(Airport airport : savedAirports.getListAirport()){
@@ -100,6 +105,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
                 AirportResultCardFragment airportResultCardFragment = new AirportResultCardFragment(airport.getICAO());
                 airportResultCardFragment.setArguments(bundleFrag);
                 String tag = "tag_fragcardresult_" + airport.getAirport_ID();
+                Log.d(tag, "onCreate TAG : ");
                 fragtrans.add(R.id.linearlayout_airportCardsResults, airportResultCardFragment, tag);
             }
             fragtrans.addToBackStack(null);
