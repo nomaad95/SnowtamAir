@@ -13,6 +13,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.os.Vibrator;
 import android.text.InputFilter;
 import android.util.Log;
 import android.view.View;
@@ -65,6 +66,8 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         btnFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Vibrator v = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+                v.vibrate(20);
                 if(oaciCheck(inputSearch.getText().toString(), MainActivity.this)){
                     Intent intent = new Intent();
                     intent.setClass( MainActivity.this, AirportActivity.class);
