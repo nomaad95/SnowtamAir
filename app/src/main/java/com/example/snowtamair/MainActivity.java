@@ -19,6 +19,8 @@ import android.text.InputFilter;
 import android.util.Log;
 import android.view.View;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -32,14 +34,16 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener, AirportResultCardFragment.OnFragmentInteractionListener {
-    private EditText inputSearch;
+    private AutoCompleteTextView inputSearch;
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
     public static JSONArray oaciList;
     public static  NavigationView navigationView;
     private SavedAirports savedAirports = SavedAirports.getInstance();
+    private InputStream is;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +59,17 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        //Init OaciJson
+        try {
+            is = getAssets().open("airport.json");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         // Init Input Search
         inputSearch = findViewById(R.id.input_search);
+        ArrayAdapter<String> searchAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_dropdown_item_1line, getListOACI());
+        inputSearch.setAdapter(searchAdapter);
         InputFilter[] filterArray = new InputFilter[2];
         filterArray[0] = new InputFilter.LengthFilter(4);
         filterArray[1] = new InputFilter.AllCaps();
@@ -103,7 +116,6 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         for (Fragment fragment : getSupportFragmentManager().getFragments()) {
             getSupportFragmentManager().beginTransaction().remove(fragment).commit();
         }
-
         // get Cards Ariport from Saved Airport
         Log.d(String.valueOf(savedAirports.getListAirport()), "onCreate SAVED AIRPORTS : ");
         if(savedAirports.getListAirport()!= null){
@@ -125,13 +137,14 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
     public boolean oaciCheck(String oaci, Context context) {
         try {
-            InputStream is = context.getAssets().open("airport.json");
+            //is = context.getAssets().open("airport.json");
+            is.reset();
             int size = 0;
             try {
                 size = is.available();
                 byte[] buffer = new byte[size];
                 is.read(buffer);
-                is.close();
+                //is.close();
                 String json = new String(buffer, "UTF-8");
                 try {
                     oaciList = new JSONArray(json);
@@ -152,6 +165,34 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             e.printStackTrace();
         }
         return false;
+    }
+
+    public ArrayList<String> getListOACI(){
+        ArrayList<String> listOACI = new ArrayList<String>();
+        try {
+            is.reset();
+            int size = 0;
+            try {
+                size = is.available();
+                byte[] buffer = new byte[size];
+                is.read(buffer);
+                String json = new String(buffer, "UTF-8");
+                try {
+                    oaciList = new JSONArray(json);
+                    for(int i = 0; i < oaciList.length(); i++){
+                        JSONObject oaciJson = oaciList.getJSONObject((i));
+                        listOACI.add(oaciJson.getString("ICAO"));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return listOACI;
     }
 
     @Override

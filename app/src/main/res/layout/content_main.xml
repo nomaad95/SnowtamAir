@@ -24,7 +24,7 @@
             android:scaleType="fitXY"
             app:cardBackgroundColor="#C3F5F5F5">
 
-            <EditText
+            <AutoCompleteTextView
                 android:id="@+id/input_search"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
