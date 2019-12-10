@@ -109,7 +109,7 @@ public class AirportActivity extends AppCompatActivity  implements NavigationVie
                         .build(); // Creates a CameraPosition from the builder
                 mapboxMap.animateCamera(CameraUpdateFactory
                         .newCameraPosition(position), 7000);
-                mapboxMap.setStyle(Style.SATELLITE, new Style.OnStyleLoaded() {
+                mapboxMap.setStyle(Style.SATELLITE_STREETS, new Style.OnStyleLoaded() {
                     @Override
                     public void onStyleLoaded(@NonNull Style style) {
                         style.addImage(MARKER_IMAGE, BitmapFactory.decodeResource(
