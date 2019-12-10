@@ -254,9 +254,8 @@ public class AirportActivity extends AppCompatActivity  implements NavigationVie
             intent.setClass( AirportActivity.this, AirportActivity.class);
             intent.putExtra("search", savedAirports.getListAirport().get(3).getICAO());
             startActivity(intent);
-        } else if (id == R.id.nav_share) {
-            Intent intent = new Intent();
-            startActivity(intent);
+        } else if (id == R.id.back) {
+            finish();
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         return true;
