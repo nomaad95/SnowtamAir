@@ -7,10 +7,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.Window;
 import android.widget.TextView;
 
 
+import com.google.android.material.navigation.NavigationView;
 import com.mapbox.android.core.permissions.PermissionsListener;
 import com.mapbox.geojson.Feature;
 import com.mapbox.geojson.FeatureCollection;
@@ -20,6 +22,7 @@ import com.mapbox.mapboxsdk.annotations.Icon;
 import com.mapbox.mapboxsdk.annotations.IconFactory;
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
 import com.mapbox.mapboxsdk.camera.CameraPosition;
+import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.maps.MapView;
 import com.mapbox.mapboxsdk.maps.MapboxMap;
@@ -33,6 +36,8 @@ import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
@@ -48,7 +53,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * The most basic example of adding a map to an activity.
  */
-public class AirportActivity extends AppCompatActivity  implements RunwayFragment.OnFragmentInteractionListener, PermissionsListener, OnMapReadyCallback {
+public class AirportActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener ,RunwayFragment.OnFragmentInteractionListener, PermissionsListener, OnMapReadyCallback {
 
     private MapView mapView;
     private int nbRunways = 5;
@@ -68,6 +73,7 @@ public class AirportActivity extends AppCompatActivity  implements RunwayFragmen
     private Snowtam snowtamObject;
     private String snowtamCode = new String();
     private TextView textViewTime;
+    private DrawerLayout drawer;
 
     private SavedAirports savedAirports = SavedAirports.getInstance();
     private SnowtamRequest snowtamRequest;
@@ -90,11 +96,17 @@ public class AirportActivity extends AppCompatActivity  implements RunwayFragmen
         mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(@NonNull MapboxMap mapboxMap) {
-                mapboxMap.setCameraPosition(new CameraPosition.Builder()
+                CameraPosition position = new CameraPosition.Builder()
                         .target(new LatLng(airportObject.getLatitude(), airportObject.getLongitude())) // Sets the new camera position
-                        .zoom(14) // Sets the zoom
+                        .zoom(15) // Sets the zoom
+                        .bearing(180) // Rotate the camera
                         .tilt(70) // Set the camera tilt
-                        .build()); // Creates a CameraPosition from the builder);
+                        .build(); // Creates a CameraPosition from the builder
+
+                mapboxMap.animateCamera(CameraUpdateFactory
+                        .newCameraPosition(position), 7000);
+
+
                 mapboxMap.setStyle(Style.SATELLITE, new Style.OnStyleLoaded() {
                     @Override
                     public void onStyleLoaded(@NonNull Style style) {
@@ -109,6 +121,8 @@ public class AirportActivity extends AppCompatActivity  implements RunwayFragmen
                 });
             }
         });
+
+
 
         intent = getIntent();
         bundle = intent.getExtras();
@@ -279,6 +293,11 @@ public class AirportActivity extends AppCompatActivity  implements RunwayFragmen
     @Override
     public void onPermissionResult(boolean granted) {
 
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        return false;
     }
 
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
