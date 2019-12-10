@@ -34,5 +34,18 @@
     <string name="search">Search</string>
 
     <string name='toast_wrong_ICAO'>Unknown ICAO Code</string>
+    <string name="month_January">January</string>
+    <string name="month_February">February</string>
+    <string name="month_March">March</string>
+    <string name="month_April">April</string>
+    <string name="month_May">May</string>
+    <string name="month_June">June</string>
+    <string name="month_July">July</string>
+    <string name="month_August">August</string>
+    <string name="month_September">September</string>
+    <string name="month_October">October</string>
+    <string name="month_November">November</string>
+    <string name="month_December">December</string>
+    <string name="Registration_Time">Registered at</string>
 
 </resources>

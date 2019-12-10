@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="toast_wrong_ICAO">Code OACI inconnu</string>
+    <string name="month_January">Janvier</string>
+    <string name="month_March">Mars</string>
+    <string name="month_February">Février</string>
+    <string name="month_April">Avril</string>
+    <string name="month_May">Mai</string>
+    <string name="month_June">Juin</string>
+    <string name="month_July">Juillet</string>
+    <string name="month_August">Août</string>
+    <string name="month_September">Septembre</string>
+    <string name="month_October">Octobre</string>
+    <string name="month_November">Novembre</string>
+    <string name="month_December">Décembre</string>
+    <string name="Registration_Time">enregistré à</string>
 </resources>
